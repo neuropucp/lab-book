@@ -1,0 +1,26 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Electroencefalografía (EEG) con EMOTIV FLEX
+  chapters:
+  - file: manualEEG
+  - file: fichaEEG
+  - file: codigoEEG
+- caption: Electrocardiografía (ECG) con Shimmer3
+  chapters:
+  - file: manualECG
+  - file: fichaECG
+  - file: codigoECG
+- caption: Actividad electrodérmica (EDA) con Shimmer3
+  chapters:
+  - file: manualEDA
+  - file: fichaEDA
+  - file: codigoEDA
+- caption: Example
+  chapters:
+  - file: markdown
+  - file: notebooks
+  - file: markdown-notebooks
