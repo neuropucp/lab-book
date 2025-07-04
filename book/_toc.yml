@@ -19,6 +19,8 @@ parts:
   - file: manualEDA
   - file: fichaEDA
   - file: codigoEDA
+- chapters:
+  - file: citations
 - caption: Example
   chapters:
   - file: markdown
