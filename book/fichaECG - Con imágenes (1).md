@@ -50,7 +50,7 @@ El Shimmer3 ECG Unit es un dispositivo inalámbrico de monitoreo fisiológico di
 	* __Cables:__ Se recomienda usar cables cortos para minimizar interferencias.
 * __Localización de electrodos:__
 
-```{figure} .https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Localizacion_de_electrodos.png
+```{figure} https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Localizacion_de_electrodos.png
 ---
 scale: 100%
 align: center
@@ -86,3 +86,4 @@ Bossaerts, P., Fattinger, F., Rotaru, K., & Xu, K. (2024). Emotional engagement 
 Heyat, B. M., & Siddiqui, M. M. (2015). Recording of EEG, ECG, EMG Signal. 
 
 Kligfield, P., et al. (2007). Recommendations for the standardization and  interpretation of the electrocardiogram.
+
