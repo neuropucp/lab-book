@@ -75,8 +75,8 @@ __Posición de los electródos:__
 Un electrodo debe colocarse en la superficie palmar de la falange medial y el otro en la superficie palmar de la falange distal (Figura 1): 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Localizacion_de_electrodos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
-  <p><em><strong> Figura 29 </strong>Localización anatómica de los electrodos ECG en configuraciones de 9 y 18 leads. Elaboración propia (imagen previamente presentada en la Figura 1).</em></p>
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Posicionamiento_de_electrodos_del_GSR+..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 1 </strong>Ejemplo de posicionamiento de los electrodos del GSR+.</em></p>
 </div>
 
 __Sonda de pulso óptico:__
@@ -112,27 +112,27 @@ __Paso 1:__ Descarga el software de Consensys V1.6.0 (64 o 32bits) * desde el si
 Para verificar y elegir qué versión (32 o 64bits) es compatible a la PC, seguir la siguiente ruta: 
 1. *Panel de control*
 2. *Sistema y seguridad* 
-3. *Sistema*
+3. *Sistema* 
 
 __Paso 2:__ Windows instalará ahora los controladores (drivers) para la Base. 
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Especificaciones de compatibilidad del dispositivo.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Especificaciones_de_compatibilidad_del_dispositivo..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 2 </strong>Especificaciones de compatibilidad del dispositivo.</em></p>
+</div>  
 
 _Paso 3:_ Al conectar la base con la computadora, aparecerá una ventana emergente que menciona que el equipo está instalado. Para revisar que se haya instalado correctamente ubicarse en “Administrador de dispositivos” (si sale alguna ventana emergente, solo ciérrala) y desplegar “Controladores de USB serie universal” donde deberían encontrarse 4 USB Serial Converters (A, B, C, D). 
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Visualización de los controladores de USB serie universal.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Visualización_de_los_controladores_de_USB_serie_universal..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 3 </strong>Visualización de los controladores de USB serie universal.</em></p>
+</div>  
+
+
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Verificación_manual_de la_instalación_de_los_drivers.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 4 </strong>Verificación manual de la instalación de los drivers.</em></p>
+</div>  
 
 ```{warning} Advertencia
 En caso los procedimientos anteriores no resulten, proceder a la instalación manual de Drivers....
@@ -149,15 +149,6 @@ align: center
 * Paso B: Descargar el archivo “WHQL Certified” dando click en setup.executable 
 * Paso C: Ejecutar el archivo con permisos de administrador y seguir las instrucciones del ejecutable. 
 * Paso D: Una vez instalado, revisar si los drivers se instalaron como en el paso 3.
-
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Verificación del driver FTDI en el Administrador de dispositivos.*
-```
-
 * Paso E: Si se encuentran instalados, ya estaría listo para instalar el programa Consenys. 
 
 ## __3.6. Instalación del ConsensysPRO__
@@ -219,23 +210,20 @@ Para asegurar la conexión entre el Shimmer y Consensys realizar lo siguiente:
 9. Al finalizar darle click a “DONE”. 
  
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 75%
-align: right
----
-*Unidad Shimmer3 GSR+ conectada a la base y correctamente reconocida por el software Consensys.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Shimmer3_GSR+_conectada.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 5 </strong>Unidad Shimmer3 GSR+ conectada a la base y correctamente reconocida por el software Consensys.</em></p>
+</div> 
+
 
 Para realizar configuraciones como el muestreo, algoritmos y la calibración ir   “CONFIGURE”.
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Ventana del programa Consensys.*
-```
+
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_del_programa_Consensys..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 6 </strong>Ventana del programa Consensys.</em></p>
+</div> 
+
 
 ## __3.7. Programar los parámetros para el Shimmer__
 
@@ -243,50 +231,39 @@ align: center
 
 1. Elegir la ratio de muestreo. Este dato se coloca y se ingresa en la zona SAMPLING RATE (Hz) presionando “enter”. 
 
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_de_parametros (sensores).png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 7 </strong>Ventana de parámetros (sensores) de configuración del dispositivo.</em></p>
+</div> 
+
 2. Hacer click en los cuadrados para activar y configurar los sensores: En la ventana sensores (resaltador amarillo), en ella se determina que señales se desea medir para el ensayo experimental. Por ejemplo, en la imagen se muestran los sensores que están habilitados (en color blanco): GSR+. En caso, se encuentre coloreado de gris significa que son señales desactivadas. 
 
 El equipo cuenta con los siguientes sensores: Acelerómetro de bajo ruido, Acelerómetro de amplio rango (Varshney, 2021), Giroscopio (Sieciński et al., 2020), Magnetómetro (Brisinda et al., 2023), Temperatura y presión (Marathe et al., 2019), Voltaje de batería (Lee & Seo, 2019), Convertidores Anlógico-Digitales de expansión externa e interna y GSR/PPG. 
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Ventana de parámetros (sensores) de configuración del dispositivo.*
-```
-
 3. Posteriormente, de click en la ventana algoritmos. 
+
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_de_parametros (algoritmos).png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 8 </strong>Ventana de parámetros (algoritmos) de configuración del dispositivo.</em></p>
+</div> 
+
 
 El equipo cuenta con los siguientes algoritmos: Calibración del giroscopio “sobre la marcha”, 9DOF (Lüken et al., 2015) , 6DOF (Lüken et al., 2015), PPG to HR y Activity (Muhlsteff et al., 2004).
 
 4. Seguidamente pasar a la ventana de calibración, en el cual se debe cerciorar que los bordes de los cuadros sean de color naranja como indica en la imagen referencial. Lo anterior indica una adecuada calibración 
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Ventana de parámetros (algoritmos) de configuración del dispositivo.*
-```
-
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Ventana de parámetros (calibración) de configuración del dispositivo.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_de_parametros (calibración).png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 9 </strong>Ventana de parámetros (calibración) de configuración del dispositivo.</em></p>
+</div> 
 
 
 5. Finalmente, confirmar la configuración y hacer click en “Write Config”. La ventana emergente indica que la unidad está en proceso o lista para recoger información (Configuration progress). 
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Confirmación de configuración del dispositivo.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_del_estado_de_confirmación.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 10 </strong>Ventana del estado de confirmación de la configuración del dispositivo.</em></p>
+</div> 
 
 Enseguida, seguir las instrucciones de la imagen inferior:
 1. Retirar el shimmer de la base 
@@ -295,44 +272,32 @@ Enseguida, seguir las instrucciones de la imagen inferior:
 4. Verificar que la luz verde esté intermitente cuando se graban los datos. 
 5. Presionar el botón naranja para detener el registro.
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 65%
-align: right
----
-*Ventana con instrucciones para el registro de datos.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_con_instrucciones_para_registro_datos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 11 </strong>Ventana con instrucciones para el registro de datos.</em></p>
+</div> 
 
 ## *__3.7.2. Visualización de la data__*
 1. Dirigirse a la pestaña “Live Data” para visualizar la señal. Verificar previamente que el dispositivo bluetooth esté conectado a la computadora, luego dar click en el ícono de antena (encendido de azul). 
 
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Ventana para la visualización de la data.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_de_visualizacion_data.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 12 </strong>Ventana para la visualización de la data.</em></p>
+</div> 
+
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_conectado_correccto_bluetooth.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 13 </strong>Visualización del Shimmer correctamente conectado a la señal bluetooth.</em></p>
+</div> 
 
 2. Finalmente, Dar click a “Stream” para visualizar la data
 
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Visualización del Shimmer correctamente conectado a la señal bluetooth.*
-```
-
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Visualización de la data en vivo.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Visualizacion_data_en_vivo.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 14 </strong>Visualización de la data en vivo.</em></p>
+</div> 
 
 Consensys permite personalizar la visualización de los datos: 
 
