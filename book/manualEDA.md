@@ -74,13 +74,10 @@ Se sugiere utilizar frecuencias de 0-5 Hz para medidas tónicas, siendo las frec
 __Posición de los electródos:__
 Un electrodo debe colocarse en la superficie palmar de la falange medial y el otro en la superficie palmar de la falange distal (Figura 1): 
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Posición de los electrodos en los dedos índice y medio para el registro de señales fisiológicas con el dispositivo Shimmer3.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Localizacion_de_electrodos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 29 </strong>Localización anatómica de los electrodos ECG en configuraciones de 9 y 18 leads. Elaboración propia (imagen previamente presentada en la Figura 1).</em></p>
+</div>
 
 __Sonda de pulso óptico:__
 
