@@ -84,17 +84,22 @@ Psychopy siga la siguiente ruta:
 
 Components → Get more → Plugins → Buscar “Emotiv EEG” → Instalar
 
-## Images
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Componentes _Emotiv_Psychopy.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
 
-![This is an alt text.](/image/sample.webp "This is a sample image.")
 
-* **Comando de código:** Documentación para instalar en Psychopy para agregar soporte a
+**Comando de código:** Documentación para instalar en Psychopy para agregar soporte a
 distintos hardwares de emotiv, como en añadir ambos componentes:
 https://github.com/psychopy/psychopy-emotiv
 
 Al realizar esto, ya se habrán añadido los 2 componentes de
 Emotiv dentro de la pestaña de EEG en Psychopy, los cuales
 son el **Emotiv Recording y Emotiv Marking.**
+
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Emotiv_Recording _y_ Emotiv_Marking..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
 
 **Emotiv Recording:**
 
@@ -176,10 +181,14 @@ Para enviar marcadores usando LSL, debemos incluir un Python script. Utilizaremo
 
 Adjuntamos un ejemplo de script:
 
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Ejemplo_de_script.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
+A continuación, visualizaremos este script en el componente de código de PsychoPy.
 
-## Images
-
-![This is an alt text.](/image/sample.webp "This is a sample image.")
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Código_de _PsychoPy.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
 
 Aquí desglosamos cada parte del código para entender cómo funciona:
 
@@ -207,9 +216,9 @@ Para verificar que se envían adecuadamente los marcadores, ejecuta la tarea en 
 Haz click en el botón "Connect", y ejecuta la tarea en Psychopy. Deberás observar los marcadores
 como líneas rosadas en el registro.
 
-## Images
-
-![This is an alt text.](/image/sample.webp "This is a sample image.")
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Marcadores_Emotiv.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
 
 Para revisar otro ejemplo utilizando las funciones **pylsl**, puedes ingresar al siguiente enlace: https://github.com/Emotiv/labstreaminglayer/blob/master/examples/psychopy/readme.md
 
@@ -222,9 +231,9 @@ Para revisar otro ejemplo utilizando las funciones **pylsl**, puedes ingresar al
 2. Despejar el área de colocación: Se recomienda usar ganchos o pinzas para sujetar el cabello largo y evitar que interfiera con los electrodos. En el caso de pacientes con cabello muy rizado o voluminoso, puede ser útil trenzar o recoger el cabello en un moño bajo para facilitar el
 acceso al cuero cabelludo.
 
-## Images
-
-![This is an alt text.](/image/sample.webp "This is a sample image.")
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Recomendación_sobre_el_ cabello.png" alt="Localización de electrodos ECG" width="auto" height="auto"> <p><em><strong> </strong>Imágenes extraídas de: https://hellobrainlab.com/research/eeg-hair-project/.</em></p>
+</div>
 
 3. Colocación de electrodos: Al colocar los electrodos, asegúrate de que el cabello no esté
 entrelazado entre el electrodo y el cuero cabelludo, ya que esto puede afectar la calidad de la señal. Utiliza más agua salina para mejorar la conductividad y minimizar la interferencia.
