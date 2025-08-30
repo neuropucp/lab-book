@@ -47,34 +47,28 @@ __4.3 Configuración de Bluetooth (si es necesario)__
 * En "Manage Devices", selecciona el dispositivo y ajusta la frecuencia de muestreo, los sensores activos y algoritmos. 
 * Usa la opción "Write Config" para guardar la configuración. 
 
-### *__3.9.6 Colocación de Sensores*
+### *3.9.6 Colocación de Sensores*
 1. Electrodos GSR: 
 * Coloca un electrodo en la falange medial y otro en la falange distal de los dedos índice y medio. 
+* Ajusta con el velcro.
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Posición de los electrodos en los dedos índice y medio para el registro de señales fisiológicas con el dispositivo Shimmer3(como en la figura 1).*
-```
-
-* Ajusta con el velcro. 
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Posicionamiento_de_electrodos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 1 </strong>Ejemplo de posicionamiento 	de los electrodos del GSR+</em></p>
+</div>
+ 
 2. Sensor de pulso óptico: 
 * Colócalo en la parte inferior del lóbulo de la oreja para minimizar interferencias. 
 
-### *__3.9.7 Registro de Datos__*
+### *3.9.7 Registro de Datos*
 1. Presiona el botón naranja en el Shimmer para comenzar a grabar.
 2. Verifica que la luz verde esté intermitente. 
 3. Para detener el registro, presiona nuevamente el botón naranja. 
 
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Ventana con instrucciones.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Venta_de_intruscciones.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 2 </strong>Ventana con instrucciones para el registro de datos.</em></p>
+</div>
 
 8. Visualización de Datos 
 	1. Accede a la pestaña "Live Data" en ConsensysPRO. 
@@ -83,13 +77,10 @@ align: center
 	* Selecciona los datos a visualizar. 
 	* Configura los ejes y colores según tus preferencias. 
 	
-```{figure} ../images/cool.jpg (CAMBIAR A GUÍA DE IMAGEN)
----
-scale: 100%
-align: center
----
-*Visualización de la data en vivo.*
-```
+<div align="center">
+  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Visualiación_de_data.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 3 </strong>Visualización de la data en vivo.</em></p>
+</div>
 
 ### *__3.9.8. Resolución de Problemas__*
 * El dispositivo no se conecta: 
