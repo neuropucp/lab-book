@@ -52,7 +52,7 @@ El Shimmer3 ECG Unit es un dispositivo inalámbrico de monitoreo fisiológico di
 * __Localización de electrodos:__
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Localizacion_de_electrodos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Localizacion_de_electrodos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 29 </strong>Localización anatómica de los electrodos ECG en configuraciones de 9 y 18 leads. Elaboración propia (imagen previamente presentada en la Figura 1).</em></p>
 </div>
 
