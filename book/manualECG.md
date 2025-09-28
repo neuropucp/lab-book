@@ -73,7 +73,7 @@ __2. Lead unipolar__ (captura actividad eléctrica del corazón desde un solo pu
 Localización de electrodos: 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Localizacion_de_electrodos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Localizacion_de_electrodos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 15 </strong>Posicionamiento de electrodos para medición con 9 leads (derecha) y con 18 leads (izquierda). Se representan las derivaciones estándar utilizadas en el registro de señales ECG. Elaboración propia.</em></p>
 </div>
 
@@ -112,7 +112,7 @@ Para verificar y elegir qué versión (32 o 64bits) es compatible a la PC, segui
 3. _Sistema_ 
 
 <div align="right">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Especificaciones_del_dispositivo.png" alt="Especificaciones dispositivo ECG" width="500px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Especificaciones_del_dispositivo.png" alt="Especificaciones dispositivo ECG" width="500px" height="auto">
   <p><em><strong> Figura 16 </strong>Detalle de las especificaciones del equipo utilizado para los registros. Elaboración propia.</em></p>
 </div>
 
@@ -120,19 +120,19 @@ __Paso 2:__ Windows instalará ahora los controladores (drivers) para la Base. S
 pantalla. 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Instalacion_controladores.png" alt="Instalación controladores" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Instalacion_controladores.png" alt="Instalación controladores" width="auto" height="auto">
   <p><em><strong> Figura 17 </strong>Mensajes del sistema durante la instalación exitosa del controlador del dispositivo. Elaboración propia.</em></p>
 </div>
 
 __Paso 3:__ Conectar la base con la computadora, aparecerá una ventana emergente que menciona que el equipo está instalado. Para revisar que se haya instalado correctamente ubicarse en “Administrador de dispositivos” (si sale alguna ventana emergente, solo ciérrala) y desplegar “Controladores de bus serie universal” donde deberían encontrarse 4 USB Serial Converters (A, B, C, D).
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Acceso_administrador_y_verificacion_de_instalacion.png" alt="Administrador y verificación instalación" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Acceso_administrador_y_verificacion_de_instalacion.png" alt="Administrador y verificación instalación" width="900px" height="auto">
   <p><em><strong> Figura 18 </strong>Acceso al Administrador de dispositivos (A) y verificación de la instalación de los convertidores USB Serial para el dispositivo Shimmer (B). Elaboración propia.</em></p>
 </div>
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Verificacion_de_instalacion.png" alt="Verificación instalación" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Verificacion_de_instalacion.png" alt="Verificación instalación" width="900px" height="auto">
   <p><em><strong> Figura 19 </strong>Verificación de la instalación del controlador USB Serial: acceso a propiedades del dispositivo (C), revisión de versión del driver (D) y configuración de nombre del puerto (E). Elaboración propia.</em></p>
 </div>
 
@@ -217,12 +217,12 @@ Para asegurar la conexión entre el Shimmer y Consensys realizar lo siguiente:
 9. Al finalizar darle click a “DONE”. 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Dispositivo_Shimmer.png" alt="Dispositivo Shimmer" width="300px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Dispositivo_Shimmer.png" alt="Dispositivo Shimmer" width="300px" height="auto">
   <p><em><strong> Figura 20 </strong>Vista del dispositivo Shimmer para configuración de muestreo, algoritmos y calibración mediante la opción “CONFIGURE”. Elaboración propia.</em></p>
 </div>
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Dispositivo_Shimmer_softwareConsensys.png" alt="Dispositivo Shimmer softwareConsensys" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Dispositivo_Shimmer_softwareConsensys.png" alt="Dispositivo Shimmer softwareConsensys" width="900px" height="auto">
   <p><em><strong> Figura 21 </strong>Vista del dispositivo Shimmer en el software Consensys con la opción “Configure” resaltada. Elaboración propia.</em></p>
 </div>
 
@@ -232,7 +232,7 @@ Configuración de ensayo de referencia (https://www.youtube.com/watch?v=1B9oz1Zl
 1. Elegir la ratio de muestreo (512 Hz, parámetro recomendado para ensayos clínicos). Este dato se coloca y se ingresa en la zona señalizada presionando “enter”. 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Muestreo_de_software.png" alt="Muestreo de software" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Muestreo_de_software.png" alt="Muestreo de software" width="900px" height="auto">
   <p><em><strong> Figura 22 </strong>Selección de la ratio de muestreo en el software Consensys (512 Hz). Elaboración propia.</em></p>
 </div>
 
@@ -242,7 +242,7 @@ Configuración de ensayo de referencia (https://www.youtube.com/watch?v=1B9oz1Zl
 El equipo cuenta con los siguientes sensores: Acelerómetro de bajo ruido, Acelerómetro de amplio rango (Varshney, 2021), Giroscopio (Sieciński et al., 2020), Magnetómetro (Brisinda et al., 2023), Temperatura y presión (Marathe et al., 2019), Voltaje de batería (Lee & Seo, 2019), ECG/EMG (Heyat & Siddiqui, 2015).
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Interfaz_softwareConsensysPRO.png" alt="Interfaz softwareConsensysPRO" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Interfaz_softwareConsensysPRO.png" alt="Interfaz softwareConsensysPRO" width="900px" height="auto">
   <p><em><strong> Figura 23 </strong>Interfaz del software ConsensysPRO v1.6.0 mostrando la ventana de algoritmos resaltada para su configuración. Elaboración propia.</em></p>
 </div>
 
@@ -256,7 +256,7 @@ El equipo cuenta con los siguientes algoritmos: Calibración del giroscopio “s
 Enseguida, seguir las instrucciones de la imagen inferior: 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Confirmaci%C3%B3n_configuraci%C3%B3n_softwareConsensys.png" alt="Confirmación configuración software" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Confirmaci%C3%B3n_configuraci%C3%B3n_softwareConsensys.png" alt="Confirmación configuración software" width="900px" height="auto">
   <p><em><strong> Figura 24 </strong>Confirmación de la configuración en el software Consensys mediante la ventana “Configuration Progress”. Elaboración propia.</em></p>
 </div>
 
@@ -271,7 +271,7 @@ Enseguida, seguir las instrucciones de la imagen inferior:
 5. Presionar el botón naranja para detener el registro. 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Iniciar_y_detener_registro.png" alt="Iniciar y detener registro" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Iniciar_y_detener_registro.png" alt="Iniciar y detener registro" width="900px" height="auto">
   <p><em><strong> Figura 25 </strong>Instrucciones para iniciar y detener el registro de datos en el dispositivo Shimmer mediante el botón naranja. Elaboración propia.</em></p>
 </div>
 
@@ -279,21 +279,21 @@ Enseguida, seguir las instrucciones de la imagen inferior:
 Apretar el botón “Live Data” para visualizar la señal. Asegurarse que el dispositivo bluetooth esté conectado a la computadora, dar click en el ícono de antena (encendido de azul).
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Visualizacion_se%C3%B1ales_registradas.png" alt="Visualizar Señales registradas" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Visualizacion_se%C3%B1ales_registradas.png" alt="Visualizar Señales registradas" width="900px" height="auto">
   <p><em><strong> Figura 26 </strong>Visualización en vivo de las señales registradas por el dispositivo Shimmer en ConsensysPRO. Elaboración propia.</em></p>
 </div>
 
 Finalmente, se selecciona los instrumentos que se desea conectar al bluetooth. Dar click a “Stream” para visualizar la data.
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Visualizador_dispositivos_tiempo_real.png" alt="Visualizar dispositivo tiempo real" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Visualizador_dispositivos_tiempo_real.png" alt="Visualizar dispositivo tiempo real" width="900px" height="auto">
   <p><em><strong> Figura 27 </strong>Panel de ConsensysPRO mostrando dispositivo conectado y señales listas para visualizar en tiempo real. Elaboración propia.</em></p>
 </div>
 
 La siguiente imagen incluye la visualización de las ondas PQRST. 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualECG_Visualizacion_tiempo_real.png" alt="Visualizar dispositivo tiempo real" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Visualizacion_tiempo_real.png" alt="Visualizar dispositivo tiempo real" width="900px" height="auto">
   <p><em><strong> Figura 28 </strong>Visualización en tiempo real de la señal fisiológica registrada por el dispositivo Shimmer en ConsensysPRO. Elaboración propia.</em></p>
 </div>
 
