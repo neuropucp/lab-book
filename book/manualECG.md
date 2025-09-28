@@ -256,7 +256,7 @@ El equipo cuenta con los siguientes algoritmos: Calibración del giroscopio “s
 Enseguida, seguir las instrucciones de la imagen inferior: 
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Confirmaci%C3%B3n_configuraci%C3%B3n_softwareConsensys.png" alt="Confirmación configuración software" width="900px" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualECG_Confirmacion_configuracion_softwareConsensys.png" alt="Confirmación configuración software" width="900px" height="auto">
   <p><em><strong> Figura 24 </strong>Confirmación de la configuración en el software Consensys mediante la ventana “Configuration Progress”. Elaboración propia.</em></p>
 </div>
 
