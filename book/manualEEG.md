@@ -85,7 +85,7 @@ Psychopy siga la siguiente ruta:
 Components → Get more → Plugins → Buscar “Emotiv EEG” → Instalar
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Componentes _Emotiv_Psychopy.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/b87cbe1eaba36d2b4aec4a9331c46122aff08531/book/res/manualEEG_Componentes%20_Emotiv_Psychopy.png" alt="Localización de electrodos ECG" width="auto" height="auto">
 </div> 
 
 
