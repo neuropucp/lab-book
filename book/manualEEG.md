@@ -98,7 +98,7 @@ Emotiv dentro de la pestaña de EEG en Psychopy, los cuales
 son el **Emotiv Recording y Emotiv Marking.**
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Emotiv_Recording _y_ Emotiv_Marking..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Emotiv_Recording_y_Emotiv_Marking.png" alt="Localización de electrodos ECG" width="auto" height="auto">
 </div> 
 
 **Emotiv Recording:**
@@ -182,12 +182,12 @@ Para enviar marcadores usando LSL, debemos incluir un Python script. Utilizaremo
 Adjuntamos un ejemplo de script:
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Ejemplo_de_script.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Ejemplo_de_script.png" alt="Localización de electrodos ECG" width="auto" height="auto">
 </div> 
 A continuación, visualizaremos este script en el componente de código de PsychoPy.
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Código_de _PsychoPy.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Codigo_de_PsychoPy.png" alt="Localización de electrodos ECG" width="auto" height="auto">
 </div> 
 
 Aquí desglosamos cada parte del código para entender cómo funciona:
@@ -217,7 +217,7 @@ Haz click en el botón "Connect", y ejecuta la tarea en Psychopy. Deberás obser
 como líneas rosadas en el registro.
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Marcadores_Emotiv.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Marcadores_Emotiv.png" alt="Localización de electrodos ECG" width="auto" height="auto">
 </div> 
 
 Para revisar otro ejemplo utilizando las funciones **pylsl**, puedes ingresar al siguiente enlace: https://github.com/Emotiv/labstreaminglayer/blob/master/examples/psychopy/readme.md
@@ -232,7 +232,7 @@ Para revisar otro ejemplo utilizando las funciones **pylsl**, puedes ingresar al
 acceso al cuero cabelludo.
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Recomendación_sobre_el_ cabello.png" alt="Localización de electrodos ECG" width="auto" height="auto"> <p><em><strong> </strong>Imágenes extraídas de: https://hellobrainlab.com/research/eeg-hair-project/.</em></p>
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Recomendacion_sobre_el_cabello.png" alt="Localización de electrodos ECG" width="auto" height="auto"> <p><em><strong> </strong>Imágenes extraídas de: https://hellobrainlab.com/research/eeg-hair-project/.</em></p>
 </div>
 
 3. Colocación de electrodos: Al colocar los electrodos, asegúrate de que el cabello no esté
