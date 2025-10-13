@@ -34,11 +34,11 @@ El paquete FLEX contiene 16 elementos:
 14. **20 Filtros de longitud larga** (solo salinos) (conectan electrodos salinos al controlador FLEX, ofrecen mayor alcance)
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Contenido_del_paquete_ FLEX_P1.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Contenido_del_paquete_FLEX_P1.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 1 </strong>Contenido del paquete FLEX. Imagen basada en EMOTIV (2023).</em></p>
 </div>
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Contenido_del_paquete_ FLEX_P2.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Contenido_del_paquete_FLEX_P2.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 2 </strong>Contenido del paquete FLEX. Imagen basada en EMOTIV (2023).</em></p>
 </div>
 Existen 3 tipos de cabezales (medidas del Flex cap): pequeño (54 cm), mediano (56 cm) y grande (58 cm).
@@ -119,7 +119,7 @@ Para insertar los sensores en el gorro FLEX tienes que seguir los siguientes pas
 3. Ajusta el material del gorro en el sensor hasta que esté ubicado correctamente.
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Inserta_sensores_en_gorro_FLEX.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Inserta_sensores_en_gorro_FLEX.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 3 </strong>Insertar sensores en gorro FLEX. Elaboración propia.</em></p>
 </div>
 
@@ -141,7 +141,7 @@ El lugar en el cual configurar la ubicación del controlador FLEX no es problem�
 - Si estás realizando un estudio en el que el participante deba apoyar su cabeza por la parte trasera, se recomienda posicionar el controlador FLEX en la parte superior.
   
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Ubicación_controlador.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Ubicacion_controlador.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 4 </strong>Ubicaciones controlador. Elaboración propia.</em></p>
 </div>
 
@@ -151,14 +151,14 @@ El lugar en el cual configurar la ubicación del controlador FLEX no es problem�
 3. Estire el bolsillo del gorro FLEX sobre el controlador y a su vez alrededor de la ranura de la parte circular con el logotipo de EMOTIV.
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Conlocación_del_controlador_FLEX.png">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Colocacion_del_controlador_FLEX.png">
   <p><em><strong> Figura 5 </strong>Cómo colocar el controlador FLEX. Elaboración propia.</em></p>
 </div>
 
 **Conectar los sensores al controlador FLEX**
 Para conectar los sensores al controlador FLEX, se tiene que conectar el extremo blanco de los cables rojos y conectarlo en el lado derecho del controlador. Como a su vez, conectar el extremo blanco de los cables azules en el lado izquierdo.
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEEG_Conexión_de_sensores_al_controlador_ FLEX.png">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Conexion_de_sensores_al_controlador_FLEX.png">
   <p><em><strong> Figura 5 </strong>Cómo colocar el controlador FLEX. Elaboración propia.</em></p>
 </div>
 
