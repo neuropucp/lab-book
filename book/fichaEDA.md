@@ -98,4 +98,5 @@ __4.3 Configuración de Bluetooth (si es necesario)__
 ### __3.10. Referencias Bibliográficas__
 ```{bibliography}
 :style: plain
+```
 
