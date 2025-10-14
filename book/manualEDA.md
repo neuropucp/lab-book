@@ -75,7 +75,7 @@ __Posición de los electródos:__
 Un electrodo debe colocarse en la superficie palmar de la falange medial y el otro en la superficie palmar de la falange distal (Figura 1): 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Posicionamiento_de_electrodos_del_GSR+..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Posicionamiento_de_electrodos_del_GSR+.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 1 </strong>Ejemplo de posicionamiento de los electrodos del GSR+.</em></p>
 </div>
 
@@ -117,20 +117,20 @@ Para verificar y elegir qué versión (32 o 64bits) es compatible a la PC, segui
 __Paso 2:__ Windows instalará ahora los controladores (drivers) para la Base. 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Especificaciones_de_compatibilidad_del_dispositivo..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Especificaciones_de_compatibilidad_del_dispositivo.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 2 </strong>Especificaciones de compatibilidad del dispositivo.</em></p>
 </div>  
 
 _Paso 3:_ Al conectar la base con la computadora, aparecerá una ventana emergente que menciona que el equipo está instalado. Para revisar que se haya instalado correctamente ubicarse en “Administrador de dispositivos” (si sale alguna ventana emergente, solo ciérrala) y desplegar “Controladores de USB serie universal” donde deberían encontrarse 4 USB Serial Converters (A, B, C, D). 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Visualización_de_los_controladores_de_USB_serie_universal..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Visualizacion_de_los_controladores_de_USB_serie_universal.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 3 </strong>Visualización de los controladores de USB serie universal.</em></p>
 </div>  
 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Verificación_manual_de la_instalación_de_los_drivers.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Verificacion_manual_de la_instalacion_de_los_drivers.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 4 </strong>Verificación manual de la instalación de los drivers.</em></p>
 </div>  
 
@@ -211,7 +211,7 @@ Para asegurar la conexión entre el Shimmer y Consensys realizar lo siguiente:
  
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Shimmer3_GSR+_conectada.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Shimmer3_GSR+_conectada.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 5 </strong>Unidad Shimmer3 GSR+ conectada a la base y correctamente reconocida por el software Consensys.</em></p>
 </div> 
 
@@ -220,7 +220,7 @@ Para realizar configuraciones como el muestreo, algoritmos y la calibración ir 
 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_del_programa_Consensys..png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_del_programa_Consensys.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 6 </strong>Ventana del programa Consensys.</em></p>
 </div> 
 
@@ -232,7 +232,7 @@ Para realizar configuraciones como el muestreo, algoritmos y la calibración ir 
 1. Elegir la ratio de muestreo. Este dato se coloca y se ingresa en la zona SAMPLING RATE (Hz) presionando “enter”. 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_de_parametros (sensores).png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_de_parametros(sensores).png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 7 </strong>Ventana de parámetros (sensores) de configuración del dispositivo.</em></p>
 </div> 
 
@@ -243,7 +243,7 @@ El equipo cuenta con los siguientes sensores: Acelerómetro de bajo ruido, Acele
 3. Posteriormente, de click en la ventana algoritmos. 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_de_parametros (algoritmos).png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_de_parametros(algoritmos).png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 8 </strong>Ventana de parámetros (algoritmos) de configuración del dispositivo.</em></p>
 </div> 
 
@@ -261,7 +261,7 @@ El equipo cuenta con los siguientes algoritmos: Calibración del giroscopio “s
 5. Finalmente, confirmar la configuración y hacer click en “Write Config”. La ventana emergente indica que la unidad está en proceso o lista para recoger información (Configuration progress). 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_del_estado_de_confirmación.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_del_estado_de_confirmacion.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 10 </strong>Ventana del estado de confirmación de la configuración del dispositivo.</em></p>
 </div> 
 
@@ -273,7 +273,7 @@ Enseguida, seguir las instrucciones de la imagen inferior:
 5. Presionar el botón naranja para detener el registro.
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_con_instrucciones_para_registro_datos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_con_instrucciones_para_registro_datos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 11 </strong>Ventana con instrucciones para el registro de datos.</em></p>
 </div> 
 
@@ -282,12 +282,12 @@ Enseguida, seguir las instrucciones de la imagen inferior:
 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_de_visualizacion_data.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_de_visualizacion_data.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 12 </strong>Ventana para la visualización de la data.</em></p>
 </div> 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_conectado_correccto_bluetooth.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_conectado_correccto_bluetooth.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 13 </strong>Visualización del Shimmer correctamente conectado a la señal bluetooth.</em></p>
 </div> 
 
@@ -295,7 +295,7 @@ Enseguida, seguir las instrucciones de la imagen inferior:
 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Visualizacion_data_en_vivo.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Visualizacion_data_en_vivo.png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 14 </strong>Visualización de la data en vivo.</em></p>
 </div> 
 
