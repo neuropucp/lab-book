@@ -96,6 +96,7 @@ __4.3 Configuración de Bluetooth (si es necesario)__
 * Carga la batería antes de guardarlo por períodos prolongados.
 
 ### __3.10. Referencias Bibliográficas__
+
 ```{bibliography}
 :style: plain
 ```
