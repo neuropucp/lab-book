@@ -96,9 +96,6 @@ __4.3 Configuración de Bluetooth (si es necesario)__
 * Carga la batería antes de guardarlo por períodos prolongados.
 
 ### __3.10. Referencias Bibliográficas__
+```{bibliography}
+:style: plain
 
-Shimmer Sensing. (n.d.). Shimmer3 GSR+ User Manual. Recuperado de: https://shimmersensing.com 
-
-Lüken, M., Misgeld, B. J. E., & Rüschen, D. (2015). Multi-sensor calibration of low-cost magnetic, angular rate and gravity systems. Sensors, 15(10), 25919-25936. https://doi.org/10.3390/s151025919 
-
-Varshney, N. (2021). Combining electrocardiogram signal with accelerometer signals for human activity recognition using convolution neural network. Journal of Physics Conference Series, 1947(1), 012037. https://doi.org/10.1088/1742-6596/1947/1/012037 
