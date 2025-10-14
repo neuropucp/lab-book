@@ -232,7 +232,7 @@ Para realizar configuraciones como el muestreo, algoritmos y la calibración ir 
 1. Elegir la ratio de muestreo. Este dato se coloca y se ingresa en la zona SAMPLING RATE (Hz) presionando “enter”. 
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_de_parametros(sensores).png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_de_parametros_(sensores).png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 7 </strong>Ventana de parámetros (sensores) de configuración del dispositivo.</em></p>
 </div> 
 
@@ -243,7 +243,7 @@ El equipo cuenta con los siguientes sensores: Acelerómetro de bajo ruido, Acele
 3. Posteriormente, de click en la ventana algoritmos. 
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_de_parametros(algoritmos).png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_de_parametros_(algoritmos).png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 8 </strong>Ventana de parámetros (algoritmos) de configuración del dispositivo.</em></p>
 </div> 
 
@@ -253,7 +253,7 @@ El equipo cuenta con los siguientes algoritmos: Calibración del giroscopio “s
 4. Seguidamente pasar a la ventana de calibración, en el cual se debe cerciorar que los bordes de los cuadros sean de color naranja como indica en la imagen referencial. Lo anterior indica una adecuada calibración 
 
 <div align="center">
-  <img src="https://github.com/neuropucp/lab-book/blob/main/book/res/manualEDA_Ventana_de_parametros (calibración).png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Ventana_de_parametros_(calibración).png" alt="Localización de electrodos ECG" width="auto" height="auto">
   <p><em><strong> Figura 9 </strong>Ventana de parámetros (calibración) de configuración del dispositivo.</em></p>
 </div> 
 
