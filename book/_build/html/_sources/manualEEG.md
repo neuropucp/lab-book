@@ -244,10 +244,6 @@ entrelazado entre el electrodo y el cuero cabelludo, ya que esto puede afectar l
 
 **Referencias:**
 
-```{bibliography}
-:style: plain
-```
-
 Brain Products. (2022, May 18). Inclusivity in EEG research. Brain Products.
 https://pressrelease.brainproducts.com/inclusivity-in-eeg-research/
 

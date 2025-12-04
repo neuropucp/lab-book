@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Código EEG &#8212; My sample book</title>
+    <title>Análisis de señales EEG &#8212; My sample book</title>
   
   
   
@@ -183,7 +183,14 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="manualEEG.html">Manual EEG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaEEG.html">Ficha técnica EEG</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Código EEG</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis de señales EEG</a></li>
+
+
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electrocardiografía (ECG) con Shimmer3</span></p>
 <ul class="nav bd-sidenav">
@@ -199,12 +206,6 @@
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="citations.html">References</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Example</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
 
     </div>
@@ -377,7 +378,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -388,11 +391,45 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Código EEG</h1>
+    <h1>Análisis de señales EEG</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Análisis de señales EEG</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-bases-de-datos-de-eeg">Procesamiento de bases de datos de EEG</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descagar-datos">Descagar datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-imaging-data-structure-bids">Brain Imaging Data Structure (BIDS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargamos-los-datos-con-mne">Cargamos los datos con MNE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-workflow">Preprocessing workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-del-preprocesamiento"><strong>Pasos del Preprocesamiento</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-pass-filtering-and-line-noise-removal">High pass filtering and line noise removal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re-referencing-and-event-epoching">Re-referencing and event epoching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-del-experimento">Eventos del experimento</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-epochs">Crear Epochs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoreject">Autoreject</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-component-analysis-ica">Independent Component Analysis (ICA)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examinar-epochs-y-evokeds-relacionados-a-eventos">Examinar Epochs y Evokeds relacionados a eventos.</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencias-de-onda">Frecuencias de onda</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#elaborado-por">Elaborado por</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias:</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -402,8 +439,3397 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="codigo-eeg">
-<h1>Código EEG<a class="headerlink" href="#codigo-eeg" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-de-senales-eeg">
+<h1>Análisis de señales EEG<a class="headerlink" href="#analisis-de-senales-eeg" title="Link to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<p>¡Hola! ヽ(・ᴗ・)ﾉ para este tutorial se hará uso principalmente del lenguaje de programación Python. Este no solo nos permite interactuar con nuestros datos de manera mas versátil, sino que nos da un espacio para crear partes de código que puedan ser facilmente reproducibles en otras computadoras. Con el objetivo de asegurarnos de que el entorno sea equivalente para todos, estamos haciendo uso de <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, dado que nos permite tener una máquina virtual gratuita a nuestra disposición por medio de nuestra cuenta de google. Es importante mencionar que el sistema operativo de esta máquina virtual es Linux, el cuál es el estándar para el trabajo científico.
+<br><br>
+Dicho esto, el primer paso para trabajar es entender que Python trabaja de manera modular. Esto es que, por defecto, Python viene con una limitada cantidad de funciones básicas sobre las cuáles se puede construir funciones mas complejas. Como Python es un lenguaje de código abierto, hay personas geniales que crean <strong>librerías</strong> que empaquetan una serie de funciones. Para el tutorial de Python, primero se tienen que instalar las siguientes librerías:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paquete</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>openneuro-py</p></td>
+<td><p>API para interactuar con datasets de OpenNeuro, permitiendo la descarga y manejo de datos BIDS.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mne</p></td>
+<td><p>Biblioteca para el análisis de datos de EEG, MEG y otros tipos de datos para neurociencia computacional.</p></td>
+</tr>
+<tr class="row-even"><td><p>mne-bids</p></td>
+<td><p>Extensión de MNE para manejar datos en formato BIDS, facilitando la carga y organización de datos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>autoreject</p></td>
+<td><p>Paquete para la detección automática de artefactos en los datos de EEG mediante el algoritmo de AutoReject.</p></td>
+</tr>
+<tr class="row-even"><td><p>bids</p></td>
+<td><p>Biblioteca para interactuar con el formato de datos BIDS, permitiendo la organización y manejo de datos neurocientíficos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mne-icalabel</p></td>
+<td><p>Herramienta que integra el etiquetado automático de componentes de ICA (Independent Component Analysis) en MNE.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A continuación, verás que para instalar estas librerías hacemos uso de un signo de exclamación “!”. Esto es porque queremos indicar que necesitamos correr un determinado comando en la terminal del sistema.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Instalar paquetes</span>
+<span class="o">%%capture</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">openneuro</span><span class="o">-</span><span class="n">py</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">mne</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">mne</span><span class="o">-</span><span class="n">bids</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">autoreject</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">bids</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">mne</span><span class="o">-</span><span class="n">icalabel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UsageError: Line magic function `%%capture` not found.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego de instalar las librerías, es necesario importarlas y, si es el caso, asignarles los nombres convencionales de la comunidad. A lo largo del tutorial haremos uso de estas abreviaturas para referirnos a los paquetes que hemos importado.
+<br><br>
+Ten en cuenta que importar es un paso esencial dado que, sin ello, Python no será capaz de ejecutar las funciones que se encuentran en dichos paquetes. A partir de aquí, nos vamos a centrar más en las funciones y el pipeline de procesaimiento de los datos, si tienes alguna consulta sobre Python te recomendamos que mires estos otros <a class="reference external" href="https://github.com/neuropucp/Coding-Tutorials">recursos</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Importar paquetes con nombres convencionales</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">openneuro</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">on</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mne</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mne_bids</span><span class="w"> </span><span class="kn">import</span> <span class="n">BIDSPath</span><span class="p">,</span> <span class="n">read_raw_bids</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bids</span><span class="w"> </span><span class="kn">import</span> <span class="n">BIDSLayout</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">autoreject</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoReject</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mne.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ICA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mne_icalabel</span><span class="w"> </span><span class="kn">import</span> <span class="n">label_components</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="procesamiento-de-bases-de-datos-de-eeg">
+<h1>Procesamiento de bases de datos de EEG<a class="headerlink" href="#procesamiento-de-bases-de-datos-de-eeg" title="Link to this heading">#</a></h1>
+<section id="descagar-datos">
+<h2>Descagar datos<a class="headerlink" href="#descagar-datos" title="Link to this heading">#</a></h2>
+<p>¡Muy bien! Ahora que se tienen todos los módulos instalados e importados, estamos listos para analizar las bases de datos de EEG 🧠 ง
+<br><br>
+El primer paso puede sonar bastante obvio: conseguir los datos a analizar. Lo cual seguramente nos lleva a la siguiente pregunta.
+<br><br>
+¿Dónde se pueden conseguir datos de EEG para practicar los análisis o participar en nuevos descubrimientos científicos?
+<br><br>
+¡Fácil! Hoy en día, hay muchas plataformas que ayudan compartiendo datos para hacer la ciencia más abierta y acelerar los descubrimientos. En este caso, utilizaremos <a class="reference external" href="https://openneuro.org/">OpenNeuro</a>, una plataforma con datos de EEG, iEGG, MRI, etc.
+<br><br>
+Además de tener la opción de buscar dentro de la plataforma misma, también podemos encontrar papers cuyas bases de datos están dentro de Open Neuro. En este caso, utilizaremos la base de datos que se utilizó en el paper “<a class="reference external" href="https://www.nature.com/articles/s41598-023-41613-4">Single-trial visually evoked potentials predict both individual choice and market outcomes</a>”, cuya base de datos se encuentra disponible <a class="reference external" href="https://openneuro.org/datasets/ds004284/versions/1.0.0">aquí</a>.</p>
+<p>Para comenzar a obtener los archivos, primero tenemos que crear un directorio en esta máquina virtual para contenerlos. Esto lo haremos ejecutando !mkdir o “make directory”, un comando de Linux reconocido por colab.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Crear carpeta para los datos</span>
+<span class="o">!</span>mkdir<span class="w"> </span>data
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘data’: File exists
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una de las librerías que instalamos e importamos es la de OpenNeuro (<a class="reference external" href="https://github.com/hoechenberger/openneuro-py">esta librería</a> la hemos importado con el nombre ‘on’). En este caso, utilizaremos el método “download” con los parámetros “dataset” para señalar la base de datos a descargar, “target_dir” para señalar en qué directorio se quiere almacenar y “include” para filtrar a que sólo un participante se descargue.
+<br><br>
+Es importante resaltar que el nombre del dataset corresponde al <strong>OpenNeuro Accession Number</strong>, que es un código de identificación de la base que puede ser encontrada en la misma página web donde descansan los <a class="reference external" href="https://openneuro.org/datasets/ds004284/versions/1.0.0">datos</a>
+<br><br>
+Si se obvia el parámetro include, la librería Open Neuro descargará toda la base de datos; sin embargo, esto causaría que la máquina virtual de Google se reseteara, ya que es mucha información.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title El API de open neuro para descargar la base de datos</span>
+<span class="n">on</span><span class="o">.</span><span class="n">download</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;ds004284&quot;</span><span class="p">,</span>  <span class="c1"># OpenNeuro Accession Number</span>
+    <span class="n">target_dir</span><span class="o">=</span><span class="s2">&quot;/content/data&quot;</span><span class="p">,</span>  <span class="c1"># Carpeta donde se guardará el dataset</span>
+    <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sub-104/&quot;</span><span class="p">],</span>  <span class="c1"># Solo incluir los participantes sub-104</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>👋 Hello! This is openneuro-py 2024.2.0. Great to see you! 🤗
+
+   👉 Please report problems 🤯 and bugs 🪲 at
+      https://github.com/hoechenberger/openneuro-py/issues
+
+🌍 Preparing to download ds004284 …
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "51201caa983d4da1a61d8d15b6f93f33", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📥 Retrieving up to 14 files (5 concurrent downloads). 
+✅ Finished downloading ds004284.
+ 
+🧠 Please enjoy your brains.
+ 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Esto nos ayuda a refrescar el directorio luego de la descarga</span>
+<span class="o">!</span>ls<span class="w"> </span>/content/data
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CHANGES  dataset_description.json  participants.json  participants.tsv	README	sub-104
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como se puede ver, ahora tenemos una serie de archivos en la carpeta data que hemos creado. Estos archivos representan a nuestros datos y nos dan una idea del experimento realizado.</p>
+</section>
+<section id="brain-imaging-data-structure-bids">
+<h2>Brain Imaging Data Structure (BIDS)<a class="headerlink" href="#brain-imaging-data-structure-bids" title="Link to this heading">#</a></h2>
+<p>Luego de descargada la base de datos, el paso siguiente es explorarla.
+<br><br>
+Para esto, sabemos que la mayoría de base de datos de Open Neuro se encuentran en formato <a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">BIDS</a> (Brain Imaging Data Structure), el cual ofrece una convención de organización para los datos que son compartidos en la investigación de neurociencias. A continuación, podemos ver una imagen que resumen esta organización:</p>
+<figure>
+  <img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41597-019-0104-8/MediaObjects/41597_2019_104_Fig1_HTML.png" alt="Dataset EEG-BIDS" width="600">
+  <figcaption>
+    [Ejemplo de conjunto de datos de EEG-BIDS con vistas previas de archivos EEG. De: <a href="https://doi.org/10.1038/s41597-019-0104-8" target="_blank">EEG-BIDS, an extension to the brain imaging data structure for electroencephalography</a>]
+    <br><br>
+    Los números en la imagen representan lo siguiente:
+    <ul>
+      <li>(1) Datos EEG sin procesar.</li>
+      <li>(2) Metadatos asociados.</li>
+      <li>(3) Eventos que pueden ser referenciados a los estímulos de la carpeta de estímulos de la base de datos.</li>
+      <li>(4) Un archivo en formato TSV que contiene los datos de los canales y los filtros.</li>
+      <li>(5) Un archivo en formato TSV que contiene la información de los electrodos.</li>
+      <li>(6) Un archivo "json" que proporciona la ubicación de los electrodos.</li>
+    </ul>
+  </figcaption>
+</figure>
+<p><br><br>
+Gracias a esta convención, podemos tener una idea de la estructura del archivo que vamos a descargar y, para hacer las cosas fáciles ¡Podemos utilizar la librería del BIDS en Python para leer la estructura de los archivos por nosotros (⊙ ⊙)ノ <a class="reference external" href="https://bids-standard.github.io/pybids/api.htm">BIDS Python</a>！
+<br><br>
+Esto nos ayudará a extraer la información que es relevante para nosotros, sin necesidad de explorar cada carpeta y archivo. De toda la librería del BIDS, hemos importado sólo BIDSLayout que nos dará la estructura de la base datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Descripción de la base</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">BIDSLayout</span><span class="p">(</span>
+    <span class="s2">&quot;/content/data&quot;</span>
+<span class="p">)</span>  <span class="c1"># guarda la estructura de las carpetas y contenidos en la variable layout</span>
+<span class="n">subjects</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">layout</span><span class="o">.</span><span class="n">get_subjects</span><span class="p">()</span>
+<span class="p">)</span>  <span class="c1"># de la variable layout, extraemos los nombres que por organización deberían corresponder a los sujetos.</span>
+<span class="n">tasks</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">()</span>  <span class="c1"># de la variable layout, extraemos los nombres de las tasks.</span>
+<span class="n">datatypes</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get_datatypes</span><span class="p">()</span>  <span class="c1"># de la variable layout, extraemos los datatypes.</span>
+<span class="n">files</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">layout</span><span class="o">.</span><span class="n">get_files</span><span class="p">()</span>
+<span class="p">)</span>  <span class="c1"># de la variable layout, extraemos los nombres de los archivos.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Subjects:&quot;</span><span class="p">,</span> <span class="n">subjects</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tasks:&quot;</span><span class="p">,</span> <span class="n">tasks</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data types:&quot;</span><span class="p">,</span> <span class="n">datatypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files:&quot;</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+<span class="n">layout</span><span class="o">.</span><span class="n">get_dataset_description</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BIDS Layout: .../content/data | Subjects: 1 | Sessions: 0 | Runs: 0
+Subjects: [&#39;104&#39;]
+Tasks: [&#39;kickstarter&#39;]
+Data types: [&#39;eeg&#39;]
+Files: {&#39;/content/data/participants.json&#39;: &lt;BIDSJSONFile filename=&#39;/content/data/participants.json&#39;&gt;, &#39;/content/data/README&#39;: &lt;BIDSFile filename=&#39;/content/data/README&#39;&gt;, &#39;/content/data/dataset_description.json&#39;: &lt;BIDSJSONFile filename=&#39;/content/data/dataset_description.json&#39;&gt;, &#39;/content/data/CHANGES&#39;: &lt;BIDSFile filename=&#39;/content/data/CHANGES&#39;&gt;, &#39;/content/data/participants.tsv&#39;: &lt;BIDSDataFile filename=&#39;/content/data/participants.tsv&#39;&gt;, &#39;/content/data/sub-104/sub-104_scans.tsv&#39;: &lt;BIDSDataFile filename=&#39;/content/data/sub-104/sub-104_scans.tsv&#39;&gt;, &#39;/content/data/sub-104/eeg/sub-104_electrodes.tsv&#39;: &lt;BIDSDataFile filename=&#39;/content/data/sub-104/eeg/sub-104_electrodes.tsv&#39;&gt;, &#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_eeg.eeg&#39;: &lt;BIDSFile filename=&#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_eeg.eeg&#39;&gt;, &#39;/content/data/sub-104/eeg/sub-104_coordsystem.json&#39;: &lt;BIDSJSONFile filename=&#39;/content/data/sub-104/eeg/sub-104_coordsystem.json&#39;&gt;, &#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_eeg.json&#39;: &lt;BIDSJSONFile filename=&#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_eeg.json&#39;&gt;, &#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_eeg.vmrk&#39;: &lt;BIDSFile filename=&#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_eeg.vmrk&#39;&gt;, &#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_events.tsv&#39;: &lt;BIDSDataFile filename=&#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_events.tsv&#39;&gt;, &#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_channels.tsv&#39;: &lt;BIDSDataFile filename=&#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_channels.tsv&#39;&gt;, &#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_eeg.vhdr&#39;: &lt;BIDSFile filename=&#39;/content/data/sub-104/eeg/sub-104_task-kickstarter_eeg.vhdr&#39;&gt;}
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Name&#39;: &#39;eeg-neuroforecasting&#39;,
+ &#39;BIDSVersion&#39;: &#39;1.6.0&#39;,
+ &#39;DatasetType&#39;: &#39;raw&#39;,
+ &#39;Authors&#39;: [&#39;Veillette, J.&#39;, &#39;Heald, S.&#39;, &#39;Wittenbrink, B.&#39;, &#39;Nusbaum, H.&#39;],
+ &#39;License&#39;: &#39;CC0&#39;,
+ &#39;ReferencesAndLinks&#39;: [&#39;https://github.com/john-veillette/eeg-neuroforecasting&#39;],
+ &#39;DatasetDOI&#39;: &#39;doi:10.18112/openneuro.ds004284.v1.0.0&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como se esperaba, tenemos una estructura de un solo participante etiquetado bajo el código 104. Además, solo se ha recogidos datos de EEG con la tarea de kickstarter. Cabe mencionar que no hay sesiones o runs porque todos los datos se recogieron en un solo momento por participante.
+<br><br>
+El nombre del experimento es <strong>eeg-neuroforecasting</strong> y fue diseñada por Veillete et al. Asimismo, tenemos un link a la base de datos y al github del autor principal.</p>
+</section>
+<section id="cargamos-los-datos-con-mne">
+<h2>Cargamos los datos con MNE<a class="headerlink" href="#cargamos-los-datos-con-mne" title="Link to this heading">#</a></h2>
+<p>Ahora que tenemos la estructura de nuestros datos, podemos pasar a cargarlos a MNE para empezar con el preprocesamiento. Para ello, haremos uso de la función <a class="reference external" href="https://mne.tools/mne-bids/stable/generated/mne_bids.BIDSPath.html">BIDSPath</a> y definiremos la ruta de acceso, el participante con el que vamos a trabajar, la tarea y el tipo de datos empleados.
+<br><br>
+Ojo. Si bien estamos en una base simple con un solo participante, es importante acostumbrarnos a colocar esta información dado que en experimentos de mayor complejidad podemos tener registros de distintos tipos así como tareas diversas.
+<br><br>
+Luego de especificar la ruta del participante, cargaremos los datos a MNE con la función <a class="reference external" href="https://mne.tools/mne-bids/stable/generated/mne_bids.read_raw_bids.html">“read_raw_bids”</a>. Es importante mencionar que indicamos “verbose=False” porque no queremos un output sobrecargado del proceso de lectura de los datos y que especificamos el parámetro adicional “‘preload’: True” dado que queremos que la base esté disponible en la memoria RAM. Esto último nos sirve para que los análisis sean más rápidos aunque puede sobrecargarse si cargamos demasiados datos a la vez.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Leer los datos de Open Neuro (Organizados en formato BIDS) con MNE</span>
+<span class="c1"># Define BIDS path</span>
+<span class="n">bids_path</span> <span class="o">=</span> <span class="n">BIDSPath</span><span class="p">(</span>
+    <span class="n">root</span><span class="o">=</span><span class="s2">&quot;/content/data&quot;</span><span class="p">,</span>  <span class="c1"># especificamos la ruta del archivo</span>
+    <span class="n">subject</span><span class="o">=</span><span class="n">subjects</span><span class="p">[</span>
+        <span class="mi">0</span>
+    <span class="p">],</span>  <span class="c1"># señalamos que solo se quiere recuperar el primer elemento de la lista de sujetos.</span>
+    <span class="n">task</span><span class="o">=</span><span class="s2">&quot;kickstarter&quot;</span><span class="p">,</span>  <span class="c1"># señalamos el task que se quiere recuperar en la base de datos. Esto es necesario porque en una base de datos BIDS puedes tener varias tasks.</span>
+    <span class="n">datatype</span><span class="o">=</span><span class="s2">&quot;eeg&quot;</span><span class="p">,</span>  <span class="c1"># señalamos el tipo de datos que se quiere recuperar. Esto también es necesario porque en BIDS se pueden guardar distintas señales si el estudio ha utilizado varias medidas comportamentales.</span>
+<span class="p">)</span>
+
+<span class="c1"># Load raw data</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">read_raw_bids</span><span class="p">(</span>  <span class="c1"># función básica de MNE para leer datos sin procesar en formato BIDS.</span>
+    <span class="n">bids_path</span><span class="p">,</span>  <span class="c1"># la variable que hemos definido antes que tiene toda la información de cómo recuperar el archivo. Básicamente, la función anterior requiere que le respondan a la pregunta &quot;¿Dónde está?&quot;</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">extra_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;preload&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>  <span class="c1"># se cargan los datos a la memoria RAN.</span>
+<span class="p">)</span>
+
+<span class="n">raw</span><span class="o">.</span><span class="n">info</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script type="text/javascript">
+    const toggleVisibility = (className) => {
+
+  const elements = document.querySelectorAll(`.${className}`)
+
+  elements.forEach(element => {
+    if (element.classList.contains('repr-section-header')) {
+      // Don't collapse the section header row.
+       return
+    }
+    if (element.classList.contains('repr-element-collapsed')) {
+      // Force a reflow to ensure the display change takes effect before removing the class
+      element.classList.remove('repr-element-collapsed')
+      element.offsetHeight // This forces the browser to recalculate layout
+      element.classList.remove('repr-element-faded')
+    } else {
+      // Start transition to hide the element
+      element.classList.add('repr-element-faded')
+      element.addEventListener('transitionend', handler = (e) => {
+        if (e.propertyName === 'opacity' && getComputedStyle(element).opacity === '0.2') {
+          element.classList.add('repr-element-collapsed')
+          element.removeEventListener('transitionend', handler)
+        }
+      });
+    }
+  });
+
+  // Take care of button (adjust caret)
+  const button = document.querySelectorAll(`.repr-section-header.${className} > th.repr-section-toggle-col > button`)[0]
+  button.classList.toggle('collapsed')
+
+  // Take care of the tooltip of the section header row
+  const sectionHeaderRow = document.querySelectorAll(`tr.repr-section-header.${className}`)[0]
+  sectionHeaderRow.classList.toggle('collapsed')
+  sectionHeaderRow.title = sectionHeaderRow.title === 'Hide section' ? 'Show section' : 'Hide section'
+}
+</script>
+
+<style type="text/css">
+    table.repr.table.table-hover.table-striped.table-sm.table-responsive.small {
+  /* Don't make rows wider than they need to be. */
+  display: inline;
+}
+
+table > tbody > tr.repr-element > td {
+  /* Apply a tighter layout to the table cells. */
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-right: 1rem;
+}
+
+table > tbody > tr > td.repr-section-toggle-col {
+  /* Remove background and border of the first cell in every row
+     (this row is only used for the collapse / uncollapse caret)
+
+     TODO: Need to find a good solution for VS Code that works in both
+           light and dark mode. */
+  border-color: transparent;
+  --bs-table-accent-bg: transparent;
+}
+
+tr.repr-section-header {
+  /* Remove stripes from section header rows */
+  background-color: transparent;
+  border-color: transparent;
+  --bs-table-striped-bg: transparent;
+  cursor: pointer;
+}
+
+tr.repr-section-header > th {
+  text-align: left !important;
+  vertical-align: middle;
+}
+
+.repr-element, tr.repr-element > td {
+  opacity: 1;
+  text-align: left !important;
+}
+
+.repr-element-faded {
+  transition: 0.3s ease;
+  opacity: 0.2;
+}
+
+.repr-element-collapsed {
+  display: none;
+}
+
+/* Collapse / uncollapse button and the caret it contains. */
+.repr-section-toggle-col button {
+  cursor: pointer;
+  width: 1rem;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+span.collapse-uncollapse-caret {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+}
+
+/* The collapse / uncollapse carets were copied from the free Font Awesome collection and adjusted. */
+
+/* Default to black carets for light mode */
+.repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+}
+
+.repr-section-toggle-col
+  > button:not(.collapsed)
+  > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+}
+
+/* Use white carets for dark mode */
+@media (prefers-color-scheme: dark) {
+  .repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+  }
+
+  .repr-section-toggle-col
+    > button:not(.collapsed)
+    > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+  }
+}
+
+.channel-names-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  cursor: pointer;
+  color: #0d6efd;
+}
+
+.channel-names-btn:hover {
+  color: #0a58ca;
+}
+</style>
+
+
+
+<table class="repr table table-hover table-striped table-sm table-responsive small">
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header general-80ff7466-b2da-4117-b50e-d68bbb3a7e9e"  title="Hide section" 
+    onclick="toggleVisibility('general-80ff7466-b2da-4117-b50e-d68bbb3a7e9e')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>General</strong>
+    </th>
+</tr>
+
+<tr class="repr-element general-80ff7466-b2da-4117-b50e-d68bbb3a7e9e ">
+    <td class="repr-section-toggle-col"></td>
+    <td>MNE object type</td>
+    <td>Info</td>
+</tr>
+<tr class="repr-element general-80ff7466-b2da-4117-b50e-d68bbb3a7e9e ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Measurement date</td>
+    
+    <td>1924-12-31 at 22:41:33 UTC</td>
+    
+</tr>
+<tr class="repr-element general-80ff7466-b2da-4117-b50e-d68bbb3a7e9e ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Participant</td>
+    
+    
+    <td>sub-104</td>
+    
+    
+</tr>
+<tr class="repr-element general-80ff7466-b2da-4117-b50e-d68bbb3a7e9e ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Experimenter</td>
+    
+    <td>mne_anonymize</td>
+    
+</tr>
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header acquisition-8a012612-391e-4722-9fc3-2a4e06b2dd2f" 
+    title="Hide section"  onclick="toggleVisibility('acquisition-8a012612-391e-4722-9fc3-2a4e06b2dd2f')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Acquisition</strong>
+    </th>
+</tr>
+
+
+
+
+
+
+
+
+<tr class="repr-element acquisition-8a012612-391e-4722-9fc3-2a4e06b2dd2f ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Sampling frequency</td>
+    <td>1000.00 Hz</td>
+</tr>
+
+
+
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header channels-c1d842bd-17a2-4410-98b4-967069d5ad14"  title="Hide section" 
+    onclick="toggleVisibility('channels-c1d842bd-17a2-4410-98b4-967069d5ad14')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Channels</strong>
+    </th>
+</tr>
+
+
+<tr class="repr-element channels-c1d842bd-17a2-4410-98b4-967069d5ad14 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>EEG</td>
+    <td>
+        <button class="channel-names-btn" onclick="alert('Good EEG:\n\nE1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22, E23, E24, E25, E26, E27, E28, E29, E30, E31, E32, E33, E34, E35, E36, E37, E38, E39, E40, E41, E42, E43, E44, E45, E46, E47, E48, E49, E50, E51, E52, E53, E54, E55, E56, E57, E58, E59, E60, E61, E62, E63, E64, E65, E66, E67, E68, E69, E70, E71, E72, E73, E74, E75, E76, E77, E78, E79, E80, E81, E82, E83, E84, E85, E86, E87, E88, E89, E90, E91, E92, E93, E94, E95, E96, E97, E98, E99, E100, E101, E102, E103, E104, E105, E106, E107, E108, E109, E110, E111, E112, E113, E114, E115, E116, E117, E118, E119, E120, E121, E122, E123, E124, E125, E126, E127, E128, Cz')" title="(Click to open in popup)&#13;&#13;E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22, E23, E24, E25, E26, E27, E28, E29, E30, E31, E32, E33, E34, E35, E36, E37, E38, E39, E40, E41, E42, E43, E44, E45, E46, E47, E48, E49, E50, E51, E52, E53, E54, E55, E56, E57, E58, E59, E60, E61, E62, E63, E64, E65, E66, E67, E68, E69, E70, E71, E72, E73, E74, E75, E76, E77, E78, E79, E80, E81, E82, E83, E84, E85, E86, E87, E88, E89, E90, E91, E92, E93, E94, E95, E96, E97, E98, E99, E100, E101, E102, E103, E104, E105, E106, E107, E108, E109, E110, E111, E112, E113, E114, E115, E116, E117, E118, E119, E120, E121, E122, E123, E124, E125, E126, E127, E128, Cz">
+            129
+        </button>
+
+        
+    </td>
+</tr>
+
+
+<tr class="repr-element channels-c1d842bd-17a2-4410-98b4-967069d5ad14 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Head & sensor digitization</td>
+    
+    <td>132 points</td>
+    
+</tr>
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header filters-57258cce-69e7-471e-af6d-d62e642310a1"  title="Hide section" 
+    onclick="toggleVisibility('filters-57258cce-69e7-471e-af6d-d62e642310a1')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Filters</strong>
+    </th>
+</tr>
+
+<tr class="repr-element filters-57258cce-69e7-471e-af6d-d62e642310a1 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Highpass</td>
+    <td>0.00 Hz</td>
+</tr>
+
+
+<tr class="repr-element filters-57258cce-69e7-471e-af6d-d62e642310a1 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Lowpass</td>
+    <td>500.00 Hz</td>
+</tr>
+
+
+</table></div></div>
+</div>
+<p>Finalmente, hemos solicitado información sobre el archivo “raw” de nuestra base. Aquí podemos observar la frecuencia de sampleado, los filtros de la data, la cantidad de canales (buenos) de EEG, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Visualizar la señal sin procesar con Raw.plot()</span>
+<span class="n">raw_plot</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># usamos show=False y asignamos a una variable por un defecto del colab</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/da4d03a6bab4028d6b16d60b0a984fb6e7cabacb60442ccebfced3fa6370f71e.png" src="_images/da4d03a6bab4028d6b16d60b0a984fb6e7cabacb60442ccebfced3fa6370f71e.png" />
+</div>
+</div>
+<p>Podemos generar una imagen interactiva de los datos. No obstante, dado que estamos en una maquina virtual de google colab, no contamos con las librerías suficientes para generar este gráfico en una ventana aparte. No obstante, este gráfico nos permite tener una mirada rápida a la estructura de serie de tiempo de nuestros datos, colocando los canales en el eje Y y en el eje X, el tiempo en segundos.
+<br><br>
+Una mirada rápida a los datos con <a class="reference external" href="https://mne.tools/stable/auto_tutorials/raw/40_visualize_raw.html">raw.plot()</a> nos muestra la cantidad de ruido que se tiene y, con ello, la necesidad de preprocesar estos datos previo a cualquier análisis relevante.</p>
+</section>
+<section id="preprocessing-workflow">
+<h2>Preprocessing workflow<a class="headerlink" href="#preprocessing-workflow" title="Link to this heading">#</a></h2>
+<p>Antes de poder entrar de lleno al flujo de preprocesamiento de los datos, es importante considerar algunas cuestiones.
+<br><br>
+En primer lugar, el preprocesamiento no es una tarea sencilla. Basta con hacer una simple búsqueda en internet para notar que existen muchas técnicas y criterios que se pueden emplear para el análisis de estos datos. De hecho, los datos de EEG no solo son complejos, sino que, en su medición, pueden ser susceptibles a distintos factores fuera de nuestro control que pueden alterar el registro. Entre estos factores se incluyen, por ejemplo, el movimiento muscular (o ocular), el uso de dispositivos electrónicos cercanos e incluso un simple pestañeo, los cuales pueden generar ruido en la señal. Más aún, aunque el método presentado en este tutorial busca ser automático, <a class="reference external" href="https://doi.org/10.1038/s41598-023-27528-0">hay trabajos que discuten el uso de estas técnicas</a>, defendiendo un enfoque primordialmente manual.
+<br><br>
+Entonces, ¿qué hacer? Lejos de desesperarnos, sugerimos que este tutorial se enfoque desde la siguiente perspectiva:
+<br><br></p>
+<ol class="arabic simple">
+<li><p>Como una guía inicial de procesamiento que puede ser modificada según el objetivo de investigación o análisis que deseen realizar.</p></li>
+<li><p>Como una aproximación a la complicada tarea del preprocesamiento, que intenta presentar de manera clara y concisa los pasos que, según la literatura, se han considerado fundamentales a la hora de evaluar la calidad de los datos de EEG para su análisis.
+<br><br></p></li>
+</ol>
+<p>A continuación, se puede observar una imagen que resume el flujo del preprocesamiento de los datos de EEG. En las siguiente secciones se presentará cada uno de estos pasos con el código necesario para ejecutarlo en nuestra data de ejemplo.</p>
+<section id="pasos-del-preprocesamiento">
+<h3><strong>Pasos del Preprocesamiento</strong><a class="headerlink" href="#pasos-del-preprocesamiento" title="Link to this heading">#</a></h3>
+<figure style="text-align:left; margin: 1.25rem 0;background:#fff;">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/refs/heads/main/res/eeg_workflow.png"
+       alt="vol"
+       style="display:block; margin:0 auto; max-width:50%; width:600px; height:auto;">
+  <figcaption style="margin-top:.5rem; color:#555;">Flujo con copia de entrenamiento.</figcaption>
+</figure></section>
+<section id="high-pass-filtering-and-line-noise-removal">
+<h3>High pass filtering and line noise removal<a class="headerlink" href="#high-pass-filtering-and-line-noise-removal" title="Link to this heading">#</a></h3>
+<p>Un filtro modifica selectivamente una señal, atenuando o enfatizando algunos de sus componentes. Específicamente, el filtrado permite aislar una banda de frecuencia de interés y, mediante ello, remover la presencia de artefactos en la señal. Previamente, mencionamos cuán susceptible es una señal de este tipo al ruido proveniente del ambiente o del propio participante. Estos “ruidos” se denominan formalmente artefactos, y la meta principal del preprocesamiento es minimizar o eliminar su presencia en la señal.
+<br><br>
+Para comprender mejor cómo los filtros actúan sobre las frecuencias de onda, es útil recordar que una frecuencia (medida en Hertzios, Hz) representa la cantidad de ciclos o repeticiones de un suceso por segundo. Por ejemplo, una frecuencia de 70 Hz indica que un suceso se repite 70 veces por segundo.
+<br><br>
+En el contexto de señales EEG, estas repeticiones están relacionadas con las oscilaciones de los microvoltios (µV) a lo largo del tiempo. Para más información sobre cómo las frecuencias están presentes en señales EEG, puedes consultar los siguientes <a class="reference external" href="https://www.researchgate.net/publication/327019936_Predicting_Sleepiness_from_Driving_Behaviour">gráficos</a> de un artículo científico.
+<br><br>
+¿Qué significa que los filtros “limpien” frecuencias?
+<br><br>
+En términos simples, el filtrado permite eliminar componentes de frecuencia que no son de interés (como el ruido de corriente eléctrica a 50 o 60 Hz) sin comprometer los datos importantes en teoría.
+<br><br>
+El filtrado es especialmente útil para eliminar:
+<br><br></p>
+<ol class="arabic simple">
+<li><p>Slow drift: Oscilaciones de baja frecuencia (&lt; 0.5 Hz) causadas por movimientos del participante o del equipo de medición.</p></li>
+<li><p>Power line noise: Ruido generado por la corriente eléctrica, típicamente entre 50 y 60 Hz dependiendo de la frecuencia de la red eléctrica local.
+<br><br></p></li>
+</ol>
+<p>Tipos de filtros recomendados
+<br><br></p>
+<ol class="arabic simple">
+<li><p>High-pass filter (filtro pasa-altos): Este filtro permite el paso de frecuencias altas y atenúa las frecuencias bajas. Por ejemplo, un filtro pasa-altos con un límite de 1 Hz se recomienda antes de realizar un análisis ICA, ya que elimina componentes lentos como el slow drift. En este caso, además, tendremos un low-pass filter (filtro pasa-bajos) de 100 Hz dado que estamos interesados en usar la función de <a class="reference external" href="https://mne.tools/mne-icalabel/stable/generated/examples/00_iclabel.html#sphx-glr-generated-examples-00-iclabel-py">ICALabel</a> mas adelante.</p></li>
+<li><p>Notch filter (filtro de rechazo de banda): Este filtro atenúa una frecuencia específica. En el caso del ruido de corriente eléctrica, se recomienda usar un notch filter de 60 Hz (o 50 Hz, según la frecuencia de la red eléctrica del lugar).
+<br><br></p></li>
+</ol>
+<p>Consideraciones clave
+<br><br></p>
+<ol class="arabic simple">
+<li><p>La frecuencia específica para el notch filter depende del sistema eléctrico de la región donde se realizó la grabación.</p></li>
+<li><p>Estos pasos de filtrado son fundamentales para asegurar una señal EEG más limpia y apta para análisis avanzados como ICA.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Filtrados de Bandpass</span>
+<span class="n">raw</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">l_freq</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># filtraremos para que solo los datos arriba de esta frecuencia sean relevantes.</span>
+    <span class="n">h_freq</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>  <span class="c1"># esta es la frecuencia límite. Sólo los datos hasta esta frecuencia serán incluidos.</span>
+<span class="p">)</span>
+<span class="n">raw</span><span class="o">.</span><span class="n">notch_filter</span><span class="p">(</span>
+    <span class="n">freqs</span><span class="o">=</span><span class="mi">60</span>  <span class="c1"># eliminamos esta frecuencia, la cual es comúnmente de corriente eléctrica.</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filtering raw data in 1 contiguous segment
+Setting up band-pass filter from 1 - 1e+02 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal bandpass filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Lower passband edge: 1.00
+- Lower transition bandwidth: 1.00 Hz (-6 dB cutoff frequency: 0.50 Hz)
+- Upper passband edge: 100.00 Hz
+- Upper transition bandwidth: 25.00 Hz (-6 dB cutoff frequency: 112.50 Hz)
+- Filter length: 3301 samples (3.301 s)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Parallel(n_jobs=1)]: Done  17 tasks      | elapsed:    0.9s
+[Parallel(n_jobs=1)]: Done  71 tasks      | elapsed:    3.7s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filtering raw data in 1 contiguous segment
+Setting up band-stop filter from 59 - 61 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal bandstop filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Lower passband edge: 59.35
+- Lower transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 59.10 Hz)
+- Upper passband edge: 60.65 Hz
+- Upper transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 60.90 Hz)
+- Filter length: 6601 samples (6.601 s)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Parallel(n_jobs=1)]: Done  17 tasks      | elapsed:    1.0s
+[Parallel(n_jobs=1)]: Done  71 tasks      | elapsed:    5.1s
+</pre></div>
+</div>
+<div class="output text_html"><script type="text/javascript">
+    const toggleVisibility = (className) => {
+
+  const elements = document.querySelectorAll(`.${className}`)
+
+  elements.forEach(element => {
+    if (element.classList.contains('repr-section-header')) {
+      // Don't collapse the section header row.
+       return
+    }
+    if (element.classList.contains('repr-element-collapsed')) {
+      // Force a reflow to ensure the display change takes effect before removing the class
+      element.classList.remove('repr-element-collapsed')
+      element.offsetHeight // This forces the browser to recalculate layout
+      element.classList.remove('repr-element-faded')
+    } else {
+      // Start transition to hide the element
+      element.classList.add('repr-element-faded')
+      element.addEventListener('transitionend', handler = (e) => {
+        if (e.propertyName === 'opacity' && getComputedStyle(element).opacity === '0.2') {
+          element.classList.add('repr-element-collapsed')
+          element.removeEventListener('transitionend', handler)
+        }
+      });
+    }
+  });
+
+  // Take care of button (adjust caret)
+  const button = document.querySelectorAll(`.repr-section-header.${className} > th.repr-section-toggle-col > button`)[0]
+  button.classList.toggle('collapsed')
+
+  // Take care of the tooltip of the section header row
+  const sectionHeaderRow = document.querySelectorAll(`tr.repr-section-header.${className}`)[0]
+  sectionHeaderRow.classList.toggle('collapsed')
+  sectionHeaderRow.title = sectionHeaderRow.title === 'Hide section' ? 'Show section' : 'Hide section'
+}
+</script>
+
+<style type="text/css">
+    table.repr.table.table-hover.table-striped.table-sm.table-responsive.small {
+  /* Don't make rows wider than they need to be. */
+  display: inline;
+}
+
+table > tbody > tr.repr-element > td {
+  /* Apply a tighter layout to the table cells. */
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-right: 1rem;
+}
+
+table > tbody > tr > td.repr-section-toggle-col {
+  /* Remove background and border of the first cell in every row
+     (this row is only used for the collapse / uncollapse caret)
+
+     TODO: Need to find a good solution for VS Code that works in both
+           light and dark mode. */
+  border-color: transparent;
+  --bs-table-accent-bg: transparent;
+}
+
+tr.repr-section-header {
+  /* Remove stripes from section header rows */
+  background-color: transparent;
+  border-color: transparent;
+  --bs-table-striped-bg: transparent;
+  cursor: pointer;
+}
+
+tr.repr-section-header > th {
+  text-align: left !important;
+  vertical-align: middle;
+}
+
+.repr-element, tr.repr-element > td {
+  opacity: 1;
+  text-align: left !important;
+}
+
+.repr-element-faded {
+  transition: 0.3s ease;
+  opacity: 0.2;
+}
+
+.repr-element-collapsed {
+  display: none;
+}
+
+/* Collapse / uncollapse button and the caret it contains. */
+.repr-section-toggle-col button {
+  cursor: pointer;
+  width: 1rem;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+span.collapse-uncollapse-caret {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+}
+
+/* The collapse / uncollapse carets were copied from the free Font Awesome collection and adjusted. */
+
+/* Default to black carets for light mode */
+.repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+}
+
+.repr-section-toggle-col
+  > button:not(.collapsed)
+  > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+}
+
+/* Use white carets for dark mode */
+@media (prefers-color-scheme: dark) {
+  .repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+  }
+
+  .repr-section-toggle-col
+    > button:not(.collapsed)
+    > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+  }
+}
+
+.channel-names-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  cursor: pointer;
+  color: #0d6efd;
+}
+
+.channel-names-btn:hover {
+  color: #0a58ca;
+}
+</style>
+
+
+
+<table class="repr table table-hover table-striped table-sm table-responsive small">
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header general-2133de89-4624-4e7c-9dd3-51b867769d4f"  title="Hide section" 
+    onclick="toggleVisibility('general-2133de89-4624-4e7c-9dd3-51b867769d4f')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>General</strong>
+    </th>
+</tr>
+
+<tr class="repr-element general-2133de89-4624-4e7c-9dd3-51b867769d4f ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Filename(s)</td>
+    <td>
+        
+        sub-104_task-kickstarter_eeg.eeg
+        
+        
+    </td>
+</tr>
+
+<tr class="repr-element general-2133de89-4624-4e7c-9dd3-51b867769d4f ">
+    <td class="repr-section-toggle-col"></td>
+    <td>MNE object type</td>
+    <td>RawBrainVision</td>
+</tr>
+<tr class="repr-element general-2133de89-4624-4e7c-9dd3-51b867769d4f ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Measurement date</td>
+    
+    <td>1924-12-31 at 22:41:33 UTC</td>
+    
+</tr>
+<tr class="repr-element general-2133de89-4624-4e7c-9dd3-51b867769d4f ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Participant</td>
+    
+    
+    <td>sub-104</td>
+    
+    
+</tr>
+<tr class="repr-element general-2133de89-4624-4e7c-9dd3-51b867769d4f ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Experimenter</td>
+    
+    <td>mne_anonymize</td>
+    
+</tr>
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header acquisition-f02ea884-665c-4c29-aaf2-e92249bcccac" 
+    title="Hide section"  onclick="toggleVisibility('acquisition-f02ea884-665c-4c29-aaf2-e92249bcccac')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Acquisition</strong>
+    </th>
+</tr>
+
+<tr class="repr-element acquisition-f02ea884-665c-4c29-aaf2-e92249bcccac ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Duration</td>
+    <td>00:25:37 (HH:MM:SS)</td>
+</tr>
+
+
+
+
+
+
+
+
+<tr class="repr-element acquisition-f02ea884-665c-4c29-aaf2-e92249bcccac ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Sampling frequency</td>
+    <td>1000.00 Hz</td>
+</tr>
+
+
+<tr class="repr-element acquisition-f02ea884-665c-4c29-aaf2-e92249bcccac ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Time points</td>
+    <td>1,536,422</td>
+</tr>
+
+
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header channels-f329f3a2-bf39-4d97-a742-98ded18f7769"  title="Hide section" 
+    onclick="toggleVisibility('channels-f329f3a2-bf39-4d97-a742-98ded18f7769')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Channels</strong>
+    </th>
+</tr>
+
+
+<tr class="repr-element channels-f329f3a2-bf39-4d97-a742-98ded18f7769 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>EEG</td>
+    <td>
+        <button class="channel-names-btn" onclick="alert('Good EEG:\n\nE1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22, E23, E24, E25, E26, E27, E28, E29, E30, E31, E32, E33, E34, E35, E36, E37, E38, E39, E40, E41, E42, E43, E44, E45, E46, E47, E48, E49, E50, E51, E52, E53, E54, E55, E56, E57, E58, E59, E60, E61, E62, E63, E64, E65, E66, E67, E68, E69, E70, E71, E72, E73, E74, E75, E76, E77, E78, E79, E80, E81, E82, E83, E84, E85, E86, E87, E88, E89, E90, E91, E92, E93, E94, E95, E96, E97, E98, E99, E100, E101, E102, E103, E104, E105, E106, E107, E108, E109, E110, E111, E112, E113, E114, E115, E116, E117, E118, E119, E120, E121, E122, E123, E124, E125, E126, E127, E128, Cz')" title="(Click to open in popup)&#13;&#13;E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22, E23, E24, E25, E26, E27, E28, E29, E30, E31, E32, E33, E34, E35, E36, E37, E38, E39, E40, E41, E42, E43, E44, E45, E46, E47, E48, E49, E50, E51, E52, E53, E54, E55, E56, E57, E58, E59, E60, E61, E62, E63, E64, E65, E66, E67, E68, E69, E70, E71, E72, E73, E74, E75, E76, E77, E78, E79, E80, E81, E82, E83, E84, E85, E86, E87, E88, E89, E90, E91, E92, E93, E94, E95, E96, E97, E98, E99, E100, E101, E102, E103, E104, E105, E106, E107, E108, E109, E110, E111, E112, E113, E114, E115, E116, E117, E118, E119, E120, E121, E122, E123, E124, E125, E126, E127, E128, Cz">
+            129
+        </button>
+
+        
+    </td>
+</tr>
+
+
+<tr class="repr-element channels-f329f3a2-bf39-4d97-a742-98ded18f7769 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Head & sensor digitization</td>
+    
+    <td>132 points</td>
+    
+</tr>
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header filters-af096439-902a-4ac8-8b1f-cf8abdee3f0c"  title="Hide section" 
+    onclick="toggleVisibility('filters-af096439-902a-4ac8-8b1f-cf8abdee3f0c')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Filters</strong>
+    </th>
+</tr>
+
+<tr class="repr-element filters-af096439-902a-4ac8-8b1f-cf8abdee3f0c ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Highpass</td>
+    <td>1.00 Hz</td>
+</tr>
+
+
+<tr class="repr-element filters-af096439-902a-4ac8-8b1f-cf8abdee3f0c ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Lowpass</td>
+    <td>100.00 Hz</td>
+</tr>
+
+
+</table></div></div>
+</div>
+</section>
+<section id="re-referencing-and-event-epoching">
+<h3>Re-referencing and event epoching<a class="headerlink" href="#re-referencing-and-event-epoching" title="Link to this heading">#</a></h3>
+<p>El EEG mide el voltaje (diferencia de potencial eléctrico) que resulta de la resta entre un electrodo y el electrodo de referencia. Dicho de otro modo, lo que se defina como referencia será sustraído de todos los electrodos del EEG, lo que puede variar drásticamente la señal dependiendo del punto de referencia seleccionado.
+<br><br>
+Un electrodo de referencia ideal sería aquel que no registre actividad cerebral, pero que capture todo el ruido ambiental. De esta manera, al ser sustraído del resto de los electrodos, dejaría como resultado únicamente la actividad cerebral.
+<br><br>
+Los lugares más comunes para colocar este electrodo son el lóbulo de la oreja o los mastoides. Sin embargo, el punto de referencia ideal sigue siendo un tema de debate en la literatura actual. Por ello, una estrategia aceptada, aunque no exenta de críticas, es utilizar el promedio de la señal de todos los electrodos como referencia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Referenciando al promedio</span>
+<span class="n">raw</span><span class="o">.</span><span class="n">set_eeg_reference</span><span class="p">(</span><span class="n">ref_channels</span><span class="o">=</span><span class="s2">&quot;average&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EEG channel type selected for re-referencing
+Applying average reference.
+Applying a custom (&#39;EEG&#39;,) reference.
+</pre></div>
+</div>
+<div class="output text_html"><script type="text/javascript">
+    const toggleVisibility = (className) => {
+
+  const elements = document.querySelectorAll(`.${className}`)
+
+  elements.forEach(element => {
+    if (element.classList.contains('repr-section-header')) {
+      // Don't collapse the section header row.
+       return
+    }
+    if (element.classList.contains('repr-element-collapsed')) {
+      // Force a reflow to ensure the display change takes effect before removing the class
+      element.classList.remove('repr-element-collapsed')
+      element.offsetHeight // This forces the browser to recalculate layout
+      element.classList.remove('repr-element-faded')
+    } else {
+      // Start transition to hide the element
+      element.classList.add('repr-element-faded')
+      element.addEventListener('transitionend', handler = (e) => {
+        if (e.propertyName === 'opacity' && getComputedStyle(element).opacity === '0.2') {
+          element.classList.add('repr-element-collapsed')
+          element.removeEventListener('transitionend', handler)
+        }
+      });
+    }
+  });
+
+  // Take care of button (adjust caret)
+  const button = document.querySelectorAll(`.repr-section-header.${className} > th.repr-section-toggle-col > button`)[0]
+  button.classList.toggle('collapsed')
+
+  // Take care of the tooltip of the section header row
+  const sectionHeaderRow = document.querySelectorAll(`tr.repr-section-header.${className}`)[0]
+  sectionHeaderRow.classList.toggle('collapsed')
+  sectionHeaderRow.title = sectionHeaderRow.title === 'Hide section' ? 'Show section' : 'Hide section'
+}
+</script>
+
+<style type="text/css">
+    table.repr.table.table-hover.table-striped.table-sm.table-responsive.small {
+  /* Don't make rows wider than they need to be. */
+  display: inline;
+}
+
+table > tbody > tr.repr-element > td {
+  /* Apply a tighter layout to the table cells. */
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-right: 1rem;
+}
+
+table > tbody > tr > td.repr-section-toggle-col {
+  /* Remove background and border of the first cell in every row
+     (this row is only used for the collapse / uncollapse caret)
+
+     TODO: Need to find a good solution for VS Code that works in both
+           light and dark mode. */
+  border-color: transparent;
+  --bs-table-accent-bg: transparent;
+}
+
+tr.repr-section-header {
+  /* Remove stripes from section header rows */
+  background-color: transparent;
+  border-color: transparent;
+  --bs-table-striped-bg: transparent;
+  cursor: pointer;
+}
+
+tr.repr-section-header > th {
+  text-align: left !important;
+  vertical-align: middle;
+}
+
+.repr-element, tr.repr-element > td {
+  opacity: 1;
+  text-align: left !important;
+}
+
+.repr-element-faded {
+  transition: 0.3s ease;
+  opacity: 0.2;
+}
+
+.repr-element-collapsed {
+  display: none;
+}
+
+/* Collapse / uncollapse button and the caret it contains. */
+.repr-section-toggle-col button {
+  cursor: pointer;
+  width: 1rem;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+span.collapse-uncollapse-caret {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+}
+
+/* The collapse / uncollapse carets were copied from the free Font Awesome collection and adjusted. */
+
+/* Default to black carets for light mode */
+.repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+}
+
+.repr-section-toggle-col
+  > button:not(.collapsed)
+  > span.collapse-uncollapse-caret {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="black" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+}
+
+/* Use white carets for dark mode */
+@media (prefers-color-scheme: dark) {
+  .repr-section-toggle-col > button.collapsed > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"/></svg>');
+  }
+
+  .repr-section-toggle-col
+    > button:not(.collapsed)
+    > span.collapse-uncollapse-caret {
+    background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+  }
+}
+
+.channel-names-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  cursor: pointer;
+  color: #0d6efd;
+}
+
+.channel-names-btn:hover {
+  color: #0a58ca;
+}
+</style>
+
+
+
+<table class="repr table table-hover table-striped table-sm table-responsive small">
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header general-170a7664-efb1-467e-adc2-30cdba551199"  title="Hide section" 
+    onclick="toggleVisibility('general-170a7664-efb1-467e-adc2-30cdba551199')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>General</strong>
+    </th>
+</tr>
+
+<tr class="repr-element general-170a7664-efb1-467e-adc2-30cdba551199 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Filename(s)</td>
+    <td>
+        
+        sub-104_task-kickstarter_eeg.eeg
+        
+        
+    </td>
+</tr>
+
+<tr class="repr-element general-170a7664-efb1-467e-adc2-30cdba551199 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>MNE object type</td>
+    <td>RawBrainVision</td>
+</tr>
+<tr class="repr-element general-170a7664-efb1-467e-adc2-30cdba551199 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Measurement date</td>
+    
+    <td>1924-12-31 at 22:41:33 UTC</td>
+    
+</tr>
+<tr class="repr-element general-170a7664-efb1-467e-adc2-30cdba551199 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Participant</td>
+    
+    
+    <td>sub-104</td>
+    
+    
+</tr>
+<tr class="repr-element general-170a7664-efb1-467e-adc2-30cdba551199 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Experimenter</td>
+    
+    <td>mne_anonymize</td>
+    
+</tr>
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header acquisition-d66db0d8-36b8-42bf-8b6d-984fb76a3eec" 
+    title="Hide section"  onclick="toggleVisibility('acquisition-d66db0d8-36b8-42bf-8b6d-984fb76a3eec')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Acquisition</strong>
+    </th>
+</tr>
+
+<tr class="repr-element acquisition-d66db0d8-36b8-42bf-8b6d-984fb76a3eec ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Duration</td>
+    <td>00:25:37 (HH:MM:SS)</td>
+</tr>
+
+
+
+
+
+
+
+
+<tr class="repr-element acquisition-d66db0d8-36b8-42bf-8b6d-984fb76a3eec ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Sampling frequency</td>
+    <td>1000.00 Hz</td>
+</tr>
+
+
+<tr class="repr-element acquisition-d66db0d8-36b8-42bf-8b6d-984fb76a3eec ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Time points</td>
+    <td>1,536,422</td>
+</tr>
+
+
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header channels-a81a89b3-f9c8-48f2-a962-52cc36c48bf3"  title="Hide section" 
+    onclick="toggleVisibility('channels-a81a89b3-f9c8-48f2-a962-52cc36c48bf3')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Channels</strong>
+    </th>
+</tr>
+
+
+<tr class="repr-element channels-a81a89b3-f9c8-48f2-a962-52cc36c48bf3 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>EEG</td>
+    <td>
+        <button class="channel-names-btn" onclick="alert('Good EEG:\n\nE1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22, E23, E24, E25, E26, E27, E28, E29, E30, E31, E32, E33, E34, E35, E36, E37, E38, E39, E40, E41, E42, E43, E44, E45, E46, E47, E48, E49, E50, E51, E52, E53, E54, E55, E56, E57, E58, E59, E60, E61, E62, E63, E64, E65, E66, E67, E68, E69, E70, E71, E72, E73, E74, E75, E76, E77, E78, E79, E80, E81, E82, E83, E84, E85, E86, E87, E88, E89, E90, E91, E92, E93, E94, E95, E96, E97, E98, E99, E100, E101, E102, E103, E104, E105, E106, E107, E108, E109, E110, E111, E112, E113, E114, E115, E116, E117, E118, E119, E120, E121, E122, E123, E124, E125, E126, E127, E128, Cz')" title="(Click to open in popup)&#13;&#13;E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22, E23, E24, E25, E26, E27, E28, E29, E30, E31, E32, E33, E34, E35, E36, E37, E38, E39, E40, E41, E42, E43, E44, E45, E46, E47, E48, E49, E50, E51, E52, E53, E54, E55, E56, E57, E58, E59, E60, E61, E62, E63, E64, E65, E66, E67, E68, E69, E70, E71, E72, E73, E74, E75, E76, E77, E78, E79, E80, E81, E82, E83, E84, E85, E86, E87, E88, E89, E90, E91, E92, E93, E94, E95, E96, E97, E98, E99, E100, E101, E102, E103, E104, E105, E106, E107, E108, E109, E110, E111, E112, E113, E114, E115, E116, E117, E118, E119, E120, E121, E122, E123, E124, E125, E126, E127, E128, Cz">
+            129
+        </button>
+
+        
+    </td>
+</tr>
+
+
+<tr class="repr-element channels-a81a89b3-f9c8-48f2-a962-52cc36c48bf3 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Head & sensor digitization</td>
+    
+    <td>132 points</td>
+    
+</tr>
+    
+
+
+
+
+
+
+
+<tr class="repr-section-header filters-5fbdd872-755e-4b64-bc91-10704accd092"  title="Hide section" 
+    onclick="toggleVisibility('filters-5fbdd872-755e-4b64-bc91-10704accd092')">
+    <th class="repr-section-toggle-col">
+        <button>
+            
+            <span class="collapse-uncollapse-caret"></span>
+        </button>
+    </th>
+    <th colspan="2">
+        <strong>Filters</strong>
+    </th>
+</tr>
+
+<tr class="repr-element filters-5fbdd872-755e-4b64-bc91-10704accd092 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Highpass</td>
+    <td>1.00 Hz</td>
+</tr>
+
+
+<tr class="repr-element filters-5fbdd872-755e-4b64-bc91-10704accd092 ">
+    <td class="repr-section-toggle-col"></td>
+    <td>Lowpass</td>
+    <td>100.00 Hz</td>
+</tr>
+
+
+</table></div></div>
+</div>
+<p>Al generar un gráfico de nuestras series de tiempo, vemos que nuestra señal ha mejorado caramente. Sin embargo, aún podemos notar ciertos picos o caídas muy abruptos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_ref_plot</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6d32798ed9d4b3a1a8df3af3ab4fc42e0aeaab0752e3d5c885ef3441104fe316.png" src="_images/6d32798ed9d4b3a1a8df3af3ab4fc42e0aeaab0752e3d5c885ef3441104fe316.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="eventos-del-experimento">
+<h1>Eventos del experimento<a class="headerlink" href="#eventos-del-experimento" title="Link to this heading">#</a></h1>
+<p>Dado que nuestra data es primordialmente experimental, es necesario que podamos vincular las series de tiempo a los momentos en donde se presentaron los distintos estímulos o tareas experimentales. Así, los <strong>eventos</strong> son marcadores de tiempo que registran la aparición o cese de los estímulos. Por su parte, “epoch” (o epojé) es el nombre que recibe un segmento específico de la data. Dado que lo que nos interesa en este caso es cómo cambia la señal a partir de un evento experimental, podemos segmentar la data (crear epochs) alrededor de cada evento; este enfoque de análisis podría ser denominado dentro de la jerga EEGiana como el intentar encontrar el “potencial relacionado a eventos” (o Event Related Potential).
+<br><br>
+¡Bueno! ¿Pero cómo hacemos para obtener información acerca de cuándo ocurrieron los eventos experimentales?
+<br><br>
+En este caso particular, los eventos se pueden encontrar como anotaciones dentro de los datos crudos. Para obtenerlos, usaremos un comando de MNE para transformar en esas anotaciones (y las marcas en el tiempo) a un numpy array (estructura de datos).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Transformamos las anotaciones de raw a eventos</span>
+<span class="n">events</span><span class="p">,</span> <span class="n">events_id</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">events_from_annotations</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Used Annotations descriptions: [&#39;image&#39;]
+[[  28283       0   10001]
+ [  46266       0   10001]
+ [  64249       0   10001]
+ [  80266       0   10001]
+ [  98266       0   10001]
+ [ 116266       0   10001]
+ [ 132249       0   10001]
+ [ 150266       0   10001]
+ [ 166266       0   10001]
+ [ 181266       0   10001]
+ [ 196266       0   10001]
+ [ 214266       0   10001]
+ [ 232266       0   10001]
+ [ 247233       0   10001]
+ [ 265250       0   10001]
+ [ 281250       0   10001]
+ [ 297250       0   10001]
+ [ 315250       0   10001]
+ [ 331250       0   10001]
+ [ 346250       0   10001]
+ [ 362250       0   10001]
+ [ 378250       0   10001]
+ [ 396250       0   10001]
+ [ 414250       0   10001]
+ [ 430250       0   10001]
+ [ 445233       0   10001]
+ [ 463234       0   10001]
+ [ 481234       0   10001]
+ [ 497234       0   10001]
+ [ 512234       0   10001]
+ [ 528217       0   10001]
+ [ 546234       0   10001]
+ [ 562234       0   10001]
+ [ 578234       0   10001]
+ [ 596234       0   10001]
+ [ 614234       0   10001]
+ [ 632234       0   10001]
+ [ 647234       0   10001]
+ [ 663234       0   10001]
+ [ 678234       0   10001]
+ [ 696234       0   10001]
+ [ 712218       0   10001]
+ [ 728218       0   10001]
+ [ 746234       0   10001]
+ [ 761218       0   10001]
+ [ 776218       0   10001]
+ [ 794218       0   10001]
+ [ 809218       0   10001]
+ [ 827201       0   10001]
+ [ 845201       0   10001]
+ [ 863218       0   10001]
+ [ 879218       0   10001]
+ [ 897218       0   10001]
+ [ 912202       0   10001]
+ [ 930202       0   10001]
+ [ 945218       0   10001]
+ [ 961202       0   10001]
+ [ 977185       0   10001]
+ [ 992219       0   10001]
+ [1010219       0   10001]
+ [1026185       0   10001]
+ [1041202       0   10001]
+ [1059202       0   10001]
+ [1074202       0   10001]
+ [1090186       0   10001]
+ [1105186       0   10001]
+ [1120202       0   10001]
+ [1138186       0   10001]
+ [1153186       0   10001]
+ [1169202       0   10001]
+ [1185203       0   10001]
+ [1201186       0   10001]
+ [1217186       0   10001]
+ [1235186       0   10001]
+ [1250186       0   10001]
+ [1268169       0   10001]
+ [1283186       0   10001]
+ [1298186       0   10001]
+ [1314186       0   10001]
+ [1330186       0   10001]
+ [1345186       0   10001]
+ [1363170       0   10001]
+ [1378170       0   10001]
+ [1393187       0   10001]
+ [1409187       0   10001]
+ [1425170       0   10001]
+ [1443170       0   10001]
+ [1459170       0   10001]
+ [1475170       0   10001]
+ [1490170       0   10001]
+ [1505170       0   10001]]
+(91, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>El primer valor en esta lista de eventos es la marca en el tiempo. El valor de en medio en la práctica siempre es 0, pero está hecho para identificar el evento inmediatamente anterior (cuando hay eventos que se superponen). El último valor es el código del evento. En este caso vemos que todos los eventos tienen el mismo código que según la descripción significa “imagen”, pero si juntamos la metadata veremos que el contenido de dicha “imagen” puede ser distinto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">events_fpath</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="n">scope</span><span class="o">=</span><span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="n">subject</span><span class="o">=</span><span class="s2">&quot;104&quot;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s2">&quot;tsv&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;filename&quot;</span>
+<span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">events_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">events_fpath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">events_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-30db5e6f-f159-4f0e-919d-9e7373f7f429" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>onset</th>
+      <th>duration</th>
+      <th>sample</th>
+      <th>funded</th>
+      <th>choice</th>
+      <th>category</th>
+      <th>project_id</th>
+      <th>trial_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>28.283</td>
+      <td>0</td>
+      <td>28283</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>place</td>
+      <td>PR81</td>
+      <td>image</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>46.266</td>
+      <td>0</td>
+      <td>46266</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>place</td>
+      <td>PR59</td>
+      <td>image</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>64.249</td>
+      <td>0</td>
+      <td>64249</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>face</td>
+      <td>PR11</td>
+      <td>image</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>80.266</td>
+      <td>0</td>
+      <td>80266</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>place</td>
+      <td>PR78</td>
+      <td>image</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>98.266</td>
+      <td>0</td>
+      <td>98266</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>place</td>
+      <td>PR63</td>
+      <td>image</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>1443.170</td>
+      <td>0</td>
+      <td>1443170</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>face</td>
+      <td>PR02</td>
+      <td>image</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>1459.170</td>
+      <td>0</td>
+      <td>1459170</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>face</td>
+      <td>PR31</td>
+      <td>image</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>1475.170</td>
+      <td>0</td>
+      <td>1475170</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>place</td>
+      <td>PR88</td>
+      <td>image</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>1490.170</td>
+      <td>0</td>
+      <td>1490170</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>face</td>
+      <td>PR21</td>
+      <td>image</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>1505.170</td>
+      <td>0</td>
+      <td>1505170</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>place</td>
+      <td>PR50</td>
+      <td>image</td>
+    </tr>
+  </tbody>
+</table>
+<p>91 rows × 8 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-30db5e6f-f159-4f0e-919d-9e7373f7f429')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-30db5e6f-f159-4f0e-919d-9e7373f7f429 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-30db5e6f-f159-4f0e-919d-9e7373f7f429');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-3c581982-773d-4865-b718-d3eee7537d54">
+  <button class="colab-df-quickchart" onclick="quickchart('df-3c581982-773d-4865-b718-d3eee7537d54')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-3c581982-773d-4865-b718-d3eee7537d54 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_7b86dac7-952a-41ab-8da3-fb07eba20651">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('events_df')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_7b86dac7-952a-41ab-8da3-fb07eba20651 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('events_df');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<p>Esta información será útil a la hora de crear epochs:</p>
+<ul class="simple">
+<li><p>Sabemos en qué tiempo se presentaron los eventos (imágenes). Esto es crucial para crear segmentos alrededor de los eventos experimentales.</p></li>
+<li><p>Sabemos características más exactas de esos eventos (si fueron lugares, productos, etc).</p></li>
+</ul>
+<p>Ahora, podemos generar un gráfico de las series tiempo con las marcas de evento. Si se observa la parte superior del gráfico se podrá ver en celeste la marca del eveto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_plot_events</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">start</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="n">events</span><span class="p">,</span> <span class="n">event_id</span><span class="o">=</span><span class="n">events_id</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/deb8f2ab49f6a7e5b86057585d74b9522b2263f43b505a420aa2538928923640.png" src="_images/deb8f2ab49f6a7e5b86057585d74b9522b2263f43b505a420aa2538928923640.png" />
+</div>
+</div>
+<p>Ahora que tenemos los eventos, podemos definir los epochs con los que deseamos trabajar.
+<br><br>
+Nota: si bien hemos cargado a la memoria RAM el resultado de este epoco, esto se ha hecho principalmente para agilizar el análisis. En la presencia de muchos participantes, esto podría entorpecer el comportamiento de la computadora.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="crear-epochs">
+<h1>Crear Epochs<a class="headerlink" href="#crear-epochs" title="Link to this heading">#</a></h1>
+<p>Como se mencionó antes, las epochs son segmentos de la data. Entonces, se harán segmentos alrededor de cada evento. (・ᴗ・)っ✂</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Epochs</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">Epochs</span><span class="p">(</span>
+    <span class="n">raw</span><span class="p">,</span>  <span class="c1"># Nuestra data raw filtrada y referenciada</span>
+    <span class="n">events</span><span class="p">,</span>  <span class="c1"># Los eventos del experimento. En este caso todavía no contienen la metadata.</span>
+    <span class="n">tmin</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">,</span>  <span class="c1"># Los epochs iniciaran 200 ms antes del evento</span>
+    <span class="n">tmax</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>  <span class="c1"># Los epochs finalizarán 800 ms después del evento</span>
+    <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Los epochs se han cargado en la memoria RAM</span>
+    <span class="n">baseline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># No aplicamos baseline por ICALabel</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Not setting metadata
+91 matching events found
+No baseline correction applied
+0 projection items activated
+Using data from preloaded Raw for 91 events and 1001 original time points ...
+0 bad epochs dropped
+</pre></div>
+</div>
+</div>
+</div>
+<p>Segmentada la data, podemos agregar los datos de la metadata de los eventos a cada epoch.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">events_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding metadata with 8 columns
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un gráfico de los epochs, nos permite ver la data segmentada apropiadamente. Asimismo, denota la presencia de cambios abruptos en la señal, producto de artefactos como el pestañeo que es necesario elimiar en nuestro siguiente paso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs_plot</span> <span class="o">=</span> <span class="n">epochs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/fb7eb940db53aaaf5652472bbde8fd827e759b87213e2faf6e1fef3aa5caad16.png" src="_images/fb7eb940db53aaaf5652472bbde8fd827e759b87213e2faf6e1fef3aa5caad16.png" />
+</div>
+</div>
+<section id="autoreject">
+<h2>Autoreject<a class="headerlink" href="#autoreject" title="Link to this heading">#</a></h2>
+<p>Autoreject es un algoritmo que se presenta como una solución automatizada para rechazar malos trials y reparar la señal de los sensores con interpolación.
+<br><br>
+La interpolación es el proceso por el cuál se estima un valor que se encuentra fallado o dañado, haciendo uso de datos cercanos. Es algo parecido a cuando hay valores en blanco de una prueba cuantitativa y se busca reemplazarlos en base a los patrones encontrados en otras pruebas… Bueno … ¡En realidad la idea es la misma pero el proceso mucho más complejo! ･(&gt;﹏&lt;)
+<br><br>
+Autoreject es un algoritmo automatizado de procesamiento de señales que busca minimizar el error, escogiendo las soluciones que dan mejores resultados entre una serie de opciones. En otras palabras, selecciona parámetros óptimos para corregir la señal.
+<br><br>
+Para más información, se puede revisar la <a class="reference external" href="https://autoreject.github.io/stable/index.html">página web del paquete</a>.
+<br><br></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Flujo de rechazo automático</span>
+<span class="c1"># crea el modelo de rechazo</span>
+<span class="n">ar</span> <span class="o">=</span> <span class="n">AutoReject</span><span class="p">(</span>
+    <span class="n">n_interpolate</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>  <span class="c1"># hasta 4 canales de referencia para interpolar</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># número de núcleos del procesador a utilizar para procesamiento simultáneo. La máquina virtual tiene 1.</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># ajusta el modelo a los epochs para aprender e identificar artefactos</span>
+<span class="n">ar</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">epochs</span><span class="p">[:</span><span class="mi">20</span><span class="p">])</span>
+<span class="c1"># aplica el modelo y devuelve tantos los epochs limpios como rechazados</span>
+<span class="n">epochs_ar</span><span class="p">,</span> <span class="n">reject_log</span> <span class="o">=</span> <span class="n">ar</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+    <span class="n">epochs</span><span class="p">,</span> <span class="n">return_log</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># elegimos qué epochs transformar</span>
+<span class="p">)</span>
+<span class="c1"># actualiza las epochs con las nuevas epochs reparadas y filtradas</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs_ar</span>
+
+<span class="c1"># epochs = epochs[~reject_log.bad_epochs] #si solo se quieren filtrar las epochs rechazadas y no utilizar las mejoradas.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># epochs reparadas</span>
+<span class="n">epochs_reject</span> <span class="o">=</span> <span class="n">epochs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3c895613c5b24dd18ee5c78887074196c08b74eb7639012d219e51262d0a3ff0.png" src="_images/3c895613c5b24dd18ee5c78887074196c08b74eb7639012d219e51262d0a3ff0.png" />
+</div>
+</div>
+<p>El gráfico de nuestros epochs actualizado, nos permite observar una data considerablemente más limpia. Ahora, solo nos falta un paso más para concluir con el preprocesamiento.</p>
+</section>
+<section id="independent-component-analysis-ica">
+<h2>Independent Component Analysis (ICA)<a class="headerlink" href="#independent-component-analysis-ica" title="Link to this heading">#</a></h2>
+<p>Mientras que AutoReject se encarga de identificar y descartar los datos corruptos o con artefactos, ICA (Análisis de Componentes Independientes) separa las señales de acuerdo con sus fuentes, permitiendo eliminar aquellas que provienen de artefactos.
+<br><br>
+Una forma útil de entender cómo funciona ICA es imaginar una sala de grabación en la que se está tocando una banda. En esa sala, se usan varios micrófonos para grabar cada instrumento por separado. Esta analogía se asemeja bastante al funcionamiento del EEG. Los electrodos son nuestros micrófonos, y la actividad cerebral que medimos sería el sonido que grabamos. Ahora, imagina que queremos separar el sonido de la guitarra de los demás instrumentos. ¿Es posible? La respuesta es sí. Usando un análisis de componentes independientes, podemos separar la grabación en diferentes pistas, cada una correspondiente a un instrumento, para poder mezclarlas de nuevo más tarde. Así, podríamos obtener una pista solo con la guitarra.
+<br><br>
+Aunque esto es relativamente sencillo en el contexto de la grabación de música, con la actividad cerebral tenemos el desafío de no saber cuántas son las fuentes que generan esa actividad. Por esta razón, limitamos la cantidad de “instrumentos” a la cantidad de “micrófonos” (electrodos) que tenemos. Sin embargo, gracias a herramientas como <a class="reference external" href="https://mne.tools/mne-icalabel/stable/index.html">ICAlabel</a>, podemos intentar etiquetar las fuentes de la actividad, como “movimiento muscular”, “movimiento ocular”, “actividad cerebral”, “otros”, etc.
+<br><br>
+Finalmente, podemos rechazar todas las fuentes que no provengan de la actividad cerebral o “otros”, reconstruyendo la señal adecuadamente.
+<br><br>
+Es importante notar que para realizar este análisis se realizaron los epochs con baseline=None y se ejecutó previamente un high-pass filter the 1 Hz y un low-pass filter de 100 Hz, de acuerdo a las recomendaciones del paquete.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Se crea un objeto ICA</span>
+<span class="n">ica</span> <span class="o">=</span> <span class="n">ICA</span><span class="p">(</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>  <span class="c1"># El n máximo de iteraciones será automático</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;infomax&quot;</span><span class="p">,</span>  <span class="c1"># El método usado para el ICA será &#39;infomax&#39; (icalabel)</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">99</span><span class="p">,</span>  <span class="c1"># Establecemos una semilla aleatoria</span>
+    <span class="n">fit_params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">extended</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>  <span class="c1"># Mejora la calidad de los componentes.</span>
+<span class="p">)</span>
+
+<span class="c1"># Se ajusta el modelo ICA</span>
+<span class="n">ica</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+
+<span class="c1"># Etiquetado de los componentes ICA utilizando el método ICLabel</span>
+<span class="n">ic_labels</span> <span class="o">=</span> <span class="n">label_components</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">ica</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;iclabel&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extraemos las etiquetas de los componentes ICA.</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">ic_labels</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span>
+
+<span class="c1"># Listado de los componentes que no sean cerebrales u &#39;otros&#39; para excluirlos.</span>
+<span class="n">exclude_idx</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="k">if</span> <span class="n">label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;brain&quot;</span><span class="p">,</span> <span class="s2">&quot;other&quot;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="c1"># Si no se encuentran componentes ICA para excluir, se imprime un mensaje.</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">exclude_idx</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No ICA components found to exclude.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Si se encuentran componentes, se imprime la lista de índices a excluir.</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Excluding these ICA components: </span><span class="si">{</span><span class="n">exclude_idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Se aplica el filtro ICA a los datos epocalizados.</span>
+    <span class="n">ica</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude_idx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting ICA to data using 129 channels (please be patient, this may take a while)
+Selecting by non-zero PCA components: 129 components
+Computing Extended Infomax ICA
+Fitting ICA took 245.1s.
+Excluding these ICA components: [3, 8, 12, 15, 18, 20, 21, 48, 52, 56, 60, 65, 70, 71, 77, 83, 86, 92, 101, 115, 126]
+Applying ICA to Epochs instance
+    Transforming to ICA space (129 components)
+    Zeroing out 21 ICA components
+    Projecting back using 129 PCA components
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con la exclusión de 29 componentes, se puede ahora reconstruir la data con una frecuencia mas limpia y lista para posteriores análisis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs_ica</span> <span class="o">=</span> <span class="n">epochs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6d92bfea5ecb19a93cc59978c3fc9f4de33efda29c824051bed9f867ea6338f3.png" src="_images/6d92bfea5ecb19a93cc59978c3fc9f4de33efda29c824051bed9f867ea6338f3.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="examinar-epochs-y-evokeds-relacionados-a-eventos">
+<h1>Examinar Epochs y Evokeds relacionados a eventos.<a class="headerlink" href="#examinar-epochs-y-evokeds-relacionados-a-eventos" title="Link to this heading">#</a></h1>
+<p>Luego de haber pre-procesado los datos para limpiarlos de artefactos y ruidos, podemos trabajar con los segmentos que hemos hecho alrededor de los eventos (epochs). Lo primero que se puede realizar es tener una visión de los epochs a través del segmento de tiempo en el que hemos creado las epochs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs</span><span class="o">.</span><span class="n">plot_image</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Not setting metadata
+80 matching events found
+No baseline correction applied
+0 projection items activated
+combining channels using GFP (eeg channels)
+</pre></div>
+</div>
+<img alt="_images/5ee1899ba85f90509780fa6bcfbf1e00ff6bd144e92cf30d17620ed710730f3d.png" src="_images/5ee1899ba85f90509780fa6bcfbf1e00ff6bd144e92cf30d17620ed710730f3d.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;Figure size 640x480 with 3 Axes&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>¡Bien! Ahora… ¿Qué es ese gráfico extraño de colores 「(°ヘ°)?
+<br><br>
+Bueno, se puede explicar empezando por lo más familiar, los ejes X e Y. En el eje X tenemos el tiempo que duran las epochs (los segmentos que hemos cortado), este va de -0.2 a 0.8. En el eje Y se tienen las epochs individuales, enumeradas del 0 al 80. Dentro del gráfico podemos ver los colores, que significan la intensidad que tuvo el voltaje (microvoltios) en un momento determinado (eje X) en una epoch determinada (eje Y).
+<br><br>
+En resumen, el gráfico de colores nos da una imagen general de cuánto voltaje eléctrico tienen las epochs en un momento determinado. La intensidade voltaje (microvoltios/μV), dentro de EEG, normalmente se conoce como intensidad de señal.
+<br><br>
+El segundo gráfico se ve más familiar. Básicamente es cómo varía el voltaje en el tiempo, olvidándonos de especificar en qué epochs es esa variación. Aquí se están promediando todas las epochs.</p>
+<p>¡Bueno! Ahora que se entienden mejor estos gráficos, también podemos intentar seleccionar epochs específicas según la metada. Intentemos sólo ver un gráfico de las epochs en donde el participante vio una imagen (evento) de un lugar (category=place en la metadata).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs</span><span class="p">[(</span><span class="n">epochs</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;place&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">plot_image</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Not setting metadata
+39 matching events found
+No baseline correction applied
+0 projection items activated
+combining channels using GFP (eeg channels)
+</pre></div>
+</div>
+<img alt="_images/ebad400d0537c9dd4de1cc84d1bc70fcdf7a447b6996d100f85419e3236f8c45.png" src="_images/ebad400d0537c9dd4de1cc84d1bc70fcdf7a447b6996d100f85419e3236f8c45.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;Figure size 640x480 with 3 Axes&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hmm al parecer, en ambos gráficos, hay un potencial de evento cerca de los 200 ms, el cual es positivo. Pero ¿Cómo podríamos ahondar más en los datos?
+<br><br>
+Para esto tenemos la solución de crear objetos <a class="reference external" href="https://mne.tools/stable/generated/mne.Evoked.html#mne.Evoked">Evoked</a>. Estos objetos son el promedio de todas las epochs (segmentos), el cual da como resultado un solo segmento con toda la data. Anteriormente estábamos viendo también la data combinada, pero trabajar con objetos evoked nos dará más opciones para explorarla.
+<br><br>
+Intentemos seguir en la misma línea de análisis de seleccionar las epochs en donde el participante, según los metadatos, vio una imagen de un lugar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evoked</span> <span class="o">=</span> <span class="n">epochs</span><span class="p">[(</span><span class="n">epochs</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;place&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">average</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evoked_jointplot</span> <span class="o">=</span> <span class="n">evoked</span><span class="o">.</span><span class="n">plot_joint</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No projector specified for this dataset. Please consider the method self.add_proj.
+</pre></div>
+</div>
+<img alt="_images/69980ddd47e904a1ea7da0a2fdf5f424749548a0fc0b160dd45ce2f9af1b8150.png" src="_images/69980ddd47e904a1ea7da0a2fdf5f424749548a0fc0b160dd45ce2f9af1b8150.png" />
+</div>
+</div>
+<p>¡Vaya! ¡Ahora los gráficos han cambiado! ¿Cómo se deben de leer?
+<br><br>
+Bueno, siempre podemos ayudarnos de las descripciones de los ejes X e Y (•̀ᴗ•́)ง
+<br><br>
+En este caso, tenemos en el eje X el tiempo del objeto evoked (que, como hay que recordar, son las epochs promediadas), mientras en el eje Y se encuentra la amplitud o voltaje (microvoltios). Básicamente estamos viendo cómo cambia la señal a través del tiempo.
+<br><br>
+Sin embargo ¿Por qué se ven tantas señales y no solo una? ( •́ ⍨ •̀)
+<br><br>
+Bueno, eso es porque cada señal es un electrodo y, como hemos mencionado antes, ¡Tenemos más de 100 electrodos! Por eso hay tantas rayas en el gráfico.
+<br><br>
+Luego, podemos ver las tres figuras de cabeza encima del gráfico. Estas tres figuras parten de una línea específica en el tiempo, lo cual nos indica que nos están mostrando instantes específicos. De hecho, sobre ellas, se puede observar el milisegundo exacto que nos señalan. Adicionalmente, tenemos un código de color en esas tres cabezas que se guía de la leyenda de la derecha: cuando vemos electrodos en azul en esas cabezas, significan que están teniendo potenciales (voltajes/amplitudes) negativos, mientras que cuando son más cercanos al rojo, se acercan a potenciales positivos (voltajes/amplitudes).
+<br><br></p>
+<p>눈_눈 Entonces… ¡Al parecer es demasiada información! (ノಠ益ಠ)ノ彡┻━┻</p>
+<p>Sin embargo, si nos concentramos sólo en los tiempos que nos han salido señalados, podríamos inferir que tenemos tres potenciales de acción, aunque la polaridad de estos varía dependiendo de cuáles son los electrodos.
+<br><br></p>
+<p>Afortunadamente, podemos también especificar, en un objeto evoked, qué electrodos queremos escoger para el análisis visual. Intentemos escoger los electrodos occipitales para analizar el potencial de accción que se encuentra cerca de 400 ms.
+<br><br></p>
+<p>Para esto, primero tenemos que saber qué nombres tienen nuestros electrodos occipitales. Estos dependerán del montaje que se esté utilizando para colocar los electroso (en otras palabras, de la convención que se esté utilizando). Hay distintos montajes dependiendo del número de electrodos, los cuales pueden ser revisados <a class="reference external" href="https://en.wikipedia.org/wiki/10%E2%80%9320_system_(EEG)">aquí</a>.
+<br><br>
+Si se quiere saber la organización de electrodos en esta base de datos, primero hay que obtener el montaje que se está utilizando, lo cual es bastante directo con el siguiente método.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">montage</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">get_montage</span><span class="p">()</span>
+<span class="n">montage_figura</span> <span class="o">=</span> <span class="n">montage</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3f19d6b672c67ad383c0caa482466dc0838d7a15c449a0a9239b7c134bbc72ad.png" src="_images/3f19d6b672c67ad383c0caa482466dc0838d7a15c449a0a9239b7c134bbc72ad.png" />
+</div>
+</div>
+<p>Ahora, generamos el mismo gráfico pero con el parámetro “picks”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evoked_joint_selection</span> <span class="o">=</span> <span class="n">evoked</span><span class="o">.</span><span class="n">plot_joint</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;E81&quot;</span><span class="p">,</span> <span class="s2">&quot;E88&quot;</span><span class="p">,</span> <span class="s2">&quot;E73&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No projector specified for this dataset. Please consider the method self.add_proj.
+</pre></div>
+</div>
+<img alt="_images/84c34504b3f4fdeff86e0d7f12ba97ec3b267940f32d989707caa6c39d9f9090.png" src="_images/84c34504b3f4fdeff86e0d7f12ba97ec3b267940f32d989707caa6c39d9f9090.png" />
+</div>
+</div>
+<p>¡Interesante! Parece que la señal va subiendo progresivamente a partir de los 200 ms, hasta llegar a su punto más alto aproximadamente en 400 ms. Sin embargo, hay un <em>spike</em> bastante notorio antes de los 200 ms. De hecho, este potencial es particularmente puntual, lo cual puede ser indicador de que es una respuesta bastante específica relacionada al evento (imagen de lugar). Por ejemplo, un potencial relacionado a un evento se vería así:</p>
+<div style="border: 2px solid #ddd; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">
+  <img src="https://www.researchgate.net/profile/Patrick-Ledwidge/publication/326606501/figure/fig1/AS:652287580053505@1532528886461/N400-and-P600-Components-of-the-ERP_W640.jpg" width="400">
+</div>
+<p><br><br>
+Podemos tambien intentar encontrar le tiempo exacto del potencial del evento al dibujar una línea en el intervalo que se quiere examinar con <code class="docutils literal notranslate"><span class="pre">.plot_joint()</span></code> o si no, sombrear un intervalo con <code class="docutils literal notranslate"><span class="pre">.plot()</span></code>. Intentemos cambiar el foco de nuestra atención de los 400ms a un tiempo entre 100 y 150 ms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evoked_plot120</span> <span class="o">=</span> <span class="n">evoked</span><span class="o">.</span><span class="n">plot_joint</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;E81&quot;</span><span class="p">,</span> <span class="s2">&quot;E88&quot;</span><span class="p">,</span> <span class="s2">&quot;E73&quot;</span><span class="p">],</span> <span class="n">times</span><span class="o">=</span><span class="mf">0.120</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No projector specified for this dataset. Please consider the method self.add_proj.
+</pre></div>
+</div>
+<img alt="_images/a1ce5c155af7601a9b2906e89d53fb3d766ad556dd601956d1baf75dfc0b1e20.png" src="_images/a1ce5c155af7601a9b2906e89d53fb3d766ad556dd601956d1baf75dfc0b1e20.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evoked_highlight</span> <span class="o">=</span> <span class="n">evoked</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">picks</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;E81&quot;</span><span class="p">,</span> <span class="s2">&quot;E88&quot;</span><span class="p">,</span> <span class="s2">&quot;E73&quot;</span><span class="p">],</span> <span class="n">highlight</span><span class="o">=</span><span class="p">[</span><span class="mf">0.100</span><span class="p">,</span> <span class="mf">0.150</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5647e0bfadfd20bc3e7ccaf137d3a52d31cd2c2037ae5839833a8c2197b858b5.png" src="_images/5647e0bfadfd20bc3e7ccaf137d3a52d31cd2c2037ae5839833a8c2197b858b5.png" />
+</div>
+</div>
+<p>¡Parece que la estimación entre 100ms y 150ms era correcta! (ﾉ^_^)ﾉ✧</p>
+<p>Un próximo paso sería encontrar el valor numérico de la amplitud de interés (microvoltios) y el tiempo exacto en el que se da. En este caso, podemos utilizar el método <code class="docutils literal notranslate"><span class="pre">.get_peak</span></code> de los objetos evoked. Este método nos devuelve el valor más alto (o más bajo) en un tiempo de interés, lo cual podría servir para encontrar ese potencial de acción.</p>
+<p>Pero antes de utilizar esa función, es recomendable crear una nueva variable en las cual solo escojamos los electrodos de interés; hasta ahora, si bien los hemos escogido, han sido dentro de parámetros de la función <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> o <code class="docutils literal notranslate"><span class="pre">.plot_joint()</span></code>, pero necesitaremos escogerlos antes de aplicar <code class="docutils literal notranslate"><span class="pre">.get_peak</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evoked_electrodos</span> <span class="o">=</span> <span class="n">evoked</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;E81&quot;</span><span class="p">,</span> <span class="s2">&quot;E88&quot;</span><span class="p">,</span> <span class="s2">&quot;E73&quot;</span><span class="p">]</span>
+<span class="p">)</span>  <span class="c1"># Antes de seleccionar los electrodos, se crea una copia del objeto evoked para no modificar la anterior.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evoked_electrodos</span><span class="o">.</span><span class="n">get_peak</span><span class="p">(</span>
+    <span class="n">tmin</span><span class="o">=</span><span class="mf">0.100</span><span class="p">,</span>  <span class="c1"># Se seleccciona un intervalo de tiempo de interés.</span>
+    <span class="n">tmax</span><span class="o">=</span><span class="mf">0.150</span><span class="p">,</span>
+    <span class="n">return_amplitude</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Utilizamos este parámetro para indicar que el método debe de darnos la amplitud además del tiempo en donde ocurre.</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;pos&quot;</span><span class="p">,</span>  <span class="c1"># Sólo considera los peaks de carga positiva.</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;E88&#39;, 0.114, 3.423778768550872e-06)
+</pre></div>
+</div>
+</div>
+</div>
+<p>¡Bien! Parece que el tiempo exacto del peak de aquel potencial es 115 ms, al menos para el electrodo E88. Si queremos ver el peak en cada electrodo en específico, deberíamos escogerlos uno por uno.</p>
+<p>En este caso, si revisamos la literatura, el potencial de acción positivo alrededor de los 100ms (P100) en electrodos occipitales, se relaciona con la activación de la corteza visual ante estímulos visuales. Esto tiene lógica considerando que el evento es mostrar una imagen ¿Verdad?</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="frecuencias-de-onda">
+<h1>Frecuencias de onda<a class="headerlink" href="#frecuencias-de-onda" title="Link to this heading">#</a></h1>
+<p>Hemos hablado anteriormente de las frecuencias de onda y cómo se pueden utilizar estas para descomponer una señal de EEG. Dentro de los objetos epoch y evoked, también tenemos métodos para explorar qué frecuencias son las que componen sus señales y ver las que predominan.</p>
+<p>El método <code class="docutils literal notranslate"><span class="pre">.compute_psd</span></code> aplicado a <a class="reference external" href="https://mne.tools/dev/generated/mne.Epochs.html#mne.Epochs.compute_psd">epochs</a> o <a class="reference external" href="https://mne.tools/dev/generated/mne.Evoked.html#mne.Evoked.compute_psd">evokeds</a> crea un nuevo objeto llamado <a class="reference external" href="https://mne.tools/dev/generated/mne.time_frequency.Spectrum.html#mne.time_frequency.Spectrum">Spectrum</a>. Este nuevo objeto contiene la información de las frecuencias de onda y, como los objetos anteriores que hemos examinado, también tiene métodos que nos permitirán explorarlo.</p>
+<p>Es importante señalar que <code class="docutils literal notranslate"><span class="pre">.compute_psd</span></code> proviene de Power Spectral Density. Es decir, se encarga de ver cuántos microvoltios al cuadrado µV² (potencia/power) hay por cada frecuencia (Hz). Por eso veremos que las unidades son (µV²/Hz).</p>
+<p>¿Suena muy confuso? ¡No importa! De momento, lo importante es tener en cuenta que seguimos hablando de microvoltios (µV) es decir, de actividad eléctrica. (⚡^⚡)⊃))</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spectrum</span> <span class="o">=</span> <span class="n">evoked</span><span class="o">.</span><span class="n">compute_psd</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mi">70</span><span class="p">)</span>
+<span class="n">spectrum_plot</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">spectrum</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="p">)</span>  <span class="c1"># este gráfico nos dará la densidad de la potencia de cada frecuencia</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Using multitaper spectrum estimation with 7 DPSS windows
+Plotting power spectral density (dB=True).
+</pre></div>
+</div>
+<img alt="_images/c0815ffb03bdedf8bf052dbb72212cc0afce6b31e5fb884fd53c7faea9383d13.png" src="_images/c0815ffb03bdedf8bf052dbb72212cc0afce6b31e5fb884fd53c7faea9383d13.png" />
+</div>
+</div>
+<p>Hmm… en este caso parece que la potencia en las ondas bajas son las predominantes, al menos en un análisis de todos los electrodos. Adicionalmente a ello, podemos realizar un examen más exhaustivo, ya que MNE nos permite generar gráficos en los cuales ver las frecuencias de onda más comúnmente relacionadas con estímulos cognitivos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spectrum_topomap</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">plot_topomap</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/facf2689f11daa62d0db60e780daa5b5faed383a26e59bba6e3a93f971a674b1.png" src="_images/facf2689f11daa62d0db60e780daa5b5faed383a26e59bba6e3a93f971a674b1.png" />
+</div>
+</div>
+<p>Esto se ve un poco más informativo. Podemos ver que las ondas Alpha, Delta y Theta son las predominantes.</p>
+<p>Hmm… ¿Pero qué significaban estas ondas (・・ ) ?</p>
+<p>Bueno, afortunadamente tenemos material para recordarlo extraído de <a class="reference external" href="https://www.sleepfoundation.org/noise-and-sleep/binaural-beats">este artículo</a></p>
+<div style="border: 2px solid #ddd; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">
+  <img src="https://www.sleepfoundation.org/wp-content/uploads/2022/06/SF_BrainWaves_Graphic.jpg" width="700">
+</div>
+<p>¡Genial! Entonces, si queremos ahondar aún más, podemos pasar la información del objeto spectrum a un dataframe (o matriz) con el método <code class="docutils literal notranslate"><span class="pre">.to_data_frame()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spectrum_dataframe</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">to_data_frame</span><span class="p">()</span>
+<span class="n">spectrum_dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-07868752-0f52-4257-8f27-4ee7a584c9a3" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>freq</th>
+      <th>E1</th>
+      <th>E2</th>
+      <th>E3</th>
+      <th>E4</th>
+      <th>E5</th>
+      <th>E6</th>
+      <th>E7</th>
+      <th>E8</th>
+      <th>E9</th>
+      <th>...</th>
+      <th>E120</th>
+      <th>E121</th>
+      <th>E122</th>
+      <th>E123</th>
+      <th>E124</th>
+      <th>E125</th>
+      <th>E126</th>
+      <th>E127</th>
+      <th>E128</th>
+      <th>Cz</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>2.706571e-10</td>
+      <td>1.069885e-10</td>
+      <td>8.653958e-11</td>
+      <td>6.854424e-11</td>
+      <td>9.369267e-11</td>
+      <td>4.252064e-10</td>
+      <td>4.465148e-10</td>
+      <td>1.271058e-10</td>
+      <td>1.168894e-10</td>
+      <td>...</td>
+      <td>4.903207e-11</td>
+      <td>2.622093e-10</td>
+      <td>1.664951e-10</td>
+      <td>2.025411e-10</td>
+      <td>1.480865e-10</td>
+      <td>2.711961e-10</td>
+      <td>1.622340e-09</td>
+      <td>1.264254e-09</td>
+      <td>5.171301e-10</td>
+      <td>3.486183e-10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.999001</td>
+      <td>5.396020e-10</td>
+      <td>2.024961e-10</td>
+      <td>1.523389e-10</td>
+      <td>1.177771e-10</td>
+      <td>1.751616e-10</td>
+      <td>8.405209e-10</td>
+      <td>8.955397e-10</td>
+      <td>2.487827e-10</td>
+      <td>2.300927e-10</td>
+      <td>...</td>
+      <td>1.062294e-10</td>
+      <td>5.375071e-10</td>
+      <td>3.260339e-10</td>
+      <td>3.923869e-10</td>
+      <td>2.868879e-10</td>
+      <td>5.503298e-10</td>
+      <td>3.333415e-09</td>
+      <td>2.560853e-09</td>
+      <td>1.029090e-09</td>
+      <td>7.072008e-10</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.998002</td>
+      <td>5.552642e-10</td>
+      <td>2.106352e-10</td>
+      <td>1.474182e-10</td>
+      <td>1.101377e-10</td>
+      <td>1.694914e-10</td>
+      <td>8.416572e-10</td>
+      <td>8.816520e-10</td>
+      <td>2.234688e-10</td>
+      <td>2.099036e-10</td>
+      <td>...</td>
+      <td>1.492061e-10</td>
+      <td>5.475862e-10</td>
+      <td>3.457239e-10</td>
+      <td>4.048125e-10</td>
+      <td>2.856539e-10</td>
+      <td>5.644473e-10</td>
+      <td>3.320347e-09</td>
+      <td>2.629562e-09</td>
+      <td>1.074046e-09</td>
+      <td>6.793686e-10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.997003</td>
+      <td>3.551956e-10</td>
+      <td>1.470499e-10</td>
+      <td>1.277905e-10</td>
+      <td>1.110389e-10</td>
+      <td>1.560349e-10</td>
+      <td>5.377965e-10</td>
+      <td>5.688431e-10</td>
+      <td>1.882548e-10</td>
+      <td>1.873746e-10</td>
+      <td>...</td>
+      <td>1.243324e-10</td>
+      <td>3.460059e-10</td>
+      <td>2.133576e-10</td>
+      <td>2.712918e-10</td>
+      <td>1.966106e-10</td>
+      <td>3.597675e-10</td>
+      <td>2.073818e-09</td>
+      <td>1.671148e-09</td>
+      <td>7.056123e-10</td>
+      <td>4.334621e-10</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.996004</td>
+      <td>2.905856e-10</td>
+      <td>1.263882e-10</td>
+      <td>1.224702e-10</td>
+      <td>1.047439e-10</td>
+      <td>1.446483e-10</td>
+      <td>4.624763e-10</td>
+      <td>4.678559e-10</td>
+      <td>1.931473e-10</td>
+      <td>1.966032e-10</td>
+      <td>...</td>
+      <td>1.301681e-10</td>
+      <td>2.992060e-10</td>
+      <td>1.765668e-10</td>
+      <td>2.123565e-10</td>
+      <td>1.693756e-10</td>
+      <td>3.047644e-10</td>
+      <td>1.724762e-09</td>
+      <td>1.349902e-09</td>
+      <td>5.516954e-10</td>
+      <td>3.774999e-10</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>65.934066</td>
+      <td>1.288835e-12</td>
+      <td>1.970529e-12</td>
+      <td>1.157387e-12</td>
+      <td>1.319634e-12</td>
+      <td>1.243057e-12</td>
+      <td>5.370581e-13</td>
+      <td>5.058150e-13</td>
+      <td>3.312090e-12</td>
+      <td>1.065599e-11</td>
+      <td>...</td>
+      <td>2.100716e-12</td>
+      <td>1.038531e-12</td>
+      <td>1.305407e-12</td>
+      <td>2.165781e-12</td>
+      <td>3.215876e-12</td>
+      <td>1.424259e-12</td>
+      <td>2.142287e-12</td>
+      <td>2.652445e-12</td>
+      <td>1.616375e-12</td>
+      <td>5.268166e-13</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>66.933067</td>
+      <td>1.476890e-12</td>
+      <td>2.136000e-12</td>
+      <td>1.199313e-12</td>
+      <td>1.315243e-12</td>
+      <td>1.309038e-12</td>
+      <td>6.709890e-13</td>
+      <td>5.487443e-13</td>
+      <td>3.410133e-12</td>
+      <td>1.152952e-11</td>
+      <td>...</td>
+      <td>2.228242e-12</td>
+      <td>1.197297e-12</td>
+      <td>1.432555e-12</td>
+      <td>2.107843e-12</td>
+      <td>1.997207e-12</td>
+      <td>1.495911e-12</td>
+      <td>2.069216e-12</td>
+      <td>2.583038e-12</td>
+      <td>1.580739e-12</td>
+      <td>2.637772e-13</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>67.932068</td>
+      <td>8.013831e-13</td>
+      <td>1.721951e-12</td>
+      <td>1.606727e-12</td>
+      <td>2.163487e-12</td>
+      <td>1.297203e-12</td>
+      <td>9.166018e-13</td>
+      <td>5.013027e-13</td>
+      <td>3.006663e-12</td>
+      <td>8.947139e-12</td>
+      <td>...</td>
+      <td>2.369773e-12</td>
+      <td>7.592292e-13</td>
+      <td>1.228874e-12</td>
+      <td>1.672121e-12</td>
+      <td>2.052348e-12</td>
+      <td>9.587250e-13</td>
+      <td>1.967750e-12</td>
+      <td>2.565080e-12</td>
+      <td>1.584605e-12</td>
+      <td>2.070827e-13</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>68.931069</td>
+      <td>1.510424e-12</td>
+      <td>3.008237e-12</td>
+      <td>1.972060e-12</td>
+      <td>2.631315e-12</td>
+      <td>1.384242e-12</td>
+      <td>8.832492e-13</td>
+      <td>3.762401e-13</td>
+      <td>3.740952e-12</td>
+      <td>1.204546e-11</td>
+      <td>...</td>
+      <td>2.218193e-12</td>
+      <td>8.402931e-13</td>
+      <td>1.494784e-12</td>
+      <td>2.246898e-12</td>
+      <td>1.888010e-12</td>
+      <td>1.196630e-12</td>
+      <td>1.759115e-12</td>
+      <td>3.057937e-12</td>
+      <td>2.062952e-12</td>
+      <td>1.429811e-13</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>69.930070</td>
+      <td>1.558259e-12</td>
+      <td>2.825978e-12</td>
+      <td>1.900885e-12</td>
+      <td>2.097807e-12</td>
+      <td>1.418398e-12</td>
+      <td>9.294334e-13</td>
+      <td>3.176812e-13</td>
+      <td>4.030103e-12</td>
+      <td>1.000994e-11</td>
+      <td>...</td>
+      <td>2.419205e-12</td>
+      <td>9.276077e-13</td>
+      <td>1.664390e-12</td>
+      <td>2.125371e-12</td>
+      <td>1.971081e-12</td>
+      <td>1.165718e-12</td>
+      <td>1.699984e-12</td>
+      <td>3.321198e-12</td>
+      <td>2.109190e-12</td>
+      <td>1.229649e-13</td>
+    </tr>
+  </tbody>
+</table>
+<p>71 rows × 130 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-07868752-0f52-4257-8f27-4ee7a584c9a3')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-07868752-0f52-4257-8f27-4ee7a584c9a3 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-07868752-0f52-4257-8f27-4ee7a584c9a3');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-be17bd3f-1d57-4138-ba45-1bfb9009e154">
+  <button class="colab-df-quickchart" onclick="quickchart('df-be17bd3f-1d57-4138-ba45-1bfb9009e154')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-be17bd3f-1d57-4138-ba45-1bfb9009e154 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_63881cfe-8694-4a67-b96f-6fd52d58645a">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('spectrum_dataframe')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_63881cfe-8694-4a67-b96f-6fd52d58645a button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('spectrum_dataframe');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<p>¡Demasiados números! o(╥﹏╥)o
+<br><br>
+Bueno, hay que tener en cuenta que también tenemos muchos electrodos. En esta tabla, cada columna es un electrodo, excepto la primera, que señala la frecuencia de onda de interés. El valor en cada columna de electrodos es la densidad de la potencia de dicha frecuencia, el cual es un indicador de cuán poderosa es la señal en la frecuencia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spectrum_dataframe</span><span class="p">[[</span><span class="s2">&quot;E81&quot;</span><span class="p">,</span> <span class="s2">&quot;E88&quot;</span><span class="p">,</span> <span class="s2">&quot;E73&quot;</span><span class="p">,</span> <span class="s2">&quot;freq&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-37bb92ae-7b8d-4853-90be-3ea3dfb007b8" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>E81</th>
+      <th>E88</th>
+      <th>E73</th>
+      <th>freq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.492247e-10</td>
+      <td>5.787829e-10</td>
+      <td>2.481088e-10</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.068667e-09</td>
+      <td>1.130753e-09</td>
+      <td>4.898166e-10</td>
+      <td>0.999001</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.079173e-09</td>
+      <td>1.138144e-09</td>
+      <td>4.901595e-10</td>
+      <td>1.998002</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6.747333e-10</td>
+      <td>7.033298e-10</td>
+      <td>2.912964e-10</td>
+      <td>2.997003</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.461254e-10</td>
+      <td>5.806631e-10</td>
+      <td>2.476642e-10</td>
+      <td>3.996004</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>7.490661e-13</td>
+      <td>8.519987e-13</td>
+      <td>1.013592e-12</td>
+      <td>65.934066</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>7.489047e-13</td>
+      <td>9.042955e-13</td>
+      <td>9.986456e-13</td>
+      <td>66.933067</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>8.569346e-13</td>
+      <td>8.849158e-13</td>
+      <td>8.309599e-13</td>
+      <td>67.932068</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>9.401436e-13</td>
+      <td>7.952683e-13</td>
+      <td>8.685762e-13</td>
+      <td>68.931069</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>9.928794e-13</td>
+      <td>7.277623e-13</td>
+      <td>9.797472e-13</td>
+      <td>69.930070</td>
+    </tr>
+  </tbody>
+</table>
+<p>71 rows × 4 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-37bb92ae-7b8d-4853-90be-3ea3dfb007b8')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-37bb92ae-7b8d-4853-90be-3ea3dfb007b8 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-37bb92ae-7b8d-4853-90be-3ea3dfb007b8');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-d952cfe7-6687-4ddf-90f0-25559846059c">
+  <button class="colab-df-quickchart" onclick="quickchart('df-d952cfe7-6687-4ddf-90f0-25559846059c')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-d952cfe7-6687-4ddf-90f0-25559846059c button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<p>Lo que sucede aquí es que nuestras frecuencias no están unidas en los intervalos que corresponden a las ondas relacionadas al cerebro (alpha, beta, delta, etc). Pero para ello podemos realizar un poco de procesamiento de datos. Como es un dataframe, podemos utilizar la librería pandas para organizar nuestros datos según lo que nos interese, y finalmente obtener un gráfico con matplotlib.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_filtered</span> <span class="o">=</span> <span class="n">spectrum_dataframe</span><span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;E81&quot;</span><span class="p">,</span> <span class="s2">&quot;E88&quot;</span><span class="p">,</span> <span class="s2">&quot;E73&quot;</span><span class="p">,</span> <span class="s2">&quot;freq&quot;</span><span class="p">]</span>
+<span class="p">]</span>  <span class="c1"># seleccionamos las columnas que interesan</span>
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[</span>
+    <span class="n">df_filtered</span><span class="p">[</span><span class="s2">&quot;freq&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+<span class="p">]</span>  <span class="c1"># filtramos para que no nos den frecuencias más bajas que 1</span>
+<span class="n">df_filtered</span><span class="p">[</span><span class="s2">&quot;freq_group&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span>  <span class="c1"># se crea una nueva columna en el dataframe &#39;freq_group&#39;</span>
+        <span class="n">df_filtered</span><span class="p">[</span>
+            <span class="s2">&quot;freq&quot;</span>
+        <span class="p">],</span>  <span class="c1"># se utiliza &#39;cut&#39; en la columna &#39;freq&#39;, en vez de tener muchas frecuencias, crear intervalos que nos interesan.</span>
+        <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">70</span><span class="p">],</span>  <span class="c1"># los intervalos que interesan</span>
+        <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># el límite derecho del intervalo no incluye el valor final</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">df_grouped</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;freq_group&quot;</span><span class="p">)[</span>
+    <span class="p">[</span><span class="s2">&quot;E81&quot;</span><span class="p">,</span> <span class="s2">&quot;E88&quot;</span><span class="p">,</span> <span class="s2">&quot;E73&quot;</span><span class="p">]</span>
+<span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># agrupamos los datos segun sus valores en &#39;freq_group&#39; y sumamos las potencias.</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df_grouped</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="p">)</span>  <span class="c1"># llamamos una funcion basica para graficar</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-118-344caad3f784&gt;:4: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  df_grouped = df_filtered.groupby(&#39;freq_group&#39;)[[&#39;E81&#39;, &#39;E88&#39;, &#39;E73&#39;]].sum()
+</pre></div>
+</div>
+<img alt="_images/9d2542a5c402a1da66193c6a38e2363f3815f6ad525831e1f93e1b57d923b697.png" src="_images/9d2542a5c402a1da66193c6a38e2363f3815f6ad525831e1f93e1b57d923b697.png" />
+</div>
+</div>
+<p>Incluso, si queremos, podemos colocar nombres más explicativos al gráfico.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_filtered</span> <span class="o">=</span> <span class="n">spectrum_dataframe</span><span class="p">[[</span><span class="s2">&quot;E81&quot;</span><span class="p">,</span> <span class="s2">&quot;E88&quot;</span><span class="p">,</span> <span class="s2">&quot;E73&quot;</span><span class="p">,</span> <span class="s2">&quot;freq&quot;</span><span class="p">]]</span>
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[</span><span class="n">df_filtered</span><span class="p">[</span><span class="s2">&quot;freq&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">df_filtered</span><span class="p">[</span><span class="s2">&quot;freq_group&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span>
+    <span class="n">df_filtered</span><span class="p">[</span><span class="s2">&quot;freq&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">70</span><span class="p">],</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">df_grouped</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;freq_group&quot;</span><span class="p">)[[</span><span class="s2">&quot;E81&quot;</span><span class="p">,</span> <span class="s2">&quot;E88&quot;</span><span class="p">,</span> <span class="s2">&quot;E73&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df_grouped</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># el mismo código que anteriormente y luego agregamos personalización al gráfico</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Grupos de Frecuencia (Hz)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>  <span class="c1"># etiquetamos el eje X</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Potencia (µV²/Hz)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>  <span class="c1"># etiquetamos el eje Y</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="s2">&quot;Distribución de la Potencia por Grupo de Frecuencia&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span>
+<span class="p">)</span>  <span class="c1"># titulo general</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Θ (4-8 Hz)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;α (8-13 Hz)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;β (13-30 Hz)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;γ (30-70 Hz)&quot;</span><span class="p">,</span>
+<span class="p">]</span>  <span class="c1"># creamos las labels que queremos para los valores</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span>
+<span class="p">)</span>  <span class="c1"># asignamos las etiquetas personalizadas</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># ajustamos el espacio para que las etiquetas no se corten</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-127-2b9eb86c5e7c&gt;:4: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  df_grouped = df_filtered.groupby(&#39;freq_group&#39;)[[&#39;E81&#39;, &#39;E88&#39;, &#39;E73&#39;]].sum()
+</pre></div>
+</div>
+<img alt="_images/8ce37edb55fac434701e6a78dd42163e613d7cf95a9dc0ba8772710a9dc54c51.png" src="_images/8ce37edb55fac434701e6a78dd42163e613d7cf95a9dc0ba8772710a9dc54c51.png" />
+</div>
+</div>
+<p>¡Muy bien! Esto se ve un poco más entendible. (๑•̀ㅂ•́)و✧</p>
+<p>De hecho, para algunos análisis, lo que más interesará encontrar son las frecuencias de ondas relacionadas a procesos cognitivos, así que es bastante útil saber que se puede acceder a esa información. (へへ)✌</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="elaborado-por">
+<h1>Elaborado por<a class="headerlink" href="#elaborado-por" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Daniel Falcón Quintana</p></li>
+<li><p>Miguel Dávila Palomino
+<br><br></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="referencias">
+<h1>Referencias:<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
+<p>Delorme, A. (2023). EEG is better left alone. Scientific reports, 13(1), 2372. <a class="reference external" href="https://doi.org/10.1038/s41598-023-27528-0">https://doi.org/10.1038/s41598-023-27528-0</a></p>
+<p>Gorgolewski, K. J., Auer, T., Calhoun, V. D., Craddock, R. C., Das, S., Duff, E. P., … &amp; Poldrack, R. A. (2016). The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments. Scientific data, 3(1), 1-9. <a class="reference external" href="https://doi.org/10.1038/sdata.2016.44">https://doi.org/10.1038/sdata.2016.44</a></p>
+<p>Hoechenberger, A. (2023). openneuro-py. GitHub. <a class="github reference external" href="https://github.com/hoechenberger/openneuro-py">hoechenberger/openneuro-py</a></p>
+<p>Jas, M., Engemann, D., Raimondo, F., Bekhti, Y., &amp; Gramfort, A. (2016). Automated rejection and repair of bad trials in MEG/EEG. En 6th International Workshop on Pattern Recognition in Neuroimaging (PRNI).</p>
+<p>Jas, M., Engemann, D., Bekhti, Y., Raimondo, F., &amp; Gramfort, A. (2017). Autoreject: Automated artifact rejection for MEG and EEG data. NeuroImage, 159, 417-429. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2017.06.030">https://doi.org/10.1016/j.neuroimage.2017.06.030</a></p>
+<p>Larson, E., Gramfort, A., Engemann, D. A., Leppakangas, J., Brodbeck, C., Jas, M., Brooks, T. L., Sassenhagen, J., McCloy, D., Luessi, M., King, J.-R., Höchenberger, R., Goj, R., Favelier, G., Brunner, C., van Vliet, M., Wronkiewicz, M., Rockhill, A., Holdgraf, C., … luzpaz. (2024). MNE-Python (v1.8.0). Zenodo. <a class="reference external" href="https://doi.org/10.5281/zenodo.13340330">https://doi.org/10.5281/zenodo.13340330</a></p>
+<p>Ledwidge, P. S. (2018). The impact of sports-related concussions on the language system: a case for event-related brain potentials. Annals of Behavioral Neuroscience, 1(1), 36-46. <a class="reference external" href="https://www.researchgate.net/publication/326606501_The_Impact_of_Sports-Related_Concussions_on_the_Language_System_A_Case_for_Event-Related_Brain_Potentials">https://www.researchgate.net/publication/326606501_The_Impact_of_Sports-Related_Concussions_on_the_Language_System_A_Case_for_Event-Related_Brain_Potentials</a></p>
+<p>Li, A., Höchenberger, R., Donoghue, T., Scheltienne, M., Feitelberg, J., &amp; Saini, A. (2022). MNE-ICALabel: Automatically annotating ICA components with ICLabel in Python. Journal of Open Source Software, 7(76), 4484. <a class="reference external" href="https://doi.org/10.21105/joss.04484">https://doi.org/10.21105/joss.04484</a></p>
+<p>Pernet, C. R., Appelhoff, S., Gorgolewski, K. J., Flandin, G., Phillips, C., Delorme, A., &amp; Oostenveld, R. (2019). EEG-BIDS, an extension to the brain imaging data structure for electroencephalography. Scientific data, 6(1), 103. <a class="reference external" href="https://doi.org/10.1038/s41597-019-0104-8">https://doi.org/10.1038/s41597-019-0104-8</a></p>
+<p>Pernet, C. R., Appelhoff, S., Gorgolewski, K. J., Flandin, G., Phillips, C., Delorme, A., &amp; Oostenveld, R. (2019). EEG-BIDS, an extension to the brain imaging data structure for electroencephalography. Scientific data, 6(1), 103. <a class="reference external" href="https://doi.org/10.1038/s41597-019-0104-8">https://doi.org/10.1038/s41597-019-0104-8</a>
+Puente Guillen, P. (2016). Predicting Sleepiness from Driving Behaviour (Doctoral dissertation, University of Leeds). <a class="reference external" href="https://etheses.whiterose.ac.uk/17938/">https://etheses.whiterose.ac.uk/17938/</a></p>
+<p>Sleep Foundation. (2023, octubre 25). Binaural beats and sleep. Sleep Foundation. <a class="reference external" href="https://www.sleepfoundation.org/noise-and-sleep/binaural-beats">https://www.sleepfoundation.org/noise-and-sleep/binaural-beats</a></p>
+<p>Veillette, J. P., Heald, S. L. M., Wittenbrink, B., et al. (2023). Single-trial visually evoked potentials predict both individual choice and market outcomes. Scientific Reports, 13, 14340. <a class="reference external" href="https://doi.org/10.1038/s41598-023-41613-4">https://doi.org/10.1038/s41598-023-41613-4</a></p>
+<p>Veillette, J. and Heald, S. and Wittenbrink, B. and Nusbaum, H. (2022). eeg-neuroforecasting. OpenNeuro. [Dataset] doi: doi:10.18112/openneuro.ds004284.v1.0.0</p>
+<p>Yarkoni et al., (2019). PyBIDS: Python tools for BIDS datasets. Journal of Open Source Software, 4(40), 1294, <a class="reference external" href="https://doi.org/10.21105/joss.01294">https://doi.org/10.21105/joss.01294</a></p>
+<p>Yarkoni, Tal, Markiewicz, Christopher J., de la Vega, Alejandro, Gorgolewski, Krzysztof J., Halchenko, Yaroslav O., Salo, Taylor, … Blair, Ross. (2019, August 8). bids-standard/pybids: 0.9.3 (Version 0.9.3). Zenodo. <a class="reference external" href="https://doi.org/10.5281/zenodo.3363985">https://doi.org/10.5281/zenodo.3363985</a></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -460,6 +3886,47 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Análisis de señales EEG</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-bases-de-datos-de-eeg">Procesamiento de bases de datos de EEG</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descagar-datos">Descagar datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-imaging-data-structure-bids">Brain Imaging Data Structure (BIDS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargamos-los-datos-con-mne">Cargamos los datos con MNE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-workflow">Preprocessing workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-del-preprocesamiento"><strong>Pasos del Preprocesamiento</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-pass-filtering-and-line-noise-removal">High pass filtering and line noise removal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re-referencing-and-event-epoching">Re-referencing and event epoching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-del-experimento">Eventos del experimento</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-epochs">Crear Epochs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoreject">Autoreject</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-component-analysis-ica">Independent Component Analysis (ICA)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examinar-epochs-y-evokeds-relacionados-a-eventos">Examinar Epochs y Evokeds relacionados a eventos.</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencias-de-onda">Frecuencias de onda</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#elaborado-por">Elaborado por</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias:</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
