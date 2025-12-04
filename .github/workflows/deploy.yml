@@ -1,6 +1,5 @@
 name: deploy-book
 
-# Run this workflow whenever you push to the 'main' branch
 on:
   push:
     branches:
@@ -15,25 +14,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python 3.11.12
+      - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11.12
+          python-version: 3.11
 
       - name: Install dependencies
         run: |
           pip install -U jupyter-book
-          # If you have a requirements.txt, uncomment the next line:
-          # pip install -r requirements.txt
+          # FIXED: Point to the requirements file inside the 'book' folder
+          pip install -r book/requirements.txt
 
       - name: Build the book
         run: |
+          # This command is actually correct, assuming the YAML files are fixed
           jupyter-book build book
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "_build/html"
+          # FIXED: The HTML is generated inside 'book/_build/html'
+          path: "book/_build/html"
 
       - name: Deploy to GitHub Pages
         id: deployment
