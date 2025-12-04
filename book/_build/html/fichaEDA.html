@@ -188,7 +188,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electrocardiografía (ECG) con Shimmer3</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="manualECG.html">Manual ECG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fichaECG.html">Ficha ECG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fichaECG.html">FICHA ECG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codigoECG.html">Codigo ECG</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Actividad electrodérmica (EDA) con Shimmer3</span></p>
@@ -196,6 +196,9 @@
 <li class="toctree-l1"><a class="reference internal" href="manualEDA.html">Manual EDA</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Ficha EDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codigoEDA.html">Codigo EDA</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citations.html">References</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Example</span></p>
 <ul class="nav bd-sidenav">
@@ -374,7 +377,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -390,6 +395,26 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ficha-tecnica-shimmer3-gsr">3.9. Ficha Técnica Shimmer3 GSR+</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion"><em><strong>3.9.1. Introducción</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-del-sistema"><em><strong>3.9.2. Componentes del Sistema</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-de-bioseguridad"><em><strong>3.9.3. Medidas de Bioseguridad</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-del-software"><em><strong>3.9.4 Instalación del Software</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-del-dispositivo"><em><strong>3.9.5. Configuración del Dispositivo</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colocacion-de-sensores"><em>3.9.6 Colocación de Sensores</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-datos"><em>3.9.7 Registro de Datos</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucion-de-problemas"><em><strong>3.9.8. Resolución de Problemas</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantenimiento-del-equipo"><em><strong>3.9.9. Mantenimiento del Equipo</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas"><strong>3.10. Referencias Bibliográficas</strong></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -401,6 +426,151 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ficha-eda">
 <h1>Ficha EDA<a class="headerlink" href="#ficha-eda" title="Link to this heading">#</a></h1>
+<section id="ficha-tecnica-shimmer3-gsr">
+<h2>3.9. Ficha Técnica Shimmer3 GSR+<a class="headerlink" href="#ficha-tecnica-shimmer3-gsr" title="Link to this heading">#</a></h2>
+<section id="introduccion">
+<h3><em><strong>3.9.1. Introducción</strong></em><a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h3>
+<p>El Shimmer3 GSR+ es un dispositivo diseñado para medir la respuesta galvánica de la piel (GSR), proporcionando información sobre la conductancia y resistencia de la piel en respuesta a estímulos. Además, cuenta con capacidades para medir la frecuencia cardíaca mediante fotopletismografía (PPG). Su versatilidad lo hace ideal para aplicaciones en investigación fisiológica, monitoreo emocional y estudios de estrés.</p>
+</section>
+<section id="componentes-del-sistema">
+<h3><em><strong>3.9.2. Componentes del Sistema</strong></em><a class="headerlink" href="#componentes-del-sistema" title="Link to this heading">#</a></h3>
+<p>Asegúrate de contar con los siguientes elementos:</p>
+<ul class="simple">
+<li><p>Unidad Shimmer3 GSR+: Sensor principal para medir la actividad electrodérmica.</p></li>
+<li><p>Base del dispositivo: Para cargar y conectar el equipo.</p></li>
+<li><p>Cables biofísicos: Se conectan a los electrodos en los dedos.</p></li>
+<li><p>Velcro: Sujeta los electrodos en las manos.</p></li>
+<li><p>Sensor de pulso óptico: Para medir PPG desde el lóbulo de la oreja.</p></li>
+<li><p>Cable USB: Para conexión con la computadora.</p></li>
+</ul>
+</section>
+<section id="medidas-de-bioseguridad">
+<h3><em><strong>3.9.3. Medidas de Bioseguridad</strong></em><a class="headerlink" href="#medidas-de-bioseguridad" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Usa equipo de protección personal (guantes, batas).</p></li>
+<li><p>Limpia la piel con agua destilada antes de colocar los electrodos.</p></li>
+<li><p>Nunca conectes los electrodos al cuerpo si el Shimmer está conectado a la base o al USB.</p></li>
+<li><p>Mantén el dispositivo lejos de fuentes de calor o llamas.</p></li>
+<li><p>Desinfecta los electrodos después de cada uso.</p></li>
+</ol>
+</section>
+<section id="instalacion-del-software">
+<h3><em><strong>3.9.4 Instalación del Software</strong></em><a class="headerlink" href="#instalacion-del-software" title="Link to this heading">#</a></h3>
+<p><strong>4.1 Instalación de Drivers</strong></p>
+<ol class="arabic simple">
+<li><p>Descarga los drivers desde FTDI Drivers.</p></li>
+<li><p>Ejecuta el archivo de instalación y sigue las instrucciones.</p></li>
+<li><p>Verifica la instalación en el Administrador de dispositivos bajo “Controladores de USB serie universal”.</p></li>
+</ol>
+<p><strong>4.2 Instalación del Software ConsensysPRO</strong></p>
+<ol class="arabic simple">
+<li><p>Descarga el software desde Shimmer Downloads.</p></li>
+<li><p>Extrae y ejecuta el instalador.</p></li>
+<li><p>Sigue las instrucciones hasta completar la instalación.</p></li>
+</ol>
+<p><strong>4.3 Configuración de Bluetooth (si es necesario)</strong></p>
+<ol class="arabic simple">
+<li><p>Descarga e instala los controladores de Bluetooth desde Intel Bluetooth.</p></li>
+<li><p>Empareja el dispositivo con el Shimmer introduciendo la contraseña “1234”.</p></li>
+</ol>
+</section>
+<section id="configuracion-del-dispositivo">
+<h3><em><strong>3.9.5. Configuración del Dispositivo</strong></em><a class="headerlink" href="#configuracion-del-dispositivo" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Conexión física:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Conecta la base al cable USB y al Shimmer3 GSR+.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Configuración de parámetros:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Abre el software ConsensysPRO.</p></li>
+<li><p>En “Manage Devices”, selecciona el dispositivo y ajusta la frecuencia de muestreo, los sensores activos y algoritmos.</p></li>
+<li><p>Usa la opción “Write Config” para guardar la configuración.</p></li>
+</ul>
+</section>
+<section id="colocacion-de-sensores">
+<h3><em>3.9.6 Colocación de Sensores</em><a class="headerlink" href="#colocacion-de-sensores" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Electrodos GSR:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Coloca un electrodo en la falange medial y otro en la falange distal de los dedos índice y medio.</p></li>
+<li><p>Ajusta con el velcro.</p></li>
+</ul>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Posicionamiento_de_electrodos.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 1 </strong>Ejemplo de posicionamiento 	de los electrodos del GSR+</em></p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Sensor de pulso óptico:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Colócalo en la parte inferior del lóbulo de la oreja para minimizar interferencias.</p></li>
+</ul>
+</section>
+<section id="registro-de-datos">
+<h3><em>3.9.7 Registro de Datos</em><a class="headerlink" href="#registro-de-datos" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Presiona el botón naranja en el Shimmer para comenzar a grabar.</p></li>
+<li><p>Verifica que la luz verde esté intermitente.</p></li>
+<li><p>Para detener el registro, presiona nuevamente el botón naranja.</p></li>
+</ol>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Venta_de_intruscciones.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 2 </strong>Ventana con instrucciones para el registro de datos.</em></p>
+</div>
+<ol class="arabic" start="8">
+<li><p>Visualización de Datos</p>
+<ol class="arabic simple">
+<li><p>Accede a la pestaña “Live Data” en ConsensysPRO.</p></li>
+<li><p>Haz clic en “Stream” para visualizar las señales en tiempo real.</p></li>
+<li><p>Personaliza los gráficos:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Selecciona los datos a visualizar.</p></li>
+<li><p>Configura los ejes y colores según tus preferencias.</p></li>
+</ul>
+</li>
+</ol>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEDA_Visualiación_de_data.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+  <p><em><strong> Figura 3 </strong>Visualización de la data en vivo.</em></p>
+</div>
+</section>
+<section id="resolucion-de-problemas">
+<h3><em><strong>3.9.8. Resolución de Problemas</strong></em><a class="headerlink" href="#resolucion-de-problemas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>El dispositivo no se conecta:</p>
+<ul>
+<li><p>Revisa que los drivers estén correctamente instalados.</p></li>
+<li><p>Asegúrate de que el Bluetooth está activado.</p></li>
+</ul>
+</li>
+<li><p>Datos inconsistentes:</p>
+<ul>
+<li><p>Verifica que los electrodos estén bien ajustados.</p></li>
+<li><p>Aplica un filtro pasa-bajos para eliminar ruido.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mantenimiento-del-equipo">
+<h3><em><strong>3.9.9. Mantenimiento del Equipo</strong></em><a class="headerlink" href="#mantenimiento-del-equipo" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Limpia los electrodos con un paño húmedo y desinfecta después de cada uso.</p></li>
+<li><p>Almacena el dispositivo en un lugar seco y protegido de la luz solar.</p></li>
+<li><p>Carga la batería antes de guardarlo por períodos prolongados.</p></li>
+</ul>
+</section>
+<section id="referencias-bibliograficas">
+<h3><strong>3.10. Referencias Bibliográficas</strong><a class="headerlink" href="#referencias-bibliograficas" title="Link to this heading">#</a></h3>
+<p>{bibliography}
+:style: plain</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -457,6 +627,33 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ficha-tecnica-shimmer3-gsr">3.9. Ficha Técnica Shimmer3 GSR+</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion"><em><strong>3.9.1. Introducción</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-del-sistema"><em><strong>3.9.2. Componentes del Sistema</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-de-bioseguridad"><em><strong>3.9.3. Medidas de Bioseguridad</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-del-software"><em><strong>3.9.4 Instalación del Software</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-del-dispositivo"><em><strong>3.9.5. Configuración del Dispositivo</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colocacion-de-sensores"><em>3.9.6 Colocación de Sensores</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registro-de-datos"><em>3.9.7 Registro de Datos</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucion-de-problemas"><em><strong>3.9.8. Resolución de Problemas</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantenimiento-del-equipo"><em><strong>3.9.9. Mantenimiento del Equipo</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas"><strong>3.10. Referencias Bibliográficas</strong></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

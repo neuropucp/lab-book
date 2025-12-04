@@ -188,7 +188,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electrocardiografía (ECG) con Shimmer3</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="manualECG.html">Manual ECG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fichaECG.html">Ficha ECG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fichaECG.html">FICHA ECG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codigoECG.html">Codigo ECG</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Actividad electrodérmica (EDA) con Shimmer3</span></p>
@@ -196,6 +196,9 @@
 <li class="toctree-l1"><a class="reference internal" href="manualEDA.html">Manual EDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaEDA.html">Ficha EDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codigoEDA.html">Codigo EDA</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="citations.html">References</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Example</span></p>
 <ul class="nav bd-sidenav">
@@ -397,7 +400,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-adquisicion-de-senal-con-emotiv-pro">Verificación de adquisición de señal con Emotiv Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-de-marcadores-emotiv-en-psychopy"><strong>Implementación de marcadores EMOTIV en Psychopy</strong></a></li>
 </ul>
             </nav>
         </div>
@@ -411,14 +415,254 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="manual-eeg">
 <h1>Manual EEG<a class="headerlink" href="#manual-eeg" title="Link to this heading">#</a></h1>
-<section id="introduccion">
-<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
-<p>El sistema EMOTIV Flex es una <strong>herramienta</strong> de registro electroencefalográfico de grado de investigación que permite medir la actividad eléctrica cerebral mediante un casco de 32 canales con electrodos colocados en el cuero cabelludo. Su diseño modular, conectividad inalámbrica y compatibilidad con múltiples entornos de software lo convierten en un instrumento versátil para estudios en neurociencia cognitiva, y análisis psicofisiológico.</p>
-<p>Este manual incluye procedimientos específicos para la adquisición de datos con EmotivPro, así como ejemplos de integración con software de experimentación como PsychoPy. Así mismo, se brindan recomendaciones prácticas orientadas a garantizar la calidad de la señal EEG, el confort del participante y la correcta ejecución de los protocolos experimentales <span id="id1">[<a class="reference internal" href="markdown.html#id5" title="Nataly Julissa Membrillo-Pillpe, Jhon Alex Zeladita-Huaman, Kimberlym Jauregui-Soriano, Roberto Zegarra-Chapoñan, Eduardo Franco-Chalco, and Gabriela Samillan-Yncio. Association between the nursing practice environment and safety perception with patient safety culture during covid-19. International Journal of Environmental Research and Public Health, 20(10):5909, 2023.">Membrillo-Pillpe <em>et al.</em>, 2023</a>]</span>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Ten en cuenta que la conectividad en el EEG Quality depende mucho de la persona y sus características (tipo de piel, la cantidad de cabello, la humedad), por lo que el tiempo de verificación de este apartado puede variar entre cada aplicación.</p>
+<section id="verificacion-de-adquisicion-de-senal-con-emotiv-pro">
+<h2>Verificación de adquisición de señal con Emotiv Pro<a class="headerlink" href="#verificacion-de-adquisicion-de-senal-con-emotiv-pro" title="Link to this heading">#</a></h2>
+<p>El electroencefalograma que utilizamos es el Emotiv EPOC Flex saline de 32 canales. Este dispositivo cuenta con un casco de electrodos adaptable, batería recargable y conexión vía bluetooth.</p>
+<p>Las computadoras del laboratorio están equipadas con el instalador Emotiv Launcher. Este permite la conexión del caso de electrodos con otras aplicaciones de Emotiv como EmotivPro, EmotivAnalyzer, entre otros, además de otras aplicaciones de terceros.</p>
+<p>El laboratorio cuenta con una licencia de EmotivPro. Esta interfaz nos ofrece diversas funciones para visualizar, adquirir y analizar la actividad cerebral recopilada por el EEG. Entre las principales funciones de EmotivPro se incluyen:</p>
+<ul class="simple">
+<li><p>Grabación y almacenamiento de los datos del EEG.</p></li>
+<li><p>Exportación de datos en formatos compatibles.</p></li>
+<li><p>Monitoreo de la calidad de la señal de los electrodos.</p></li>
+<li><p>Personalización de la configuración de los experimentos, permitiendo crear, aplicar y guardar
+configuraciones específicas para cada estudio.</p></li>
+</ul>
+<p><strong>Aspectos generales sobre el uso del EEG</strong></p>
+<p><strong>Preparación inicial:</strong></p>
+<ul class="simple">
+<li><p>Hidratar los filtros con el suero fisiológico y colocarlos en los sensores a utilizar, incluyendo los <strong>sensores de referencia</strong>.</p></li>
+<li><p>Encender el Flex Control Box (caja negra ubicada en el casco).</p></li>
+<li><p>Conectar el receptor bluetooth al ordenador.</p></li>
+<li><p>Abrir Emotiv Launcher y establecer la conexión con el EEG. En el launcher puedes revisar la batería y cargarla de ser necesario.</p></li>
+</ul>
+<p><strong>Visualización de actividad cerebral:</strong></p>
+<p>EmotivPro nos permite visualizar la actividad cerebral en vivo. Para verificar que efectivamente estamos registrando actividad en el EEG, podemos hacer algunas pruebas colocando 2 o 3 filtros e los sensores ubicados en el lóbulo prefrontal. Así podemos hacer algunos movimientos (p.e parpadear o morder repetidas veces), y observar variaciones en la señal.</p>
+<p><strong>Electrode setup:</strong></p>
+<p>Podemos revisar y configurar mediante EmotivPro los electrodos que se van a utilizar. Cada
+experimento tiene una distribución diferente de electrodos, y esta interfaz nos permite guardar el setup de electrodos deseado, además de verificar la ubicación adecuada de los electrodos.</p>
+<p><strong>¿Cómo puedo asegurarme de que la señal adquirida es de calidad?</strong></p>
+<p>Se puede verificar la calidad de nuestra señal mediante dos indicadores presentes en EmotivPro: Contact Quality y EEG Quality:</p>
+<p><strong>A. Contact Quality:</strong></p>
+<p>Indica si la señal eléctrica pasa a través de los filtros hacia los sensores del EEG. Cuenta con 4 indicadores: 1. No hay contacto (negro), 2. Malo (rojo), 3. Medio/ok (naranja) y 4. Bueno (verde).</p>
+<p>En esta etapa se busca un 100% de conectividad, de no ser así, hay algunas medidas que se
+pueden realizar:</p>
+<ul class="simple">
+<li><p>Revisar si el casco está puesto correctamente.</p></li>
+<li><p>Verificar el manejo adecuado del cabello del/la participante (Ver Anexo 1).</p></li>
+<li><p>Humedecer los filtros de referencias y en los electrodos colocados.</p></li>
+</ul>
+<p><strong>B. EEG Quality:</strong></p>
+<p>Indica la calidad de señal que capta y registra el EEG. Esta se recopila en cuestión de
+segundos y presenta 4 indicadores: Muy mala (negro), Mala (rojo), Medio a bueno (verde
+claro) y Bueno (verde oscuro).</p>
+<p>En este apartado, lo ideal es alcanzar un 100%. Al igual que en el apartado anterior, de no ser posible, hay algunas recomendaciones que se pueden seguir para alcanzar la conectividad deseada:</p>
+<ol class="arabic simple">
+<li><p>Humedecer un poco más los electrodos con baja conectividad (negro o rojo)</p></li>
+<li><p>Instruir al participante que realice lo siguiente:</p>
+<ul class="simple">
+<li><p>Minimizar el parpadeo u otros movimientos oculares.</p></li>
+<li><p>Evitar realizar movimientos bruscos de cabeza, rostro o cuerpo.</p></li>
+<li><p>Mantener una postura adecuada y relajada.</p></li>
+<li><p>Respiración regular y estable para evitar artefactos.</p></li>
+</ul>
+</li>
+<li><p>Si se observan artefactos musculares. Ajusta el casco y pide al participante que relaje
+los músculos faciales y del cuello.</p></li>
+</ol>
+<p><strong>Tip:</strong> Para identificar artefactos musculares en EmotivPro, busca picos rápidos y de
+alta frecuencia en los electrodos frontales (AF3, AF4, F7, F8) o temporales (T7, T8),
+que aparecen de manera irregular. Los artefactos tienen mayor amplitud y están asociados con movimientos faciales, parpadeos o tensión en el cuello.</p>
+<p><strong>Nota:</strong> Ten en cuenta que la conectividad en el EEG Quality depende mucho de la persona y sus características (tipo de piel, la cantidad de cabello, la humedad), por lo que el tiempo de verificación de este apartado puede variar entre cada aplicación.</p>
+<p><strong>EEG data adquisition</strong>
+Permite la devolución de datos tras el registro de cualquier grabación de actividad cerebral. El software EmotivPro almacena las grabación de todos los registros, los cuales nos permite descargar y guardar los registros realizados con el EEG. Este nos devuelve la información captada en tres archivos dependiendo del formato que se haya deseado descargar: CSV, EDF, EDF+ y BDF+.</p>
+</section>
+<section id="implementacion-de-marcadores-emotiv-en-psychopy">
+<h2><strong>Implementación de marcadores EMOTIV en Psychopy</strong><a class="headerlink" href="#implementacion-de-marcadores-emotiv-en-psychopy" title="Link to this heading">#</a></h2>
+<p>Los marcadores nos permiten delimitar el rango de tiempo en el que el EEG graba la actividad neuronal. Psychopy nos permite interactuar directamente con el software y hardware de Emotiv mediante los componentes presentes y así grabar la actividad neuronal o los ERPs deseados para la investigación a realizar.</p>
+<p><strong>Componentes Emotiv-Psychopy</strong> En versiones más actuales de Psychopy (2023.1.0 en adelante), los componentes de emotiv no están disponibles de manera automática, por lo que se tienen que añadir de manera manual. Para ello,tenemos dos rutas disponibles:</p>
+<p><strong>Builder en Psychopy:</strong> Para añadir los componentes de Emotiv en versiones actuales del
+Psychopy siga la siguiente ruta:</p>
+<p>Components → Get more → Plugins → Buscar “Emotiv EEG” → Instalar</p>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/b87cbe1eaba36d2b4aec4a9331c46122aff08531/book/res/manualEEG_Componentes%20_Emotiv_Psychopy.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
+<p><strong>Comando de código:</strong> Documentación para instalar en Psychopy para agregar soporte a
+distintos hardwares de emotiv, como en añadir ambos componentes:
+<a class="github reference external" href="https://github.com/psychopy/psychopy-emotiv">psychopy/psychopy-emotiv</a></p>
+<p>Al realizar esto, ya se habrán añadido los 2 componentes de
+Emotiv dentro de la pestaña de EEG en Psychopy, los cuales
+son el <strong>Emotiv Recording y Emotiv Marking.</strong></p>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Emotiv_Recording_y_Emotiv_Marking.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
+<p><strong>Emotiv Recording:</strong></p>
+<p>Este componente genera una conexión entre Psychopy y permite que los marcadores se envíen al software de Emotiv para iniciar el registro general del EEG.</p>
+<p><strong>Recomendaciones:</strong></p>
+<ul class="simple">
+<li><p>Debe añadirse en una rutina previa a la presentación de estímulos.</p></li>
+<li><p>Se recomienda dejar los valores default de los parámetros del propio componente al añadirlo en la rutina (start y stop time).</p></li>
+</ul>
+<p>Para mayor información acerca del emotiv record, revisar la siguente documentación:
+<a class="reference external" href="https://www.psychopy.org/builder/components/emotiv_record.html">https://www.psychopy.org/builder/components/emotiv_record.html</a></p>
+<p><strong>Emotiv Marking:</strong>
+Este componente permite enviar los marcadores de Psychopy al EEG cuando se presentan los
+estímulos.</p>
+<ul class="simple">
+<li><p>Parámetros del componente:</p>
+<ul>
+<li><p>Name, start y stop time, stop marker.</p></li>
+<li><p>Marker label: tag del marcador (string).</p></li>
+<li><p>Marker value: valor asignado al marcador (String o Interger).</p></li>
+</ul>
+</li>
+<li><p>Se recomienda coordinar el inicio y duración del marcador con el estímulo de interés.
+Para mayor información acerca del emotiv marking, revisar la siguente documentación:
+<a class="reference external" href="https://www.psychopy.org/builder/components/emotiv_marking.html">https://www.psychopy.org/builder/components/emotiv_marking.html</a></p></li>
+</ul>
+<p><strong>Algunos ejemplos para la implementación de marcadores</strong>
+Estos ejemplos nos dan una idea general de como colocar los marcadores en Psychopy. Ten en cuenta que este proceso varía dependiendo del diseño experimental que se desee realizar. Por lo que se recomienda revisar documentación específica que ayude a programar los marcadores adecuados para el diseño experimental deseado.</p>
+<p>Ejemplo 1: <a class="reference external" href="https://www.youtube.com/watch?v=RRXs55ZScFg">https://www.youtube.com/watch?v=RRXs55ZScFg</a></p>
+<p>Ejemplo 2: <a class="reference external" href="https://www.youtube.com/watch?v=rRoqGa4PoN8">https://www.youtube.com/watch?v=rRoqGa4PoN8</a></p>
+<p><strong>Pasos para la implementación y verificación de marcadores Emotiv</strong></p>
+<ol class="arabic simple">
+<li><p>Agregar los componentes de Emotiv en la interfaz Psychopy.</p></li>
+<li><p>Elaborar el experimento deseado en Psychopy.</p></li>
+<li><p>Utilizar componentes de Emotiv en las rutinas deseadas en Psychopy.</p>
+<ul class="simple">
+<li><p>a. Agregar el componente Emotiv Recording en una rutina anterior al estímulo a registrar.</p></li>
+<li><p>b. Agregar el componente Emotiv Marking en la rutina con el estímulo deseado: Buscar acomodar el tiempo de inicio, tiempo final, valores, etc. del marcador con las especificaciones del estímulo deseado.</p></li>
+</ul>
+</li>
+<li><p>Revisar conexión con EmotivPro.</p>
+<ul class="simple">
+<li><p>a. Conectar USB bluetooth de Emotiv en la computadora.</p></li>
+<li><p>b. Abrir la interfaz de EmotivPro y conectar con el headset EEG.</p></li>
+<li><p>c. Configurar el setup de electrodos deseados.</p></li>
+<li><p>d. Abrir el visualizador de grabación de EEG a tiempo real.</p></li>
+</ul>
+</li>
+<li><p>Correr el experimento de Psychopy y observar el registro de marcadores en el visualizador.
+Observar imagen de referencia:
+<a class="reference external" href="https://www.emotiv.com/cdn/shop/files/PRO_Acquire-Data-Cover_690x515_crop_center.png?v=1704704656">https://www.emotiv.com/cdn/shop/files/PRO_Acquire-Data-Cover_690x515_crop_center.png?v=1704704656</a></p></li>
+</ol>
+<p><strong>Manejo del tiempo en estudios con EEG</strong></p>
+<p>La precisión temporal es fundamental al medir ERPs. Cuando investigamos con múltiples fuentes de información, la gestión del tiempo se vuelve crucial. Realizar grabaciones sin una sincronización adecuada entre el estímulo y el registro de la señal puede ser perjudicial y hacer que los datos que recojamos sean inútiles. Es fundamental realizar una segmentación adecuada de la actividad cerebral para establecer correlaciones precisas entre causas y efectos. Para más información sobre la sincronización de tiempos, ingresa al siguiente link: <a class="reference external" href="https://www.bitbrain.com/blog/eeg-synchronization">https://www.bitbrain.com/blog/eeg-synchronization</a></p>
+<p>Existen soluciones de tipo hardware (Emotiv Extender, etc) y software que pueden garantizar que el experimento tenga un timing adecuado. La solución usada en el laboratorio es el Lab Streaming
+Layer.</p>
+<p><strong>Lab Streaming Layer (LSL):</strong></p>
+<p>Este es un software de código abierto que permite capturar y sincronizar una serie de medidas temporales a través de múltiples dispositivos y aplicaciones (como EEG, MEG, FMRI, etc). Está diseñado para experimentos que requieren una precisión temporal de hasta sub milisegundos y para establecer una comunicación bidireccional entre Emotiv Pro Flex y Psychopy.</p>
+<p>La función LSL de EmotivPro permite a los usuarios sincronizar flujos de datos entre varios
+dispositivos y procesar en tiempo real datos EEG sin procesar en aplicaciones de terceros. LSL también facilita el envío de marcadores distintos en diferentes dispositivos y sincroniza los marcadores entre los dispositivos y las aplicaciones. Esta función cuenta con dos indicadores:</p>
+<ul class="simple">
+<li><p>Inlet: Usamos el Inlet para insertar marcadores desde un tercer software al flujo de datos de EEG mediante EmotivPro. Para mayor información, revisar la siguiente documentación: <a class="reference external" href="https://emotiv.gitbook.io/emotivpro-v3/lab-streaming-layer-lsl/lsl-inlet">https://emotiv.gitbook.io/emotivpro-v3/lab-streaming-layer-lsl/lsl-inlet</a></p></li>
+<li><p>Outlet: Usamos el Outlet para configurar flujos de datos Emotiv que puedan comunicarse con otros dispositivos o software de terceros. Para mayor información, revisar la siguiente
+documentación: <a class="reference external" href="https://emotiv.gitbook.io/emotivpro-v3/lab-streaming-layer-lsl/lsl-outlet">https://emotiv.gitbook.io/emotivpro-v3/lab-streaming-layer-lsl/lsl-outlet</a></p></li>
+</ul>
+<p>Antes de utilizar LSL, debemos asegurarnos de cumplir ciertos requisitos:</p>
+<ul class="simple">
+<li><p>Instalar Python (se recomienda la versión 3.8).</p></li>
+<li><p>Instalar <strong>pip y pylsl</strong> (la versión de Python de LSL). Pueden hacerlo corriendo la siguiente
+línea en el terminal de la computadora: <strong>pip install pylsl.</strong></p></li>
+</ul>
+<p><strong>Enviar marcadores desde Psychopy al Inlet de Emotiv LSL.</strong></p>
+<p>Para enviar marcadores usando LSL, debemos incluir un Python script. Utilizaremos las funciones pylsl. Para mayor información, revisar la siguiente documentación: <a class="github reference external" href="https://github.com/labstreaminglayer/liblsl-Python/blob/master/pylsl/pylsl.py">labstreaminglayer/liblsl-Python</a></p>
+<p>Adjuntamos un ejemplo de script:</p>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Ejemplo_de_script.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
+A continuación, visualizaremos este script en el componente de código de PsychoPy.
+<div align="center">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Codigo_de_PsychoPy.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
+<p>Aquí desglosamos cada parte del código para entender cómo funciona:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Descripción de los argumentos del código</strong></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>StreamInfo</strong>: La función StreamInfo define la metadata sobre el stream que enviarás a través de LSL.</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">name='my_stream_name'</span></code></p></td>
+<td><p>Este es el nombre del stream de datos. Es útil para identificar el stream cuando múltiples streams están siendo enviados. En este caso, el nombre es “my_stream_name”, pero puedes elegir un nombre descriptivo de acuerdo con tu experimento.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type='Markers'</span></code></p></td>
+<td><p>Define el tipo de datos que enviarás. En este caso, estás enviando marcadores, así que el tipo es “Markers”. Otros ejemplos de tipos podrían ser “EEG” o “EMG” si estuvieras enviando datos de señales biológicas.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">channel_count=1</span></code></p></td>
+<td><p>Define cuántos canales o dimensiones de datos tiene este stream. Dado que estás enviando solo marcadores, que suelen ser eventos discretos, se usa 1 canal.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">channel_format='int32'</span></code></p></td>
+<td><p>Esta es una cadena única que identifica de manera exclusiva el stream. Es útil cuando hay varios dispositivos enviando datos para diferenciarlos.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">source_id='uniqueid12345'</span></code></p></td>
+<td><p>Es un identificador único para tu fuente de datos. Esto es útil cuando estás trabajando con múltiples streams y quieres diferenciarlos. Debe ser único en cada flujo de datos para evitar confusiones en la red de LSL.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>StreamOutlet(info)</strong>: Esta línea crea un objeto StreamOutlet que usas para enviar datos a través del stream. Se basa en la información que proporcionaste en StreamInfo. El objeto outlet se utiliza para enviar los datos a los consumidores de LSL (como una aplicación EEG o software de análisis).</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">outlet.push_sample(x=[100])</span></code></p></td>
+<td><p>Esta línea envía un “sample” o muestra al stream, en este caso, un marcador.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x=[100]</span></code></p></td>
+<td><p>El argumento x=[100] es el valor que se envía como el marcador. Aquí, el marcador es el número 100. Este podría ser cualquier número que represente un evento, como el inicio de un estímulo, el final de una tarea, etc.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p>Es una lista porque, aunque solo hay un canal, LSL espera una lista o array de valores, lo que permite que el código sea extensible para enviar múltiples valores si aumentas el número de canales (<code class="docutils literal notranslate"><span class="pre">channel_count</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
 </div>
+<p><strong>Algunas recomendaciones:</strong></p>
+<ul class="simple">
+<li><p>Para establecer un marcador, recomendamos usar enteros como marcadores. También se
+puede incluir nombres de marcadores dinámicos.</p></li>
+<li><p>Si estás utilizando un loop en PsychoPy, incluye valores de marcadores en una columna de lahoja de cálculo utilizada para el loop. Por ejemplo: si el encabezado de la columna es
+“marker”, el código sería <em><strong>outlet.push_sample([marker]).</strong></em></p></li>
+</ul>
+<p>Para verificar que se envían adecuadamente los marcadores, ejecuta la tarea en Psychopy, y antes de continuar con el botón “ok”, verifica en <strong>EmotivPro/Settings/LabStreamingLayer/Inlet</strong> que el marcador corresponda con el nombre que consignaste en tu código. Según el ejemplo: ‘my_stream_name’.</p>
+<p>Haz click en el botón “Connect”, y ejecuta la tarea en Psychopy. Deberás observar los marcadores
+como líneas rosadas en el registro.</p>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Marcadores_Emotiv.png" alt="Localización de electrodos ECG" width="auto" height="auto">
+</div> 
+<p>Para revisar otro ejemplo utilizando las funciones <strong>pylsl</strong>, puedes ingresar al siguiente enlace: <a class="github reference external" href="https://github.com/Emotiv/labstreaminglayer/blob/master/examples/psychopy/readme.md">Emotiv/labstreaminglayer</a></p>
+<p><strong>Anexo 1</strong></p>
+<p><strong>Guia para el manejo del cabello para el registro del EEG</strong></p>
+<ol class="arabic simple">
+<li><p>Preparación del participante: Antes de la sesión en el laboratorio, solicita al/la participante que se asegure de que su cabello esté <strong>limpio y libre de productos como acondicionador, gel, spray o aceites</strong>, ya que estos pueden interferir con los electrodos y la recepción de la señal. Si el/la participante tiene el cabello sucio o grasoso, considera la posibilidad de sugerir un lavado previo. Alternativamente, se puede hacer uso de alcohol o toallitas desmaquillantes para limpiar la piel en la posición de los electrodos.</p></li>
+<li><p>Despejar el área de colocación: Se recomienda usar ganchos o pinzas para sujetar el cabello largo y evitar que interfiera con los electrodos. En el caso de pacientes con cabello muy rizado o voluminoso, puede ser útil trenzar o recoger el cabello en un moño bajo para facilitar el
+acceso al cuero cabelludo.</p></li>
+</ol>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/neuropucp/lab-book/main/book/res/manualEEG_Recomendacion_sobre_el_cabello.png" alt="Localización de electrodos ECG" width="auto" height="auto"> <p><em><strong> </strong>Imágenes extraídas de: https://hellobrainlab.com/research/eeg-hair-project/.</em></p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Colocación de electrodos: Al colocar los electrodos, asegúrate de que el cabello no esté
+entrelazado entre el electrodo y el cuero cabelludo, ya que esto puede afectar la calidad de la señal. Utiliza más agua salina para mejorar la conductividad y minimizar la interferencia.</p></li>
+<li><p>Comodidad del participante: Informa al participante sobre el proceso y asegúrate de que se sienta cómodo/a con el manejo de su cabello. Pregunta si prefiere que se le recoja el cabello de alguna manera específica o si necesita ayuda con el mismo.</p></li>
+<li><p>Instrucciones post-registro: Proporciona al/la participante instrucciones sobre cómo limpiar su cabello y cuero cabelludo después de la prueba. Se recomienda un suave lavado para eliminar cualquier resto de la solución, y añadir acondicionador para restaurar la hidratación.</p></li>
+</ol>
+<p><strong>Referencias:</strong></p>
+<div class="docutils container" id="id1">
+<div role="list" class="citation-list">
+<div class="citation" id="id2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
+</div>
+</div>
+</div>
+<p>Brain Products. (2022, May 18). Inclusivity in EEG research. Brain Products.
+<a class="reference external" href="https://pressrelease.brainproducts.com/inclusivity-in-eeg-research/">https://pressrelease.brainproducts.com/inclusivity-in-eeg-research/</a></p>
+<p>Emotiv. (n.d.). EmotivPRO user manual (Version 3). Emotiv. <a class="reference external" href="https://emotiv.gitbook.ioemotivpro-v3">https://emotiv.gitbook.ioemotivpro-v3</a></p>
+<p>Kothe, C. (n.d.). Lab streaming layer (LSL) - Developer documentation. Labstreaminglayer.
+<a class="reference external" href="https://labstreaminglayer.readthedocs.io/dev/lib_dev.html">https://labstreaminglayer.readthedocs.io/dev/lib_dev.html</a></p>
+<p>Louis, C. C., Webster, C. T., Gloe, L. M., &amp; Moser, J. S. (2022). Hair me out: Highlighting systematic exclusion in psychophysiological methods and recommendations to increase inclusion. Frontiers in human neuroscience, 16, 1058953. <a class="reference external" href="https://doi.org/10.3389/fnhum.2022.1058953">https://doi.org/10.3389/fnhum.2022.1058953</a></p>
+<p>Richardson, L. (2021). A guide to hair preparation for EEG studies. Biomechanics, Rehabilitation and Interdisciplinary Neuroscience (BRaIN Lab). <a class="reference external" href="https://hellobrainlab.com/research/eeg-hair-project/">https://hellobrainlab.com/research/eeg-hair-project/</a></p>
+<p>Scully Center. (n.d.). How to prepare for your EEG experiment. Princeton University.
+<a class="reference external" href="https://scullycenter.princeton.edu/experiment-participation/how-to-prepare-for-your-eeg-experiment/">https://scullycenter.princeton.edu/experiment-participation/how-to-prepare-for-your-eeg-experiment/</a></p>
 </section>
 </section>
 
@@ -486,7 +730,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-adquisicion-de-senal-con-emotiv-pro">Verificación de adquisición de señal con Emotiv Pro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-de-marcadores-emotiv-en-psychopy"><strong>Implementación de marcadores EMOTIV en Psychopy</strong></a></li>
 </ul>
   </nav></div>
 
