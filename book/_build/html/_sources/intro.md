@@ -19,6 +19,7 @@ Este esfuerzo colectivo se inspira en el espíritu de la ciencia abierta y colab
 - Daniel Falcón
 - Anzu Zevallos
 - Miguel Dávila
+- Sareli Gibaja
 - Jimmy Rodríguez
 - Adriana Maza
 - Alan Dulanto
