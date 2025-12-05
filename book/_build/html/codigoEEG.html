@@ -184,25 +184,19 @@
 <li class="toctree-l1"><a class="reference internal" href="manualEEG.html">Manual EEG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaEEG.html">Ficha técnica EEG</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis de señales EEG</a></li>
-
-
-
-
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electrocardiografía (ECG) con Shimmer3</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="manualECG.html">Manual ECG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaECG.html">FICHA ECG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="codigoECG.html">Codigo ECG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codigoECG.html">Análisis de señales ECG</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Actividad electrodérmica (EDA) con Shimmer3</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="manualEDA.html">Manual EDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaEDA.html">Ficha EDA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="codigoEDA.html">Codigo EDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codigoEDA.html">Análisis de señales EDA</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="citations.html">References</a></li>
@@ -401,11 +395,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Análisis de señales EEG</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-bases-de-datos-de-eeg">Procesamiento de bases de datos de EEG</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-bases-de-datos-de-eeg">Procesamiento de bases de datos de EEG</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descagar-datos">Descagar datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-imaging-data-structure-bids">Brain Imaging Data Structure (BIDS)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargamos-los-datos-con-mne">Cargamos los datos con MNE</a></li>
@@ -415,20 +406,19 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re-referencing-and-event-epoching">Re-referencing and event epoching</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-del-experimento">Eventos del experimento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-epochs">Crear Epochs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autoreject">Autoreject</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-component-analysis-ica">Independent Component Analysis (ICA)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-del-experimento">Eventos del experimento</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-epochs">Crear Epochs</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoreject">Autoreject</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-component-analysis-ica">Independent Component Analysis (ICA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examinar-epochs-y-evokeds-relacionados-a-eventos">Examinar Epochs y Evokeds relacionados a eventos.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencias-de-onda">Frecuencias de onda</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elaborado-por">Elaborado por</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examinar-epochs-y-evokeds-relacionados-a-eventos">Examinar Epochs y Evokeds relacionados a eventos.</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencias-de-onda">Frecuencias de onda</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#elaborado-por">Elaborado por</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias:</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -439,7 +429,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="analisis-de-senales-eeg">
+  <p><a class="reference external" href="https://colab.research.google.com/github/neuropucp/lab-book/blob/main/book/codigoEEG.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="analisis-de-senales-eeg">
 <h1>Análisis de señales EEG<a class="headerlink" href="#analisis-de-senales-eeg" title="Link to this heading">#</a></h1>
 <section id="introduccion">
 <h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
@@ -515,9 +506,9 @@ Ten en cuenta que importar es un paso esencial dado que, sin ello, Python no ser
 </div>
 </div>
 </section>
+<section id="procesamiento-de-bases-de-datos-de-eeg">
+<h2>Procesamiento de bases de datos de EEG<a class="headerlink" href="#procesamiento-de-bases-de-datos-de-eeg" title="Link to this heading">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="procesamiento-de-bases-de-datos-de-eeg">
-<h1>Procesamiento de bases de datos de EEG<a class="headerlink" href="#procesamiento-de-bases-de-datos-de-eeg" title="Link to this heading">#</a></h1>
 <section id="descagar-datos">
 <h2>Descagar datos<a class="headerlink" href="#descagar-datos" title="Link to this heading">#</a></h2>
 <p>¡Muy bien! Ahora que se tienen todos los módulos instalados e importados, estamos listos para analizar las bases de datos de EEG 🧠 ง
@@ -1838,9 +1829,8 @@ span.collapse-uncollapse-caret {
 </div>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="eventos-del-experimento">
-<h1>Eventos del experimento<a class="headerlink" href="#eventos-del-experimento" title="Link to this heading">#</a></h1>
+<section id="eventos-del-experimento">
+<h2>Eventos del experimento<a class="headerlink" href="#eventos-del-experimento" title="Link to this heading">#</a></h2>
 <p>Dado que nuestra data es primordialmente experimental, es necesario que podamos vincular las series de tiempo a los momentos en donde se presentaron los distintos estímulos o tareas experimentales. Así, los <strong>eventos</strong> son marcadores de tiempo que registran la aparición o cese de los estímulos. Por su parte, “epoch” (o epojé) es el nombre que recibe un segmento específico de la data. Dado que lo que nos interesa en este caso es cómo cambia la señal a partir de un evento experimental, podemos segmentar la data (crear epochs) alrededor de cada evento; este enfoque de análisis podría ser denominado dentro de la jerga EEGiana como el intentar encontrar el “potencial relacionado a eventos” (o Event Related Potential).
 <br><br>
 ¡Bueno! ¿Pero cómo hacemos para obtener información acerca de cuándo ocurrieron los eventos experimentales?
@@ -2411,8 +2401,8 @@ En este caso particular, los eventos se pueden encontrar como anotaciones dentro
 <br><br>
 Nota: si bien hemos cargado a la memoria RAM el resultado de este epoco, esto se ha hecho principalmente para agilizar el análisis. En la presencia de muchos participantes, esto podría entorpecer el comportamiento de la computadora.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="crear-epochs">
-<h1>Crear Epochs<a class="headerlink" href="#crear-epochs" title="Link to this heading">#</a></h1>
+<section id="crear-epochs">
+<h2>Crear Epochs<a class="headerlink" href="#crear-epochs" title="Link to this heading">#</a></h2>
 <p>Como se mencionó antes, las epochs son segmentos de la data. Entonces, se harán segmentos alrededor de cada evento. (・ᴗ・)っ✂</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2464,7 +2454,7 @@ Using data from preloaded Raw for 91 events and 1001 original time points ...
 </div>
 </div>
 <section id="autoreject">
-<h2>Autoreject<a class="headerlink" href="#autoreject" title="Link to this heading">#</a></h2>
+<h3>Autoreject<a class="headerlink" href="#autoreject" title="Link to this heading">#</a></h3>
 <p>Autoreject es un algoritmo que se presenta como una solución automatizada para rechazar malos trials y reparar la señal de los sensores con interpolación.
 <br><br>
 La interpolación es el proceso por el cuál se estima un valor que se encuentra fallado o dañado, haciendo uso de datos cercanos. Es algo parecido a cuando hay valores en blanco de una prueba cuantitativa y se busca reemplazarlos en base a los patrones encontrados en otras pruebas… Bueno … ¡En realidad la idea es la misma pero el proceso mucho más complejo! ･(&gt;﹏&lt;)
@@ -2511,7 +2501,7 @@ Para más información, se puede revisar la <a class="reference external" href="
 <p>El gráfico de nuestros epochs actualizado, nos permite observar una data considerablemente más limpia. Ahora, solo nos falta un paso más para concluir con el preprocesamiento.</p>
 </section>
 <section id="independent-component-analysis-ica">
-<h2>Independent Component Analysis (ICA)<a class="headerlink" href="#independent-component-analysis-ica" title="Link to this heading">#</a></h2>
+<h3>Independent Component Analysis (ICA)<a class="headerlink" href="#independent-component-analysis-ica" title="Link to this heading">#</a></h3>
 <p>Mientras que AutoReject se encarga de identificar y descartar los datos corruptos o con artefactos, ICA (Análisis de Componentes Independientes) separa las señales de acuerdo con sus fuentes, permitiendo eliminar aquellas que provienen de artefactos.
 <br><br>
 Una forma útil de entender cómo funciona ICA es imaginar una sala de grabación en la que se está tocando una banda. En esa sala, se usan varios micrófonos para grabar cada instrumento por separado. Esta analogía se asemeja bastante al funcionamiento del EEG. Los electrodos son nuestros micrófonos, y la actividad cerebral que medimos sería el sonido que grabamos. Ahora, imagina que queremos separar el sonido de la guitarra de los demás instrumentos. ¿Es posible? La respuesta es sí. Usando un análisis de componentes independientes, podemos separar la grabación en diferentes pistas, cada una correspondiente a un instrumento, para poder mezclarlas de nuevo más tarde. Así, podríamos obtener una pista solo con la guitarra.
@@ -2585,8 +2575,8 @@ Applying ICA to Epochs instance
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="examinar-epochs-y-evokeds-relacionados-a-eventos">
-<h1>Examinar Epochs y Evokeds relacionados a eventos.<a class="headerlink" href="#examinar-epochs-y-evokeds-relacionados-a-eventos" title="Link to this heading">#</a></h1>
+<section id="examinar-epochs-y-evokeds-relacionados-a-eventos">
+<h2>Examinar Epochs y Evokeds relacionados a eventos.<a class="headerlink" href="#examinar-epochs-y-evokeds-relacionados-a-eventos" title="Link to this heading">#</a></h2>
 <p>Luego de haber pre-procesado los datos para limpiarlos de artefactos y ruidos, podemos trabajar con los segmentos que hemos hecho alrededor de los eventos (epochs). Lo primero que se puede realizar es tener una visión de los epochs a través del segmento de tiempo en el que hemos creado las epochs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2767,8 +2757,8 @@ Podemos tambien intentar encontrar le tiempo exacto del potencial del evento al 
 <p>¡Bien! Parece que el tiempo exacto del peak de aquel potencial es 115 ms, al menos para el electrodo E88. Si queremos ver el peak en cada electrodo en específico, deberíamos escogerlos uno por uno.</p>
 <p>En este caso, si revisamos la literatura, el potencial de acción positivo alrededor de los 100ms (P100) en electrodos occipitales, se relaciona con la activación de la corteza visual ante estímulos visuales. Esto tiene lógica considerando que el evento es mostrar una imagen ¿Verdad?</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="frecuencias-de-onda">
-<h1>Frecuencias de onda<a class="headerlink" href="#frecuencias-de-onda" title="Link to this heading">#</a></h1>
+<section id="frecuencias-de-onda">
+<h2>Frecuencias de onda<a class="headerlink" href="#frecuencias-de-onda" title="Link to this heading">#</a></h2>
 <p>Hemos hablado anteriormente de las frecuencias de onda y cómo se pueden utilizar estas para descomponer una señal de EEG. Dentro de los objetos epoch y evoked, también tenemos métodos para explorar qué frecuencias son las que componen sus señales y ver las que predominan.</p>
 <p>El método <code class="docutils literal notranslate"><span class="pre">.compute_psd</span></code> aplicado a <a class="reference external" href="https://mne.tools/dev/generated/mne.Epochs.html#mne.Epochs.compute_psd">epochs</a> o <a class="reference external" href="https://mne.tools/dev/generated/mne.Evoked.html#mne.Evoked.compute_psd">evokeds</a> crea un nuevo objeto llamado <a class="reference external" href="https://mne.tools/dev/generated/mne.time_frequency.Spectrum.html#mne.time_frequency.Spectrum">Spectrum</a>. Este nuevo objeto contiene la información de las frecuencias de onda y, como los objetos anteriores que hemos examinado, también tiene métodos que nos permitirán explorarlo.</p>
 <p>Es importante señalar que <code class="docutils literal notranslate"><span class="pre">.compute_psd</span></code> proviene de Power Spectral Density. Es decir, se encarga de ver cuántos microvoltios al cuadrado µV² (potencia/power) hay por cada frecuencia (Hz). Por eso veremos que las unidades son (µV²/Hz).</p>
@@ -3803,17 +3793,17 @@ Bueno, hay que tener en cuenta que también tenemos muchos electrodos. En esta t
 </div>
 <p>¡Muy bien! Esto se ve un poco más entendible. (๑•̀ㅂ•́)و✧</p>
 <p>De hecho, para algunos análisis, lo que más interesará encontrar son las frecuencias de ondas relacionadas a procesos cognitivos, así que es bastante útil saber que se puede acceder a esa información. (へへ)✌</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="elaborado-por">
-<h1>Elaborado por<a class="headerlink" href="#elaborado-por" title="Link to this heading">#</a></h1>
+<section id="elaborado-por">
+<h3>Elaborado por<a class="headerlink" href="#elaborado-por" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Daniel Falcón Quintana</p></li>
 <li><p>Miguel Dávila Palomino
 <br><br></p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="referencias">
-<h1>Referencias:<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
+</section>
+<section id="referencias">
+<h2>Referencias:<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
 <p>Delorme, A. (2023). EEG is better left alone. Scientific reports, 13(1), 2372. <a class="reference external" href="https://doi.org/10.1038/s41598-023-27528-0">https://doi.org/10.1038/s41598-023-27528-0</a></p>
 <p>Gorgolewski, K. J., Auer, T., Calhoun, V. D., Craddock, R. C., Das, S., Duff, E. P., … &amp; Poldrack, R. A. (2016). The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments. Scientific data, 3(1), 1-9. <a class="reference external" href="https://doi.org/10.1038/sdata.2016.44">https://doi.org/10.1038/sdata.2016.44</a></p>
 <p>Hoechenberger, A. (2023). openneuro-py. GitHub. <a class="github reference external" href="https://github.com/hoechenberger/openneuro-py">hoechenberger/openneuro-py</a></p>
@@ -3830,6 +3820,7 @@ Puente Guillen, P. (2016). Predicting Sleepiness from Driving Behaviour (Doctora
 <p>Veillette, J. and Heald, S. and Wittenbrink, B. and Nusbaum, H. (2022). eeg-neuroforecasting. OpenNeuro. [Dataset] doi: doi:10.18112/openneuro.ds004284.v1.0.0</p>
 <p>Yarkoni et al., (2019). PyBIDS: Python tools for BIDS datasets. Journal of Open Source Software, 4(40), 1294, <a class="reference external" href="https://doi.org/10.21105/joss.01294">https://doi.org/10.21105/joss.01294</a></p>
 <p>Yarkoni, Tal, Markiewicz, Christopher J., de la Vega, Alejandro, Gorgolewski, Krzysztof J., Halchenko, Yaroslav O., Salo, Taylor, … Blair, Ross. (2019, August 8). bids-standard/pybids: 0.9.3 (Version 0.9.3). Zenodo. <a class="reference external" href="https://doi.org/10.5281/zenodo.3363985">https://doi.org/10.5281/zenodo.3363985</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -3896,11 +3887,8 @@ Puente Guillen, P. (2016). Predicting Sleepiness from Driving Behaviour (Doctora
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Análisis de señales EEG</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-bases-de-datos-de-eeg">Procesamiento de bases de datos de EEG</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#procesamiento-de-bases-de-datos-de-eeg">Procesamiento de bases de datos de EEG</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descagar-datos">Descagar datos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-imaging-data-structure-bids">Brain Imaging Data Structure (BIDS)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargamos-los-datos-con-mne">Cargamos los datos con MNE</a></li>
@@ -3910,20 +3898,19 @@ Puente Guillen, P. (2016). Predicting Sleepiness from Driving Behaviour (Doctora
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re-referencing-and-event-epoching">Re-referencing and event epoching</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-del-experimento">Eventos del experimento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-epochs">Crear Epochs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autoreject">Autoreject</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-component-analysis-ica">Independent Component Analysis (ICA)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-del-experimento">Eventos del experimento</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-epochs">Crear Epochs</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoreject">Autoreject</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-component-analysis-ica">Independent Component Analysis (ICA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examinar-epochs-y-evokeds-relacionados-a-eventos">Examinar Epochs y Evokeds relacionados a eventos.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencias-de-onda">Frecuencias de onda</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elaborado-por">Elaborado por</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examinar-epochs-y-evokeds-relacionados-a-eventos">Examinar Epochs y Evokeds relacionados a eventos.</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#frecuencias-de-onda">Frecuencias de onda</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#elaborado-por">Elaborado por</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias:</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

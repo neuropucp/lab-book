@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Codigo EDA &#8212; My sample book</title>
+    <title>Análisis de señales EDA &#8212; My sample book</title>
   
   
   
@@ -183,28 +183,23 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="manualEEG.html">Manual EEG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaEEG.html">Ficha técnica EEG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="codigoEEG.html">Código EEG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codigoEEG.html">Análisis de señales EEG</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electrocardiografía (ECG) con Shimmer3</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="manualECG.html">Manual ECG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaECG.html">FICHA ECG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="codigoECG.html">Codigo ECG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codigoECG.html">Análisis de señales ECG</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Actividad electrodérmica (EDA) con Shimmer3</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="manualEDA.html">Manual EDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaEDA.html">Ficha EDA</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Codigo EDA</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis de señales EDA</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="citations.html">References</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Example</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 </ul>
 
     </div>
@@ -388,7 +383,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Codigo EDA</h1>
+    <h1>Análisis de señales EDA</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -402,8 +397,535 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="codigo-eda">
-<h1>Codigo EDA<a class="headerlink" href="#codigo-eda" title="Link to this heading">#</a></h1>
+  <p><a class="reference external" href="https://colab.research.google.com/github/neuropucp/lab-book/blob/main/book/codigoEDA.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="analisis-de-senales-eda">
+<h1>Análisis de señales EDA<a class="headerlink" href="#analisis-de-senales-eda" title="Link to this heading">#</a></h1>
+<p>Instalamos los paquetes necesarios:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>neurokit2
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: neurokit2 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (0.2.12)
+Requirement already satisfied: requests in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (2.32.3)
+Requirement already satisfied: numpy in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (2.3.4)
+Requirement already satisfied: pandas in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (2.3.3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scipy in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (1.16.2)
+Requirement already satisfied: scikit-learn&gt;=1.0.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (1.7.2)
+Requirement already satisfied: matplotlib&gt;=3.5.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (3.10.7)
+Requirement already satisfied: PyWavelets&gt;=1.4.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (1.9.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (1.3.3)
+Requirement already satisfied: cycler&gt;=0.10 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (4.60.1)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (1.4.9)
+Requirement already satisfied: packaging&gt;=20.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (25.0)
+Requirement already satisfied: pillow&gt;=8 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (12.0.0)
+Requirement already satisfied: pyparsing&gt;=3 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (3.2.5)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (2.9.0.post0)
+Requirement already satisfied: joblib&gt;=1.2.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from scikit-learn&gt;=1.0.0-&gt;neurokit2) (1.5.2)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from scikit-learn&gt;=1.0.0-&gt;neurokit2) (3.6.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pytz&gt;=2020.1 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from pandas-&gt;neurokit2) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from pandas-&gt;neurokit2) (2025.2)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from requests-&gt;neurokit2) (3.4.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from requests-&gt;neurokit2) (3.10)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from requests-&gt;neurokit2) (2.4.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from requests-&gt;neurokit2) (2025.4.26)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.5.0-&gt;neurokit2) (1.17.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para este tutorial usaremos datos EDA extraidos con el sistema Nuanic:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/neuropucp/lab-book/refs/heads/main/res/nuanic-sample.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">eda</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="sa">r</span><span class="s2">&quot;\N&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;eda&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;eda&quot;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>address</th>
+      <th>time_unix</th>
+      <th>time</th>
+      <th>dne</th>
+      <th>srl</th>
+      <th>srrn</th>
+      <th>eda</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RP01006</td>
+      <td>1710921858</td>
+      <td>2024-03-20 08:04:17.7+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>691471</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RP01006</td>
+      <td>1710921858</td>
+      <td>2024-03-20 08:04:18.033+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>691471</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>RP01006</td>
+      <td>1710921858</td>
+      <td>2024-03-20 08:04:18.366+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>636675</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>RP01006</td>
+      <td>1710921859</td>
+      <td>2024-03-20 08:04:18.699+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>638482</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>RP01006</td>
+      <td>1710921859</td>
+      <td>2024-03-20 08:04:19.032+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>623489</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>755</th>
+      <td>RP01006</td>
+      <td>1710922109</td>
+      <td>2024-03-20 08:08:29.134+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>545832</td>
+    </tr>
+    <tr>
+      <th>756</th>
+      <td>RP01006</td>
+      <td>1710922109</td>
+      <td>2024-03-20 08:08:29.467+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>546271</td>
+    </tr>
+    <tr>
+      <th>757</th>
+      <td>RP01006</td>
+      <td>1710922110</td>
+      <td>2024-03-20 08:08:29.8+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>546858</td>
+    </tr>
+    <tr>
+      <th>758</th>
+      <td>RP01006</td>
+      <td>1710922110</td>
+      <td>2024-03-20 08:08:30.143+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>545539</td>
+    </tr>
+    <tr>
+      <th>759</th>
+      <td>RP01006</td>
+      <td>1710922110</td>
+      <td>2024-03-20 08:08:30.476+00</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>\N</td>
+      <td>543492</td>
+    </tr>
+  </tbody>
+</table>
+<p>760 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p>Visualizamos los datos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;time_unix&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;eda&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time_unix&#39;, ylabel=&#39;eda&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/da7c63fce933527b70b2a9714d521f91334983c17e75df63ec0ae9fc2baa1e41.png" src="_images/da7c63fce933527b70b2a9714d521f91334983c17e75df63ec0ae9fc2baa1e41.png" />
+</div>
+</div>
+<p>Ejecutamos el pipeline básico de Neurokit 2 para preprocesar señales EDA (<code class="docutils literal notranslate"><span class="pre">eda_process</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">neurokit2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nk</span>
+
+<span class="n">eda_signal</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eda</span>
+<span class="n">signals</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">eda_process</span><span class="p">(</span><span class="n">eda_signal</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;neurokit&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages/neurokit2/eda/eda_clean.py:105: NeuroKitWarning: EDA signal is sampled at very low frequency. Skipping filtering.
+  warn(
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obtenemos los indicadores de la señal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">signals</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EDA_Raw</th>
+      <th>EDA_Clean</th>
+      <th>EDA_Tonic</th>
+      <th>EDA_Phasic</th>
+      <th>SCR_Onsets</th>
+      <th>SCR_Peaks</th>
+      <th>SCR_Height</th>
+      <th>SCR_Amplitude</th>
+      <th>SCR_RiseTime</th>
+      <th>SCR_Recovery</th>
+      <th>SCR_RecoveryTime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>691471</td>
+      <td>691471</td>
+      <td>687455.100896</td>
+      <td>4015.899104</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>691471</td>
+      <td>691471</td>
+      <td>679136.588654</td>
+      <td>12334.411346</td>
+      <td>0</td>
+      <td>1</td>
+      <td>12334.411346</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>636675</td>
+      <td>636675</td>
+      <td>670828.936886</td>
+      <td>-34153.936886</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>638482</td>
+      <td>638482</td>
+      <td>662584.010933</td>
+      <td>-24102.010933</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-24102.010933</td>
+      <td>10051.925954</td>
+      <td>0.333333</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>623489</td>
+      <td>623489</td>
+      <td>654451.571895</td>
+      <td>-30962.571895</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>755</th>
+      <td>545832</td>
+      <td>545832</td>
+      <td>540423.042406</td>
+      <td>4079.092162</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>756</th>
+      <td>546271</td>
+      <td>546271</td>
+      <td>540726.655949</td>
+      <td>4021.481218</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>757</th>
+      <td>546858</td>
+      <td>546858</td>
+      <td>540985.584887</td>
+      <td>4143.764348</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>758</th>
+      <td>545539</td>
+      <td>545539</td>
+      <td>541202.428315</td>
+      <td>2389.735389</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>759</th>
+      <td>543492</td>
+      <td>543492</td>
+      <td>541380.406010</td>
+      <td>-65.223113</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>760 rows × 11 columns</p>
+</div></div></div>
+</div>
+<p>Y la información relevante a analizar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;SCR_Onsets&#39;: array([ nan,   2.,  10.,  33., 350., 378., 424., 450., 473., 496., 522.,
+        572., 612., 629., 642., 676.]),
+ &#39;SCR_Peaks&#39;: array([  1,   3,  27,  41, 365, 380, 438, 461, 479, 498, 525, 593, 620,
+        633, 657, 691]),
+ &#39;SCR_Height&#39;: array([ 12334.41134572, -24102.01093259,   8602.53410696,   7449.97443911,
+         29111.04292567,  16716.72896096,  39488.53276245,  33557.95909724,
+         -3785.74033518,   6299.49014949,   7393.10553502,  39410.43896695,
+         31413.99391585,  24750.9793251 ,   7730.75412583,   4872.6094852 ]),
+ &#39;SCR_Amplitude&#39;: array([           nan, 10051.92595386, 46906.50578902,  8570.82998681,
+        33279.36494728,  2421.54173114, 34249.62697203, 68700.14855417,
+        17292.45339844,   924.2458249 ,  1374.7421041 , 42022.77049001,
+        54310.35764891, 34536.39006737, 38760.03720946,  7936.73621127]),
+ &#39;SCR_RiseTime&#39;: array([       nan, 0.33333333, 5.66666667, 2.66666667, 5.        ,
+        0.66666667, 4.66666667, 3.66666667, 2.        , 0.66666667,
+        1.        , 7.        , 2.66666667, 1.33333333, 5.        ,
+        5.        ]),
+ &#39;SCR_Recovery&#39;: array([ nan,   4.,  nan,  85.,  nan, 381., 441., 471., 481., 499., 530.,
+        596., 625., 639.,  nan, 695.]),
+ &#39;SCR_RecoveryTime&#39;: array([        nan,  0.33333333,         nan, 14.66666667,         nan,
+         0.33333333,  1.        ,  3.33333333,  0.66666667,  0.33333333,
+         1.66666667,  1.        ,  1.66666667,  2.        ,         nan,
+         1.33333333]),
+ &#39;sampling_rate&#39;: 3}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos visualizar el resultado de nuestro pre-procesamiento con visualización por defecto del paquete (<code class="docutils literal notranslate"><span class="pre">eda_plot</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nk</span><span class="o">.</span><span class="n">eda_plot</span><span class="p">(</span><span class="n">signals</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a7d8e5e19185d9964221939304aa9a62b788b9f481eb166698031cfa33c354db.png" src="_images/a7d8e5e19185d9964221939304aa9a62b788b9f481eb166698031cfa33c354db.png" />
+</div>
+</div>
+<p>Y podemos calcular métricas relevantes de la señal con las función <code class="docutils literal notranslate"><span class="pre">eda_analyze</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analyze_df</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">eda_analyze</span><span class="p">(</span><span class="n">signals</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;interval-related&quot;</span><span class="p">)</span>
+<span class="n">analyze_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SCR_Peaks_N</th>
+      <th>SCR_Peaks_Amplitude_Mean</th>
+      <th>EDA_Tonic_SD</th>
+      <th>EDA_Sympathetic</th>
+      <th>EDA_SympatheticN</th>
+      <th>EDA_Autocorrelation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16.0</td>
+      <td>26755.845126</td>
+      <td>160554.02827</td>
+      <td>1.616763e+08</td>
+      <td>0.001971</td>
+      <td>0.972385</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

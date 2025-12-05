@@ -11,3 +11,21 @@ Este esfuerzo colectivo se inspira en el espíritu de la ciencia abierta y colab
 
 ```{tableofcontents}
 ```
+
+## Elaborado por el equipo de NeuroPUCP:
+
+- Renato Paredes
+- Emilia Gyr
+- Daniel Falcón
+- Anzu Zevallos
+- Miguel Dávila
+- Jimmy Rodríguez
+- Adriana Maza
+- Alan Dulanto
+- Bryan Ccasane
+
+## ¿Cómo citar?
+
+Si quieres citar este material, por favor usa la siguiente referencia:
+
+> Laboratorio de Neurociencia Cognitiva Computacional PUCP (2025). Manual Técnico. https://neuropucp.github.io/lab-book/
