@@ -190,16 +190,12 @@
 <li class="toctree-l1"><a class="reference internal" href="manualECG.html">Manual ECG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaECG.html">FICHA ECG</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis de señales ECG</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Actividad electrodérmica (EDA) con Shimmer3</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="manualEDA.html">Manual EDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fichaEDA.html">Ficha EDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codigoEDA.html">Análisis de señales EDA</a></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="citations.html">References</a></li>
 </ul>
 
     </div>
@@ -395,10 +391,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Análisis de señales ECG</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-limpieza-ecg-cleaned">Métodos de limpieza “ecg_cleaned”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-limpieza-ecg-cleaned">Métodos de limpieza “ecg_cleaned”</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -421,9 +415,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: neurokit2 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (0.2.12)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: requests in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (2.32.3)
+Requirement already satisfied: requests in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (2.32.3)
 Requirement already satisfied: numpy in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (2.3.4)
 Requirement already satisfied: pandas in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (2.3.3)
 Requirement already satisfied: scipy in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from neurokit2) (1.16.2)
@@ -438,19 +430,19 @@ Requirement already satisfied: packaging&gt;=20.0 in /home/renato-paredes/.virtu
 Requirement already satisfied: pillow&gt;=8 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (12.0.0)
 Requirement already satisfied: pyparsing&gt;=3 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (3.2.5)
 Requirement already satisfied: python-dateutil&gt;=2.7 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from matplotlib&gt;=3.5.0-&gt;neurokit2) (2.9.0.post0)
-Requirement already satisfied: joblib&gt;=1.2.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from scikit-learn&gt;=1.0.0-&gt;neurokit2) (1.5.2)
-Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from scikit-learn&gt;=1.0.0-&gt;neurokit2) (3.6.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pytz&gt;=2020.1 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from pandas-&gt;neurokit2) (2025.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: joblib&gt;=1.2.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from scikit-learn&gt;=1.0.0-&gt;neurokit2) (1.5.2)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from scikit-learn&gt;=1.0.0-&gt;neurokit2) (3.6.0)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from pandas-&gt;neurokit2) (2025.2)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from pandas-&gt;neurokit2) (2025.2)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from requests-&gt;neurokit2) (3.4.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from requests-&gt;neurokit2) (3.4.2)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from requests-&gt;neurokit2) (3.10)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from requests-&gt;neurokit2) (2.4.0)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from requests-&gt;neurokit2) (2025.4.26)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.5.0-&gt;neurokit2) (1.17.0)
+Requirement already satisfied: six&gt;=1.5 in /home/renato-paredes/.virtualenvs/neuropucp-book/lib/python3.11/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.5.0-&gt;neurokit2) (1.17.0)
 </pre></div>
 </div>
 </div>
@@ -486,7 +478,7 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/renato-paredes/.vi
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c34236569c5823e20ce258e299659753e8c07c87109aaf334fa41a0f134e1348.png" src="_images/c34236569c5823e20ce258e299659753e8c07c87109aaf334fa41a0f134e1348.png" />
+<img alt="_images/f279b7dd89230ff1017da8951dfc8d5fccbd18cc2060d60bf54dcaed95e8042f.png" src="_images/f279b7dd89230ff1017da8951dfc8d5fccbd18cc2060d60bf54dcaed95e8042f.png" />
 </div>
 </div>
 <p>Ahora, el código de ecg_process() puede adaptarse y modificarse a los requerimientos que necesiten. Aquí les paso la función que está detrás del script que me copié de las referencias de Renato:</p>
@@ -529,13 +521,12 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/renato-paredes/.vi
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bea11943860107fb4b265c8e7fb38b36595ad8bcbec204aa2f1e8a85e657ca33.png" src="_images/bea11943860107fb4b265c8e7fb38b36595ad8bcbec204aa2f1e8a85e657ca33.png" />
+<img alt="_images/2fdb87c0629563002991fa41d795efb5255ece5646181f72419205bf1d731cbc.png" src="_images/2fdb87c0629563002991fa41d795efb5255ece5646181f72419205bf1d731cbc.png" />
 </div>
 </div>
 <p>Aquí debo explicar algunas cosas para que no malogren la función y que les ayudará a tener datos más ajustados a sus necesidades…</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="metodos-de-limpieza-ecg-cleaned">
-<h1>Métodos de limpieza “ecg_cleaned”<a class="headerlink" href="#metodos-de-limpieza-ecg-cleaned" title="Link to this heading">#</a></h1>
+<section id="metodos-de-limpieza-ecg-cleaned">
+<h2>Métodos de limpieza “ecg_cleaned”<a class="headerlink" href="#metodos-de-limpieza-ecg-cleaned" title="Link to this heading">#</a></h2>
 <p>Antes de hacer cualquier proceso, quisiera comentarles algunas métodos que investigué antes de  aplicar los cambios en la función. Si bien todos tienen una explicación bastante profunda, trataré de no detenerme mucho en eso y solo mencionar las bandas de Hz que se usaron en papers o el contexto en el que se aplicaron (también porque mucho no entendí).</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">neurokit</span></code> - El proceso de limpieza por defecto. No investigué más.</p></li>
@@ -597,7 +588,7 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/renato-paredes/.vi
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d8dcaa33afb71c861065c31e1c25617a4c48be4173c55d4a81f7501dc95e1a3d.png" src="_images/d8dcaa33afb71c861065c31e1c25617a4c48be4173c55d4a81f7501dc95e1a3d.png" />
+<img alt="_images/9ef63fea50b3ea2d7f8096eb800dd7fcad49042f1dc014d7d2a07e1c763d42ed.png" src="_images/9ef63fea50b3ea2d7f8096eb800dd7fcad49042f1dc014d7d2a07e1c763d42ed.png" />
 </div>
 </div>
 <p>Bien, ahora imaginemos que ninguno de estos filtros son lo suficientemente buenos para tu trabajo. Posiblemente tengas problemas limpiando datos por diferentes artefactos; como que tu participante estuvo pateando el cable de tierra durante las pruebas, el asistente que te ayudó en la investigación no sabía cómo poner los electrodos, o tal vez se te ocurrió hacer tus muestras ECG mientras estaban taladrando al costado de tu laboratorio.</p>
@@ -694,42 +685,42 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/renato-paredes/.vi
   <tbody>
     <tr>
       <th>0</th>
-      <td>1.102779</td>
-      <td>0.095369</td>
-      <td>80.011854</td>
-      <td>0.000000</td>
+      <td>1.102209</td>
+      <td>0.106671</td>
+      <td>80.047436</td>
+      <td>0.151222</td>
       <td>0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1.097744</td>
-      <td>0.069249</td>
-      <td>80.011854</td>
-      <td>0.000000</td>
+      <td>1.097101</td>
+      <td>0.080489</td>
+      <td>80.047436</td>
+      <td>0.151222</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1.085894</td>
-      <td>0.042855</td>
-      <td>80.011854</td>
-      <td>0.000000</td>
+      <td>1.085065</td>
+      <td>0.054013</td>
+      <td>80.047436</td>
+      <td>0.151222</td>
       <td>0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1.067122</td>
-      <td>0.016224</td>
-      <td>80.011854</td>
-      <td>0.000000</td>
+      <td>1.066079</td>
+      <td>0.027282</td>
+      <td>80.047436</td>
+      <td>0.151222</td>
       <td>0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.041732</td>
-      <td>-0.010605</td>
-      <td>80.011854</td>
-      <td>0.000000</td>
+      <td>1.040480</td>
+      <td>0.000333</td>
+      <td>80.047436</td>
+      <td>0.151222</td>
       <td>0</td>
     </tr>
     <tr>
@@ -742,42 +733,42 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/renato-paredes/.vi
     </tr>
     <tr>
       <th>14995</th>
-      <td>0.933116</td>
-      <td>-0.010690</td>
-      <td>80.753701</td>
-      <td>0.464133</td>
+      <td>1.086076</td>
+      <td>-0.033258</td>
+      <td>80.106809</td>
+      <td>0.000000</td>
       <td>0</td>
     </tr>
     <tr>
       <th>14996</th>
-      <td>0.887910</td>
-      <td>-0.008716</td>
-      <td>80.753701</td>
-      <td>0.464133</td>
+      <td>1.091556</td>
+      <td>-0.028717</td>
+      <td>80.106809</td>
+      <td>0.000000</td>
       <td>0</td>
     </tr>
     <tr>
       <th>14997</th>
-      <td>0.838113</td>
-      <td>-0.007011</td>
-      <td>80.753701</td>
-      <td>0.464133</td>
+      <td>1.090897</td>
+      <td>-0.024559</td>
+      <td>80.106809</td>
+      <td>0.000000</td>
       <td>0</td>
     </tr>
     <tr>
       <th>14998</th>
-      <td>0.784491</td>
-      <td>-0.005557</td>
-      <td>80.753701</td>
-      <td>0.464133</td>
+      <td>1.083913</td>
+      <td>-0.020780</td>
+      <td>80.106809</td>
+      <td>0.000000</td>
       <td>0</td>
     </tr>
     <tr>
       <th>14999</th>
-      <td>0.727776</td>
-      <td>-0.004332</td>
-      <td>80.753701</td>
-      <td>0.464133</td>
+      <td>1.070443</td>
+      <td>-0.017373</td>
+      <td>80.106809</td>
+      <td>0.000000</td>
       <td>0</td>
     </tr>
   </tbody>
@@ -794,14 +785,15 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/renato-paredes/.vi
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;method_peaks&#39;: &#39;neurokit&#39;,
  &#39;method_fixpeaks&#39;: &#39;None&#39;,
- &#39;ECG_R_Peaks&#39;: array([  732,  1483,  2252,  3012,  3749,  4481,  5228,  5991,  6750,
-         7497,  8241,  8992,  9746, 10496, 11244, 11995, 12744, 13487,
-        14230]),
+ &#39;ECG_R_Peaks&#39;: array([  754,  1499,  2236,  2984,  3751,  4515,  5259,  5988,  6730,
+         7491,  8254,  9001,  9739, 10486, 11245, 12002, 12751, 13497,
+        14246]),
  &#39;sampling_rate&#39;: 1000}
 </pre></div>
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -868,10 +860,8 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in /home/renato-paredes/.vi
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Análisis de señales ECG</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-limpieza-ecg-cleaned">Métodos de limpieza “ecg_cleaned”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-limpieza-ecg-cleaned">Métodos de limpieza “ecg_cleaned”</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
