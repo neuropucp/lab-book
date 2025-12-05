@@ -1,4 +1,4 @@
-# FICHA ECG 
+# Ficha técnica ECG 
 ## 2.7. Ficha Técnica del Shimmer3 ECG
 ### 2.7.1. Introducción Shimmer3 ECG Unit 
 El *Shimmer3 ECG Unit* (ECG) pertenece a la familia de dispositivos *Shimmer*, utilizados en el monitoreo de mediciones fisiológicas. 

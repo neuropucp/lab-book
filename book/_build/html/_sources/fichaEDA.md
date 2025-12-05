@@ -1,4 +1,4 @@
-# Ficha EDA
+# Ficha técnica EDA
 ## 3.9. Ficha Técnica Shimmer3 GSR+
 ### *__3.9.1. Introducción__* 
 
