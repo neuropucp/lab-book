@@ -25,6 +25,13 @@ Este esfuerzo colectivo se inspira en el espíritu de la ciencia abierta y colab
 - Alan Dulanto
 - Bryan Ccasane
 
+## Licencia
+
+Este manual está bajo la licencia [3-Clause BSD License](https://github.com/neuropucp/lab-book/blob/main/LICENSE).
+
+Esta licencia permite la redistribución ilimitada para cualquier propósito, siempre y cuando
+se mantengan los avisos de derechos de autor y las exenciones de responsabilidad de la licencia.
+
 ## ¿Cómo citar?
 
 Si quieres citar este material, por favor usa la siguiente referencia:
