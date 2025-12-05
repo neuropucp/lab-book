@@ -1,3 +1,10 @@
 jupyter-book
 matplotlib
 numpy
+neurokit2
+bids
+autoreject
+mne
+mne-bids
+openneuro-py
+mne-icalabel
