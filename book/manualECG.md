@@ -307,6 +307,7 @@ Consensys permite personalizar la visualización de los datos:
 A partir de una pequeña revisión de literatura en la cual se empleó el Shimmer3 ECG para el recojo de datos fisiológicos. Se recomienda establecer una tasa de muestreo que podría ser el valor por defecto de 512Hz, el cual se ha empleado en el recojo de data en reposo (Bossaerts et al., 2024). Además, se reporta el uso de una tasa de muestreo de 1024Hz para recojo de datos en movimiento (Ogden et al., 2024). Inclusive, se podría tomar en consideración las tasas de muestreo mínimas según la Asociación Americana del Corazón (Kligfield, 2007). De forma análoga, se debe evaluar la posición conveniente para la posición de los electrodos y leads (Miranda-Correa et al., 2018; Katsigiannis & Ramzan, 2017). 
 
 ## 2.6.	Referencias Bibliográficas
+
 Ahmed, M.U., & Begum, S. (2010). Heart Rate and Inter-beat Interval Computation to Diagnose Stress Using ECG Sensor Signal. https://www.es.mdh.se/pdf_publications/1929.pdf 
 
 Bossaerts, P., Fattinger, F., Rotaru, K., & Xu, K. (2024). Emotional engagement and trading performance. Management Science, 70(6), 3381-3397. https://doi.org/10.1287/mnsc.2023.4883 

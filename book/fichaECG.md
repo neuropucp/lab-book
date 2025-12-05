@@ -76,6 +76,7 @@ El Shimmer3 ECG Unit es un dispositivo inalámbrico de monitoreo fisiológico di
 * Se pueden personalizar las visualizaciones de los datos (número de plots, color, unidades de tiempo y voltaje).
 
 ### 2.7.10. Referencias Bibliográficas 
+
 Ahmed, M.U., & Begum, S. (2010). Heart Rate and Inter-beat Interval  Computation to Diagnose Stress Using ECG Sensor Signal.
 
 Bossaerts, P., Fattinger, F., Rotaru, K., & Xu, K. (2024). Emotional engagement  and trading performance. 
